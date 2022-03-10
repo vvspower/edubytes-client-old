@@ -1,0 +1,19 @@
+.ViewNotes {
+    margin-top: 20px;
+}
+
+.Search {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 16px;
+    border: 1px solid #ced4da;
+    margin-bottom: 40px;
+   
+}
+.ViewNotes input {
+    border-radius: 16px;
+    border: 0;
+    box-shadow: none
+   
+}

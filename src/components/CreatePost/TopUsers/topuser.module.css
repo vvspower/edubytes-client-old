@@ -1,0 +1,31 @@
+.TopUser {
+  background-color: white;
+  display: flex;
+  gap: 14px;
+  padding-left: 10px;
+  padding-top: 5px;
+  /* align-items: center; */
+  padding-right: 100px;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.TopUser span {
+  background-color: blueviolet;
+  padding: 0px 6px 4px 6px;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+.TopUser p {
+  font-size: 12px;
+  color: #adb5bd;
+  margin: 0;
+  padding: 0;
+}
+
+.TopUser:hover {
+  cursor: pointer;
+  background-color: #f1f3f5;
+}

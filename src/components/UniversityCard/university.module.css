@@ -1,0 +1,86 @@
+.UniCarousel img {
+    border-radius: 16px;
+}
+
+.UniCarousel {
+    width: 250px; 
+}
+
+.UniversityCard {
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  gap: 20px;
+  max-width: 720px;
+  align-items: center;
+ 
+ 
+}
+.UniversityCard h5 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.Text img {
+    border-radius: 50%;
+}
+
+.Text span {
+   margin-left: 10px;
+   font-size: 12px;
+}
+
+.UniversityCard p {
+    font-size: 14px;
+    max-width: 410px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.sparkle {
+    width: 24px;
+}
+
+.AltText {
+    display: none
+}
+
+
+@media only screen and (max-width: 580px) {
+    .UniCarousel {
+        width: 150px;
+    }
+
+    .UniversityCard h5 {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .UniversityCard p {
+        font-size: 10px;
+        max-width: 410px;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+
+    .JoinedUsers {
+        display: none;
+    }
+
+    .sparkle {
+        width: 18px;
+    }
+    
+    .MainText {
+        display: none;
+
+    }
+
+    .AltText {
+        display: block;
+    }
+
+}
+

@@ -1,0 +1,21 @@
+.Comment {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  /* background-color: rebeccapurple; */
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.Comment a {
+  display: flex;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.Comment:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+}

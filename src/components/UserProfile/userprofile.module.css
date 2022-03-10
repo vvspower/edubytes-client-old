@@ -1,0 +1,196 @@
+body {
+  background-color: #f8f9fa
+
+  
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.Follows p {
+  margin: 0;
+font-size: 14px;
+color: #495057;
+}
+.Follows {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.UserProfile {
+  margin: 0 auto;
+  width: 45%;
+  /* background-color: black; */
+}
+
+.Seperator {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.Acheivements {
+  margin-top: 30px;
+  padding-bottom: 150px;
+}
+
+.UserHeader {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  align-items: center;
+  padding: 20px;
+}
+
+.UserHeader img {
+  display: inline-block;
+  border-radius: 50px;
+}
+.UserHeader h5 {
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.UserHeader p {
+  font-size: 14px;
+  color: #adb5bd;
+  margin: 0;
+}
+
+.UserHeader span {
+  color: #2db55d;
+}
+
+.UserInfo button {
+  border: none;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+background-color: #ff922b;
+  padding: 5px;
+}
+
+.UserInfo {
+  display: flex;
+  gap: 15px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+
+
+}
+
+.UserInfo div:first-child {
+  display: flex;
+  gap: 15px;
+  margin: 0 auto;
+  width: 45%;
+  padding: 30px;
+  
+
+}
+
+.UserInfo img {
+  border-radius: 50px;
+
+}
+
+.Bio {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e9ecef;
+  
+}
+
+.Bio p {
+ padding-top: 6px;
+  color: #343a40;
+  
+}
+.UserDetail p {
+  font-size: 14px;
+  margin: 0;
+  /* margin-top: 60px; */
+}
+
+.UserDetail {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  max-width: 260px;
+}
+
+.EditProfile {
+  background-color: #e9ecef;
+   font-weight: 500 ;
+   width: 300px ;
+   border: 1px solid #ced4da;
+   border-radius: 8px;
+   height: 35px;
+}
+
+.EditProfile button {
+  border: 0;
+  background-color: #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 5px;
+  width: 240px;
+}
+
+.UserDetail div div {
+  text-align: center;
+}
+
+.User {
+  display: flex;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.Links {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.UserBio {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.Subjects {
+  margin-bottom: 30px;
+}
+.Subjects span {
+  background-color: #dee2e6;
+  color: #adb5bd;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.UserBio span {
+  display: inline-block;
+  background-color: #dee2e6;
+  color: #adb5bd;
+  font-weight: 400;
+  word-wrap: break-word;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.UserBio aside {
+  width: 300px;
+  /* background-color: black; */
+  /* display: flex; */
+
+  gap: 10px;
+}

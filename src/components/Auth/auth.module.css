@@ -1,0 +1,57 @@
+.AuthModal {
+  border-radius: 15px;
+}
+
+.Modal {
+  margin-left: 80px;
+}
+
+.Terms p {
+  font-size: 12px;
+  color: #868e96;
+}
+
+.Terms span {
+  color: #212529;
+  cursor: pointer;
+}
+
+.Create {
+  margin-top: 10px;
+  color: #868e96;
+  font-size: 12px;
+  text-align: center;
+}
+
+.Create span {
+  color: #212529;
+  cursor: pointer;
+}
+
+.Terms {
+  margin-top: 60px;
+}
+
+@media only screen and (max-width: 850px) {
+  .Modal {
+    margin-left: 25px;
+  }
+}
+
+@media only screen and (max-width: 395px) {
+  .Modal {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .Modal {
+    margin-left: 5px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .Modal {
+    margin-left: 0px;
+  }
+}

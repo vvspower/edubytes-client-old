@@ -1,0 +1,107 @@
+.Popular {
+  max-width: 350px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 10px 10px 10px 10px;
+  border-radius: 8px;
+  /* max-height: 140px; */
+  /* margin: 15px; */
+  /* margin-right: 20px; */
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Badge {
+  background-color: #fff1dc;
+  color: sandybrown;
+  font-size: 12px;
+  padding: 0px 10px;
+  border-radius: 10px;
+  max-height: 20px;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.desc {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.Popular a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.pfp {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: aqua;
+}
+
+.Bottom {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.User {
+  display: flex;
+  /* align-items: center; */
+  gap: 5px;
+  color: #495057;
+  font-size: 12px;
+}
+.User p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media only screen and (max-width: 850px) {
+  .Popular {
+    margin: 0;
+    max-width: 380px;
+    margin-left: 15px;
+  }
+  .Bottom {
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .Popular {
+    margin: 0;
+    max-width: 360px;
+    margin-left: 15px;
+  }
+  .Bottom {
+    justify-content: space-between;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .Popular {
+    margin: 0;
+    max-width: 345px;
+    margin-left: 15px;
+  }
+  .Bottom {
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .Popular {
+    margin: 0;
+    max-width: 290px;
+    margin-left: 15px;
+  }
+  .Bottom {
+    justify-content: space-between;
+  }
+}

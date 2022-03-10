@@ -1,0 +1,25 @@
+.Container h1 {
+  font-weight: 700;
+}
+.Container strong {
+  cursor: pointer;
+}
+
+.Container input {
+  font-size: 14px;
+}
+
+.Container textarea {
+  font-size: 14px;
+}
+
+.Container input::placeholder {
+  font-size: 14px;
+  color: #adb5bd;
+}
+
+.Container textarea::placeholder {
+  font-size: 14px;
+  max-height: 500px;
+  color: #adb5bd;
+}

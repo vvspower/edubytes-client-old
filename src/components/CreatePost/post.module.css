@@ -1,0 +1,185 @@
+.Universal {
+  display: flex;
+  gap: 10px;
+  margin-left: 125px;
+}
+
+.askText {
+  font-size: 16px;
+  color: #74c0fc;
+  text-align: center;
+  color: #228be6;
+  text-align: center;
+}
+
+.PostBtn {
+  box-shadow: 0 0 10px #fff, 0 0 10px #fff, 0 0 10px #339af0; ;
+}
+.CPContainer {
+  background-color: white;
+  padding:  10px 40px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  /* padding-left: 20px; */
+  justify-content: center;
+  cursor: pointer;
+
+}
+
+.Post {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+}
+
+.Post button {
+  background-color: white;
+  border: none;
+  display: flex;
+}
+
+.Modal {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.TopUser h6 {
+  margin-bottom: 10px;
+}
+
+.TopUser {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  margin-top: 10px;
+  max-height: 720px;
+}
+
+.Notif {
+  background-color: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin: 10px 0px;
+}
+
+.Notif span {
+  color: #ff922b;
+}
+
+.Notif span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.Categories {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.Categories p {
+  margin: 0;
+}
+
+.Categories p:hover {
+  cursor: pointer;
+  border-bottom: 3px solid black;
+}
+
+.Input {
+  border-radius: 8px;
+  border: 1px solid #e0f4e7;
+  height: 30px;
+  padding-top: 10px;
+}
+
+.Input:hover {
+  border: 1px solid #007aff;
+}
+
+.Input:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid #007aff;
+}
+
+.Categories button {
+  border: 0;
+  border: 0;
+  color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 10;
+  margin-left: 2px;
+  background-color: #007aff;
+}
+
+.Tags span {
+  background-color: #e0f4e7;
+  color: #2db55d;
+  font-weight: 400;
+
+  margin-top: 10px;
+  margin-right: 8px;
+}
+
+.Btn {
+  background-image: linear-gradient(
+    to right,
+    #00d2ff 0%,
+    #3a7bd5 51%,
+    #00d2ff 100%
+  );
+  border: none;
+  margin: 0px;
+  margin-left: 20px;
+  padding: 6px 8px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 50px;
+  display: block;
+  box-shadow: 0 3px 10px rgb(0, 0, 0/ 0.5);
+}
+
+.Btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 850px) {
+  .TopCards {
+    display: none;
+  }
+
+  .Categories {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .SideBar {
+    display: none;
+  }
+
+  .Universal {
+    margin: 0px;
+  }
+
+  .Search {
+    margin-top: 20px;
+  }
+}

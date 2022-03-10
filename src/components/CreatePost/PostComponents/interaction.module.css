@@ -1,0 +1,28 @@
+.Interaction {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0px;
+}
+
+.Interaction p {
+  font-size: 10px;
+  color: #868e96;
+  margin: 0;
+}
+
+.Button {
+  /* margin-top: 15px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.Button:hover {
+  cursor: pointer;
+}
+
+.Button:last-child {
+  margin-left: 80px;
+}

@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.pfp {
+  position: relative;
+}
+.pfp a {
+  display: inline-block;
+  background-color: burlywood;
+  padding: 2px 7px;
+  border-radius: 25px;
+}
+
+.Latest {
+  padding-top: 20px;
+  padding: 20px 20px;
+  border-top: 1px solid #e9ecef;
+  padding-bottom: 20px;
+  max-width: 800px;
+  padding-right: 30px;
+  display: flex; 
+  align-items: center;
+  gap: 20px;
+}
+.postImage img  {
+  border-radius: 8px;
+  max-height: 120px;
+}
+
+.AltImage img {
+  border-radius: 8px;
+  max-height: 120px;
+  display: none;
+}
+
+.Latest:hover {
+  cursor: pointer;
+}
+
+.Latest p,
+h6 {
+  margin: 0;
+}
+
+.Latest h6 {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.Container {
+  display: flex;
+  gap: 10px;
+  /* position: relative; */
+  /* padding-right: 40px; */
+}
+
+.description {
+  padding-top: 10px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  white-space: pre-line;
+  vertical-align: bottom;
+}
+
+.Date {
+  color: #ced4da;
+  font-size: 10px;
+}
+
+.Latest span {
+  margin-right: 10px;
+  font-weight: 400;
+  background-color: #e0f4e7;
+  color: #2db55d;
+}
+
+.Latest button {
+  border: none;
+  background-color: #fd7e14;
+  padding: 5px 15px;
+  border-radius: 25px;
+}
+
+.Latest a {
+  text-decoration: none;
+  color: black;
+  -webkit-transition: color 0.5s;
+  -moz-transition: color 0.5s;
+  -ms-transition: color 0.5s;
+  -o-transition: color 0.5s;
+  transition: color 0.5s;
+}
+
+.Latest a:hover {
+  color: #0d6efd;
+}
+
+.Info {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s, opacity 0.5s linear;
+}
+.pfp:hover > .Info {
+  /* display: block; */
+  opacity: 1;
+  transition: opacity 0.5s;
+  visibility: visible;
+  transition: visibility 0s, opacity 0.5s linear;
+  /* display: block; */
+}
+
+@media only screen and (max-width: 850px) {
+  .postImage {
+    display: none;
+  }
+
+  .AltImage   {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+  }
+
+  .AltImage img {
+    display: flex;
+  
+    width: 130px;
+  }
+  .Latest p {
+    font-size: 14px;
+  }
+
+  
+}

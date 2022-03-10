@@ -1,0 +1,124 @@
+.Card {
+  background: rgb(105, 105, 105);
+  background: linear-gradient(
+    90deg,
+    rgba(105, 105, 105, 1) 3%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  padding: 10px 20px;
+  color: white;
+  padding-top: 20px;
+  padding: 20px;
+  /* margin-top: 20px; */
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  max-width: 300px;
+  padding-bottom: 20px;
+}
+
+.PopularNotes {
+  background-color: white;
+  /* margin-top: 10px; */
+  padding: 5px;
+  max-width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  
+}
+
+.PopularNotes a {
+  text-decoration: none;
+  color: black;
+
+}
+
+.Notes {
+  /* margin-bottom: 10px; */
+  padding: 5px 10px;
+  border-radius: 4px;
+  /* margin-left: 20px; */
+  padding-left: 30px;
+}
+
+.Notes p {
+  margin: 0 !important; 
+}
+
+.Notes:hover {
+  background-color: #e9ecef;
+}
+
+.Card p {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.Card:hover {
+  cursor: pointer;
+}
+
+.Card h5 {
+  font-size: 18px;
+}
+
+/* #e9ecef */
+
+.Card a {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 35px;
+  margin-left: 200px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 5px;
+  font-weight: 500;
+  color: white;
+}
+
+.Teach {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+
+  margin-top: 10px;
+  color: #343a40;
+  padding: 20px 5px;
+  border-radius: 8px;
+  border-bottom: 1px solid #e9ecef;
+
+  background-color: white;
+  /* padding: 40px 0px; */
+}
+.Join {
+  font-size: 12px;
+  color: #adb5bd;
+  /* margin-bottom: 20px; */
+}
+
+.Join a {
+  color: #adb5bd;
+}
+
+.Teach h6 {
+  font-size: 14px;
+  margin-bottom: 1px;
+  margin-top: 10px;
+}
+.Teach p {
+  /* font-size: 15px; */
+  margin: 0;
+}
+.Teach a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #ebf5ff;
+  border-radius: 10px;
+  text-align: center;
+  /* margin-left: 60px; */
+  padding: 5px 50px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.Teach a:hover {
+  background-color: #dbedff;
+}

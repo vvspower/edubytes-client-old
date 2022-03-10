@@ -1,0 +1,36 @@
+.NoteCard {
+  background-color: white;
+  max-width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+}
+
+.NoteCard div:first-child {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 6px;
+}
+
+.NoteCard div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.NoteCard div:nth-child(3) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.NoteCard span {
+  color: #495057;
+  font-size: 14px;
+}
+
+.NoteCard p {
+  color: #228be6;
+}

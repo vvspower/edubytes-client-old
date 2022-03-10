@@ -1,0 +1,263 @@
+.Universal {
+  margin-left: 200px;
+}
+
+.UserPost {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  border: 1px solid #f1f3f5;
+  width: 800px;
+}
+.ReplyCards * {
+  margin: 0;
+}
+
+.ReplyCards {
+  background-color: white;
+  margin-top: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.ReplyCards aside {
+  display: flex;
+  margin-top: 10px;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.ReplyCards aside span {
+  margin: 0;
+  padding-left: 4px;
+  color: #868e96;
+}
+
+.ReplyCards span {
+  color: #868e96;
+  font-size: 14px;
+}
+
+.UserInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ReplyModal {
+  display: flex;
+  /* align-items: center; */
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  /* gap: 120px; */
+  gap: 10px;
+}
+
+.ReplyModal textarea {
+  height: 35px;
+}
+
+.ReplyModal button {
+  max-height: 30px;
+  display: flex;
+  border: 0;
+  color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 10;
+  margin-left: 2px;
+  background-color: #007aff;
+}
+
+.postImage {
+  max-height: 430px;
+}
+
+.UserPost h5 {
+  margin: 0;
+}
+
+.Content {
+  padding: 2px;
+}
+
+.Content img {
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.Container {
+  display: flex;
+  gap: 20px;
+}
+
+.Content span {
+  font-size: 12px;
+  color: #adb5bd;
+  margin-right: 10px;
+}
+
+.Title {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.Title a {
+  background-color: crimson;
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+
+.Interaction {
+  border-top: 1px solid #e9ecef;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Interaction p {
+  margin: 0;
+  margin-left: 3px;
+  color: #adb5bd;
+}
+
+.Interaction img:first-child {
+  background-color: #e9ecef;
+  padding: 5px;
+  border-radius: 13px;
+}
+
+.Interaction span {
+  color: #adb5bd;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.Interaction ul {
+  padding: 0;
+  margin: "0";
+}
+
+.Interaction a {
+}
+
+.Reply button {
+  border: 0;
+  color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 10;
+  margin-left: 2px;
+  background-color: #007aff;
+}
+
+.ExtraInfo {
+  background-color: #fff;
+  padding: 20px;
+  padding-right: 20px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  border: 1px solid #f1f3f5;
+
+  display: inline-block;
+  border-radius: 10px;
+  max-height: 210px;
+}
+
+.Tags span:first-child {
+  font-size: 14px;
+  color: #adb5bd;
+  margin-top: 10px;
+  margin-bottom: 2px;
+}
+
+.TagItem {
+  margin: 0;
+  background-color: #f3f3f4;
+  padding: 2px 5px;
+  border-radius: 14px;
+  font-size: 12px;
+}
+
+.Info {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.Info p {
+  /* margin: 0; */
+  color: #adb5bd;
+  font-size: 14px;
+  margin: 0;
+}
+
+.Info span {
+  background-color: #f7f8fa;
+  display: inline-block;
+  margin: 0;
+  padding: 2px 5px;
+  border-radius: 8px;
+  font-family: "Source Code Pro", monospace;
+}
+
+.ReplyNum {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  border: 1px solid #f1f3f5;
+
+  font-size: 14px;
+  color: #adb5bd;
+}
+
+.Report a {
+  text-decoration: none;
+  color: #adb5bd;
+}
+
+.ReportBtn:hover + .Report {
+  cursor: pointer;
+  display: block;
+}
+
+.Interaction img:first-child:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 850px) {
+  .UserPost {
+    width: 100%;
+  }
+
+  .ExtraInfo {
+    display: none;
+  }
+
+  .Universal {
+    margin: 0;
+    /* fsdf dasdsad?asdasdasdfsfsddasadaasdadadadafasfafdasdad*/
+  }
+
+  .Breadcrumb {
+    font-size: 14px;
+  }
+
+  .postImage {
+    max-height: 200px;
+  }
+}

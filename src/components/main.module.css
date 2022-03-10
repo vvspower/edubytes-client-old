@@ -1,0 +1,112 @@
+.Container {
+  display: flex;
+  gap: 10px;
+  /* ds df*/
+  
+}
+
+.RightArrow {
+  padding: 10px;
+  background-color: black;
+}
+
+.Post {
+  margin: 15px 0px;
+  display: flex;
+}
+
+.Increase {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.Increase img {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  border: 1px solid #f1f3f5;
+
+  border-radius: 25px;
+  padding: 3px;
+}
+
+.Inner {
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding-top: 10px;
+  max-width: 720px;
+  margin-right: 0px;
+  border: 1px solid #f1f3f5;
+}
+
+.Popular {
+  display: flex;
+  gap: 18px;
+}
+
+.NoteContainer {
+  /* border: 1px solid black; */
+
+  /* padding: 15px; */
+
+  /* margin-top: 10px; */
+  margin-left: 150px;
+ 
+}
+
+.Ad {
+  align-items: center;
+  margin-left: 0px;
+  justify-content: center;
+}
+
+.Level {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.UniCard {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 15px
+}
+
+
+  .UniCard {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+
+@media only screen and (max-width: 850px) {
+  .Container {
+    display: block;
+  }
+
+  .Cards {
+    display: none;
+  }
+
+  .Second {
+    display: none;
+  }
+
+  .NoteContainer {
+    margin-left: 0px;
+  }
+
+  .Popular div:nth-child(2) {
+    display: none;
+  }
+
+  .Ad div:nth-child(n + 3) {
+    display: none;
+  }
+
+  .Inner {
+    border-radius: 0px;
+  }
+}

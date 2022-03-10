@@ -1,0 +1,147 @@
+.Nav {
+  background-color: #f8f9fa;
+}
+
+.ClickUser {
+  border-radius: 50%;
+  cursor: pointer;
+
+}
+
+
+
+.Loggedname {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px 10px;
+}
+
+.Loggedname:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.LoginNav {
+  cursor: pointer;
+  opacity: 0.1;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+}
+
+.LoginNav:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.UserModal {
+  position: absolute;
+  margin-top: 10px;
+  background-color: white;
+  z-index: 10;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  /* padding: 10px; */
+  border: 1px solid #ced4da;
+  right: 10%;
+  animation: fadein 0.5s;
+  width: 250px;
+
+  /* border-radius: 8px; */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.Buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  margin: 2px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.Buttons:hover {
+  background-color: #f8f9fa;
+}
+
+.UserModal p {
+  margin: 0;
+}
+
+.NavBar {
+  /* height: 40px; */
+}
+
+.Nav a {
+  color: black;
+  text-decoration: none;
+  margin: 0 20px;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.NavBar a {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+}
+
+.NavBar button {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.MobileNavButton {
+  display: none;
+}
+
+.Contribute {
+  -webkit-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  border: 0;
+  font-size: 14px;
+  background-color: white;
+  border: 1px solid #ff922b;
+  border-radius: 8px;
+  color: #ff922b;
+}
+.AuthSection {
+  margin-left: 20px;
+  padding-right: 10px;
+  border-left: 1px solid #e9ecef;
+  position: relative;
+}
+
+.AuthSection button {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 8px;
+  color:  white;
+  
+  font-size: 14px;
+}
+.Contribute:hover {
+  background-color: #fffcf7;
+  border: 1px solid #b3620c;
+  color: #b3620c;
+}
+
+
+@media only screen and (max-width: 800px) {
+  .MobileNavButton {
+    display: inline-block;
+  }
+}

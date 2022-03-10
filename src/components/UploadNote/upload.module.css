@@ -1,0 +1,131 @@
+p {
+  margin: 0;
+}
+
+
+.Contribute  {
+  margin: 0 auto;
+  width: 800px;
+  /* background-color: white; */
+  /* padding: 20px; */
+  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.1); */
+  border-radius: 8px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 42px;
+
+}
+
+.Bottom {
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Bottom div {
+  max-width: 200px;
+}
+
+.Bottom span {
+  
+ /* padding-top: 20px; */
+}
+
+.Bottom div p {
+  text-align: center;
+  margin-top: 10px;
+  color: #343a40;
+  font-style: italic;
+
+}
+
+.Bottom img {
+  margin-left: 40px;
+  width: 120px
+ 
+}
+
+.Bottom h6 {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  
+}
+
+.Drag {
+  margin: 0 auto;
+  width: 500px;
+  
+}
+
+.AddDetails h3 {
+  margin-bottom: 20px;
+}
+
+
+
+.Header {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.Carousel {
+  padding-top: 60px;
+  margin: 0 auto;
+  max-width: 800px;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
+.Form {
+  max-width: 800px;
+  /* background-color: white; */
+  padding: 20px;
+  border-radius: 8px;
+  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.1); */
+  margin: 0 auto;
+
+
+}
+
+.Form button {
+  margin-top: 20px;
+  border-radius: 16px;
+}
+
+
+@media only screen and (max-width: 850px) {
+  .Container {
+    margin: auto;
+  }
+
+  .Contribute {
+    width: 100%;
+  }
+
+  .Carousel {
+   padding-top: 20px;
+   padding-bottom: 20px;
+
+  }
+
+  .Drag {
+    margin: 0;
+    /* width: 100px; */
+  }
+
+  .Bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}
+
+@media only screen and (max-width: 500px) { 
+
+  .Drag {
+    width: 250px;
+  }
+  
+}

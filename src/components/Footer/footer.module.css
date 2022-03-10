@@ -1,0 +1,45 @@
+.Footer {
+  border-top: 1px solid #e9ecef;
+ 
+  padding-top: 20px;
+  color: white;
+  font-size: 14px;
+  background-color: #212529;
+  margin-top: 40px;
+  padding-bottom: 20px;
+ 
+  
+}
+
+.Container {
+  margin: 0 auto;
+  width: 52%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Links {
+  display: flex;
+  /* flex-direction: column; */
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.Footer a {
+  text-decoration: none;
+  color: white;
+}
+
+@media only screen and (max-width: 580px) {
+  .Links {
+    flex-direction: column;
+    
+  }
+
+  .Container {
+    width: 100%;
+    justify-content: space-around;
+
+  }
+
+}
