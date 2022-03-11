@@ -72,7 +72,18 @@ const Sidebar = () => {
               >
                 Discuss
               </button>{" "}
-              <button>Contribute</button>
+              <button  data-bs-dismiss="offcanvas"
+                aria-label="Close" onClick={() => {
+                  navigate("/contribute");
+                }}>Contribute</button>
+              <button  data-bs-dismiss="offcanvas"
+                aria-label="Close"
+                onClick={() => {
+                  navigate("/notes");
+                }}>Notes</button>
+              <button>Teach</button>
+
+
             </div>
             <div>
               <button>Contact </button>

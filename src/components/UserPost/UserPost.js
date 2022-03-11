@@ -37,10 +37,14 @@ const UserPost = () => {
   const [pfp, setpfp] = useState("");
   const [blogid, setblogid] = useState(null);
   const [replypfp, setreplypfp] = useState("");
+  const date = new Date(BlogById.date);
 
   console.log("///////////////");
   console.log(replies);
   console.log("///////////////");
+
+
+
 
   console.log(userid);
 
@@ -200,7 +204,7 @@ const UserPost = () => {
                     <div>
                       <span>{BlogById.username}</span>
                       <span>•</span>
-                      <span>Posted 4 days ago</span>
+                      <span>{date.toLocaleString()}</span>
                     </div>
                     { BlogById.image !== "none" ? <div>
                       <img className={classes.postImage} src={BlogById.image} />
@@ -341,6 +345,9 @@ const UserPost = () => {
                 {replysuccess ? (
                   <div>
                     {replies.map((item, id) => {
+                      const datecomment = new Date(item.date);
+
+
                       return (
                         <div className={classes.ReplyCards}>
                           <div
@@ -361,7 +368,7 @@ const UserPost = () => {
                               />
                               <span>{item.name}</span>
                             </div>
-                            <span>1 day ago</span>
+                            <span>{datecomment.toLocaleString()}</span>
                           </div>
                           <div
                             style={{
@@ -395,7 +402,7 @@ const UserPost = () => {
                                 >
                                   <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                                 </svg>
-                                <span>{item?.likes?.length}</span>
+                                <span>0</span>
                               </div>
                               <div>
                                 <svg

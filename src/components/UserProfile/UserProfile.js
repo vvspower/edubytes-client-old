@@ -22,10 +22,11 @@ const UserProfile = () => {
   const [imageSelected, setImageSelected] = useState("");
   const [pfp, setpfp] = useState("");
 
+  
+
   console.log(id);
-  console.log("////////");
   console.log(bio);
-  console.log("/////////");
+ 
 
   useEffect(async () => {
     const userid = await fetchUserInfo(id);
@@ -102,26 +103,32 @@ const UserProfile = () => {
                 Edit Profile
               </button>
               <div className={classes.Follows}>
-                <div style={{display: "flex" , gap: "5px" ,  alignItems: "center"}}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  height={20}
+                <div
+                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
                 >
-                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                </svg>
-                <h6>2</h6>
-                <p>Followers</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    height={20}
+                  >
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+                  <h6>2</h6>
+                  <p>Followers</p>
                 </div>
-                <h6 style={{color: "#868e96"}}>•</h6>
-                <div style={{display: "flex" , gap: "5px" ,  alignItems: "center"}}>
-                
-                <h6>2</h6>
-                <p>following</p>
+                <h6 style={{ color: "#868e96" }}>•</h6>
+                <div
+                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
+                >
+                  <h6>2</h6>
+                  <p>following</p>
                 </div>
               </div>
+            </div>
+            <div>
+              <h1>Hi</h1>
             </div>
           </div>
           <div className={classes.Seperator}>

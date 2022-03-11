@@ -183,6 +183,7 @@ const Main = () => {
                   image={item.image}
                   tag={item.tag}
                   pfp={item.pfp}
+                  date={item.date}
                   />
               );
             })}

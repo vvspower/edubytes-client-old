@@ -1,11 +1,25 @@
-import React from "react";
+import React , {useContext, useEffect} from "react";
 import classes from "./contribute.module.css";
 import NoteCard from "./NoteCard";
 import { Link } from "react-router-dom";
+import dataContext from "../Context.js/dataContext";
+
 
 const PopularNotes = () => {
+
+  const context = useContext(dataContext)
+  const fetchResources = context.fetchResources
+  const Notes = context.Notes
+
+  useEffect(() => {
+    fetchResources();
+    console.log(Notes)
+  }, []);
+
+
+  console.log(Notes)
   return (
-    <div style={{paddingTop: "10px"}} className={classes.PopularNotes}>
+    <div style={{ paddingTop: "10px" }} className={classes.PopularNotes}>
       <div
         style={{
           display: "flex",
@@ -24,15 +38,11 @@ const PopularNotes = () => {
           View All>
         </Link>
       </div>
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
-      <NoteCard />
+      <div>
+        {Notes.map((item, i) => {
+          return <NoteCard title={item.name} user={item.user} link={item.link}/>
+        }) }
+      </div>
 
       <a
         href="/contribute"

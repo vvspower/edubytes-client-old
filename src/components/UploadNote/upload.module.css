@@ -125,7 +125,7 @@ p {
 @media only screen and (max-width: 500px) { 
 
   .Drag {
-    width: 250px;
+    width: 95%;
   }
   
 }

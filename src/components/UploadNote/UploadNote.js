@@ -9,12 +9,12 @@ import pdf from "../../Images/pdf.png";
 import detail from "../../Images/adddetail.png";
 import list from "../../Images/to-do-list.png";
 import dataContext from "../Context.js/dataContext";
+import spinning from '../../Images/spin-loading.gif'
 
 const UploadNote = () => {
   const context = useContext(dataContext);
   const uploadNoteSuccess = context.uploadNoteSuccess
   const setUploadNoteSuccess = context.setUploadNoteSuccess
-
   const [progress, setProgress] = useState(30);
   const [file, setFile] = useState(null);
   const [nextPage, setnextPage] = useState(false);
@@ -23,6 +23,8 @@ const UploadNote = () => {
   const [subject, setsubject] = useState("");
   const [type, settype] = useState("");
   const [driveLink, setdriveLink] = useState("");
+  const [loading , setloading] = useState(false)
+
   
   const Contribute = context.Contribute;
 
@@ -30,6 +32,7 @@ const UploadNote = () => {
   console.log(Contribute);
 
   const handleChange = (e) => {
+    setloading(true)
     var file = e.target.files[0]; //the file
     setFile(file);
     var reader = new FileReader(); //this for convert to Base64
@@ -48,6 +51,8 @@ const UploadNote = () => {
         .then((res) => res.json())
         .then((a) => {
           console.log(a); //See response
+          setloading(false)
+
           setdriveLink(a.url);
           setnextPage(true);
         })
@@ -173,15 +178,18 @@ const UploadNote = () => {
                 <form>
                   <div className={classes.Drag}>
                     <div class="mb-3">
-                      <label for="formFile" class="form-label">
-                        Default file input example
+                    { !loading ? <div>
+                       <label for="formFile" class="form-label">
+                        Please upload your file here
                       </label>
                       <input
                         onChange={(e) => handleChange(e)}
                         class="form-control"
                         type="file"
                         id="formFile"
-                      />
+                        /> 
+                        </div> : null}
+                      {loading ? <img height={30} src={spinning} /> : null}
                     </div>
                   </div>
                 </form>

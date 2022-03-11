@@ -41,10 +41,10 @@ const ViewNotes = () => {
             aria-describedby="basic-addon2"
           />
         </div>
-        <div>
+        <div className={classes.NoteRender} >
 
             {Notes.map((item , i) => {
-                return <NoteCard title={item.name} subject={item.subject} type={item.type} link={item.link} user={item.user}/>
+                return <NoteCard title={item.name} subject={item.subject} type={item.type} link={item.link} user={item.user} date={item.date}/>
             })}
         </div>
       </div>

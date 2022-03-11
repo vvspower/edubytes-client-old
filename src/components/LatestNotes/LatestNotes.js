@@ -10,6 +10,7 @@ const LatestNotes = (props) => {
   const fetchUserInfo = context.fetchUserInfo;
   const navigate = useNavigate();
   const [pfp, setpfp] = useState("");
+  const date = new Date(props.date);
   // var str = props.username;
   // var matches = str.match(/\b(\w)/g); // ['J','S','O','N']
   // var acronym = matches.join("").toUpperCase(); // JSON
@@ -44,7 +45,7 @@ const LatestNotes = (props) => {
     >
       {props.image !== "none" ? (
         <div className={classes.postImage}>
-          <img  src={props.image} />
+          <img src={props.image} />
         </div>
       ) : null}
       <div>
@@ -66,7 +67,7 @@ const LatestNotes = (props) => {
             <h6>
               {props.username} posted <Link to="">{props.title}</Link>
             </h6>
-            <p className={classes.Date}> 5 days ago</p>
+            <p className={classes.Date}> {date.toLocaleString()}</p>
           </div>
         </div>
         <div className={classes.AltImage}>
@@ -75,7 +76,7 @@ const LatestNotes = (props) => {
           </p>
           {props.image !== "none" ? (
             <div>
-              <img  src={props.image} />
+              <img src={props.image} />
             </div>
           ) : null}
         </div>
@@ -83,7 +84,6 @@ const LatestNotes = (props) => {
         {/* <button>View</button> */}
         {/* tags will come in text form seperated with commas. turn it into an array and loop it  */}
         <div style={{ display: "flex", gap: "3px", marginTop: "10px" }}>
-         
           {props.tag.split(",").map((item, i) => {
             return <span className="badge rounded-pill">{item}</span>;
           })}

@@ -6,12 +6,14 @@ const NoteCard = (props) => {
     const handleClick = () => {
         window.location.assign(props.link);
     }
+
+    const date = new Date(props.date);
   return (
       <>
     <div onClick={handleClick}  className={classes.NoteCard}>
       <a style={{textDecoration: "none" , color: "black"}} target="_blank"  href={props.link}>
       <div>
-        <h6>{props.title}</h6>
+        <h6>{props.title.substring(0,30)}</h6>
         <p>{props.subject}</p>
       </div>
       <div>
@@ -46,7 +48,7 @@ const NoteCard = (props) => {
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
           />
         </svg>
-        <span> Jan 19 , 2022</span>
+        <span>{date.toLocaleDateString()}</span>
 
       </div>
     </a>
