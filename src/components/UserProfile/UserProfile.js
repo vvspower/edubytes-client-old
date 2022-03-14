@@ -9,6 +9,7 @@ import facebook from "../../Images/facebook.png";
 import linkedin from "../../Images/linkedin.png";
 import HotPosts from "../CreatePost/HotPosts";
 import Axios from "axios";
+import UserContribution from "./UserContributions/UserContribution";
 
 const UserProfile = () => {
   const context = useContext(dataContext);
@@ -20,6 +21,7 @@ const UserProfile = () => {
   const [user, setUser] = useState({});
   const [bio, setbio] = useState("");
   const [imageSelected, setImageSelected] = useState("");
+  const [saveChange , setSaveChange ] = useState(false)
   const [pfp, setpfp] = useState("");
 
   
@@ -57,6 +59,9 @@ const UserProfile = () => {
     });
     const json = await response.json();
     success = true;
+    if(success) {
+      window.location.reload()
+    }
     console.log(json);
   };
 
@@ -70,6 +75,7 @@ const UserProfile = () => {
       "https://api.cloudinary.com/v1_1/disle0uxb/image/upload",
       formData
     ).then((response) => {
+      setSaveChange(true)
       console.log(response.data.url);
       setpfp(response.data.url.toString());
     });
@@ -79,7 +85,7 @@ const UserProfile = () => {
     <>
       <div className="container">
         <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
-          <div style={{ maxWidth: "320px" }}>
+          <div className={classes.SideBar} style={{ maxWidth: "320px" }}>
             <img
               style={{ borderRadius: "50%" }}
               src={user.pfp}
@@ -88,9 +94,9 @@ const UserProfile = () => {
             />
             <div style={{ marginTop: "10px", marginLeft: "10px" }}>
               <h3 style={{ margin: 0 }}>{user.name}</h3>
-              <p style={{ color: "#868e96", fontSize: "18px" }}>@MustafaAP</p>
+              <p style={{ color: "#868e96", fontSize: "18px" }}>@{user?.name?.split(" ")?.join("-").toLowerCase()}</p>
               <p>{user.bio}</p>
-              <button
+              { localStorage.getItem("auth-token") !== null && localStorage.getItem("user") === id ? <button
                 onClick={() => {
                   setbio(user.bio);
                 }}
@@ -101,7 +107,7 @@ const UserProfile = () => {
                 className={classes.EditProfile}
               >
                 Edit Profile
-              </button>
+              </button> : null}
               <div className={classes.Follows}>
                 <div
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
@@ -127,8 +133,9 @@ const UserProfile = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <h1>Hi</h1>
+            <div className={classes.Contributions}>
+              <h6>Contributions</h6>
+              <UserContribution/>
             </div>
           </div>
           <div className={classes.Seperator}>
@@ -139,10 +146,11 @@ const UserProfile = () => {
                   <h5>Contributions</h5>
                 </div>
               </div>
-              {userblog.map((item, i) => {
+              { userblog.length > 0 ?userblog.map((item, i) => {
                 return (
                   <div key={item._id}>
                     <HotPosts
+                    key={item._id}
                       title={item.title}
                       description={item.description}
                       id={item._id}
@@ -153,7 +161,7 @@ const UserProfile = () => {
                     />
                   </div>
                 );
-              })}
+              }) : <h2 style={{marginTop: "20px"}}>No Posts</h2>}
             </div>
           </div>
         </div>
@@ -221,13 +229,14 @@ const UserProfile = () => {
               >
                 Close
               </button>
-              <button
+              { saveChange ? <button
                 onClick={EditProfile}
                 type="button"
                 class="btn btn-primary"
+                data-bs-dismiss="modal"
               >
                 Save changes
-              </button>
+              </button> : null }
             </div>
           </div>
         </div>

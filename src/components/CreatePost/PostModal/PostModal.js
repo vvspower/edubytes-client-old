@@ -17,6 +17,7 @@ const PostModal = () => {
   const [desc, setdesc] = useState("");
   const [tags, settags] = useState("");
   const [image, setimage] = useState("");
+  const [uploaded, setuploaded] = useState(true)
   console.log(title, desc, tags);
 
   const uploadImage = (file) => {
@@ -31,6 +32,7 @@ const PostModal = () => {
     ).then((response) => {
       console.log(response.data.url);
       setimage(response.data.url.toString());
+      setuploaded(true)
     });
   };
 
@@ -99,6 +101,9 @@ const PostModal = () => {
                     Add an image if you want to:
                   </label>
                   <input
+                  onClick={() => {
+                    setuploaded(false)
+                  }}
                     onChange={(e) => {
                       uploadImage(e.target.files[0]);
                     }}
@@ -138,7 +143,7 @@ const PostModal = () => {
               >
                 Close
               </button>
-              <button
+              { uploaded ? <button
                 onClick={() => {
                   PostQuestion(title, desc, tags , image);
                 }}
@@ -151,7 +156,7 @@ const PostModal = () => {
                 class="btn"
               >
                 Post Question
-              </button>
+              </button> : <p>Please wait for Image Upload</p>}
             </div>
           </div>
         </div>

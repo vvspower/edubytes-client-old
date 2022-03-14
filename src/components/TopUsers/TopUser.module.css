@@ -1,0 +1,45 @@
+.Container {
+    background-color: white;
+    padding: 8px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.Header {
+    padding: 10px;
+}
+
+
+
+.TopUser  {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* justify-content: center; */
+    
+    background-color: white;
+    border-radius: 8px;
+  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.1); */
+  cursor: pointer;
+
+  padding: 10px;
+}
+
+.TopUser:hover {
+    background-color: #f1f3f5;
+}
+
+.TopUser div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    
+}
+
+.TopUser div:nth-child(2) img {
+    border-radius: 50%;
+    
+    
+}

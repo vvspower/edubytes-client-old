@@ -1,7 +1,7 @@
 import React from "react";
 import PostNav from "./PostNav";
 import classes from "./nav.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "../Auth/LoginModal";
 import LoginNav from "./LoginNav";
 import { useState } from "react";
@@ -63,19 +63,19 @@ const NavBar = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
+                  <Link  className="nav-link active" aria-current="page" to="/discuss">
                     Discuss
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/notes">
                     Notes
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link className="nav-link" to="/contribute">
                     Contribute
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <div className={classes.AuthSection}>

@@ -44,8 +44,8 @@ const PopularNotes = () => {
         }) }
       </div>
 
-      <a
-        href="/contribute"
+      <Link
+        to="/contribute"
         style={{
           marginLeft: "15px",
           fontSize: "12px",
@@ -56,7 +56,7 @@ const PopularNotes = () => {
         }}
       >
         Contribute
-      </a>
+      </Link>
     </div>
   );
 };

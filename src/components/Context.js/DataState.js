@@ -179,11 +179,23 @@ const DataState = (props) => {
       }),
     });
     const token = await response.json();
+console.log(token.authToken)
+    const getid = await fetch(`http://localhost:5000/api/auth/getUserId`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token" : token.authToken,
+      },
+    });
+    const id = await getid.json()
+    console.log(id)
+    // getUserId
     setautherrors(token);
     console.log(token);
     if (token?.success) {
       // if(token.error)
       localStorage.setItem("auth-token", token.authToken);
+      localStorage.setItem("user", id)
       window.location.reload();
     }
   };
@@ -306,6 +318,35 @@ const DataState = (props) => {
     setNotes(json)
   };
 
+  const fetchUserResources = async (id) => {
+    const response = await fetch(
+      `http://localhost:5000/api/app/fetchuserresources/${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const json = await response.json();
+    return json
+  };
+
+  const fetchAllUsers = async () => {
+    const response = await fetch(
+      `http://localhost:5000/api/auth/fetchallusers`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const json = await response.json();
+    return json
+  };
+  // http://localhost:5000/api/auth/fetchallusers
+
 
   return (
     <DataContext.Provider
@@ -342,7 +383,9 @@ const DataState = (props) => {
         uploadNoteSuccess, 
         setUploadNoteSucess,
         Notes,
-        fetchResources
+        fetchResources,
+        fetchUserResources,
+        fetchAllUsers
       }}
     >
       {props.children}

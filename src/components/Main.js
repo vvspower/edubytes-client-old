@@ -19,6 +19,7 @@ import LoginModal from "./Auth/LoginModal";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import UniversityCard from "./UniversityCard/UniversityCard";
+import TopUsers from "./TopUsers/TopUsers";
 // import 'style!css!react-responsive-carousel/lib/styles/carousel.css';
 // import css from "file.css";
 
@@ -195,6 +196,7 @@ const Main = () => {
           <CreatePost />
           <TeachCard />
           <AdCarousel/>
+          <TopUsers/>
         
         </div>
       </div>

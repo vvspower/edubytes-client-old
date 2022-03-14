@@ -214,11 +214,12 @@ const UserPost = () => {
                         marginTop: "10px",
                         whiteSpace: "pre-line",
                         verticalAlign: "bottom  ",
+                        paddingBottom: "20px"
                       }}
                     >
                       {BlogById.description}
                     </p>
-                    <p>Likes: {BlogById?.likes?.length}</p>
+                    
                   </div>
                   <div className={classes.Interaction}>
                     <div
@@ -307,6 +308,7 @@ const UserPost = () => {
                 {showreply ? (
                   <div className={classes.ReplyModal}>
                     <textarea
+                    style={{borderRadius: "20px"}}
                       onChange={(e) => {
                         setreply(e.target.value);
                       }}
@@ -316,9 +318,17 @@ const UserPost = () => {
                       // aria-describedby="emailHelp"
                       placeholder="Reply"
                     />
+                    <button onClick={() => {
+                      setshowreply(false);
+                    }} style={{backgroundColor: "#adb5bd"}}>
+                      Cancel
+                    </button>
                     <button
+                    
                       onClick={() => {
                         replyToPost();
+                        setshowreply(false);
+
                       }}
                     >
                       <svg
@@ -365,6 +375,7 @@ const UserPost = () => {
                               style={{borderRadius: "50%"}}
                               src={item.pfp}
                                 height={30}
+                                width={30}
                               />
                               <span>{item.name}</span>
                             </div>

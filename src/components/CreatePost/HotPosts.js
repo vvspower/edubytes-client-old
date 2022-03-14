@@ -53,7 +53,7 @@ const HotPosts = (props) => {
       </div>
       <div style={{ display: "flex", gap: "3px", marginTop: "10px" }}>
         {props.tag.split(",").map((item, i) => {
-          return <span className="badge rounded-pill">{item}</span>;
+          return <span key={i} className="badge rounded-pill">{item}</span>;
         })}
       </div>
       <p className={classes.description}>{props.description}</p>
