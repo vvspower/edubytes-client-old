@@ -43,7 +43,7 @@ const LatestNotes = (props) => {
       }}
       className={classes.Latest}
     >
-      {props.image !== "none" ? (
+      {props.image !== ""   ? (
         <div className={classes.postImage}>
           <img src={props.image} />
         </div>
@@ -74,7 +74,7 @@ const LatestNotes = (props) => {
           <p className={classes.description}>
             {props.description.substring(0, 130)}...
           </p>
-          {props.image !== "none" ? (
+          {props.image !== "" ? (
             <div>
               <img src={props.image} />
             </div>

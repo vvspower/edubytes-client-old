@@ -77,23 +77,21 @@ const Main = () => {
 
       <div className={classes.Container}>
         <div className={classes.NoteContainer}>
-          <div className={classes.UniCard} >
-            <UniversityCard/>
+          <div className={classes.UniCard}>
+            <UniversityCard />
           </div>
           <div className={classes.Post}>
             <div className={classes.Popular}>
-             {/* returns the top 2 most voted posts made on the website */}
+              {/* returns the top 2 most voted posts made on the website */}
               {blogs.slice(0, 2).map((item, i) => {
                 return (
-                
                   <PopularPost
                     title={item.title}
                     description={item.description}
                     tags={item.tags}
                     likes={item.likes}
                     id={item._id}
-                  user={item.user}
-
+                    user={item.user}
                   />
                 );
               })}
@@ -172,32 +170,35 @@ const Main = () => {
                 </div>
               </Carousel>
             </div>
-            {blogs.map((item, i) => {
-              console.log(item.image)
-              return (
-                <LatestNotes
-                  title={item.title}
-                  description={item.description}
-                  id={item._id}
-                  username={item.username}
-                  user={item.user}
-                  image={item.image}
-                  tag={item.tag}
-                  pfp={item.pfp}
-                  date={item.date}
+            <div>
+              {blogs.map((item, i) => {
+                console.log(item.image);
+                return (
+                  <LatestNotes
+                    title={item.title}
+                    description={item.description}
+                    id={item._id}
+                    username={item.username}
+                    user={item.user}
+                    image={item.image}
+                    tag={item.tag}
+                    pfp={item.pfp}
+                    date={item.date}
                   />
-              );
-            })}
+                );
+              })}
+            </div>
+          </div>
+          <div className={classes.LoadMore}>
+            <button>Load More</button>
           </div>
         </div>
         <div className={classes.Cards}>
-         
-          <PopularNotes /> 
+          <PopularNotes />
           <CreatePost />
           <TeachCard />
-          <AdCarousel/>
-          <TopUsers/>
-        
+          <AdCarousel />
+          <TopUsers />
         </div>
       </div>
     </div>

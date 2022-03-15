@@ -6,6 +6,7 @@ import LoginModal from "../Auth/LoginModal";
 import LoginNav from "./LoginNav";
 import { useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
+import logo from "../../Images/edubytes.png";
 
 const NavBar = () => {
   console.log(localStorage.getItem("auth-token") === null);
@@ -19,11 +20,11 @@ const NavBar = () => {
       <div>
         <nav
           style={{
-            backgroundColor: "#212529",
+            backgroundColor: "white",
             // height: "40px",
             borderBottom: "1px solid #e9ecef",
           }}
-          className="navbar sticky-top navbar-expand-lg navbar-dark py-0  "
+          className="navbar sticky-top navbar-expand-lg navbar-light py-0  "
         >
           <div style={{ maxWidth: "1100px" }} className="container">
             <a
@@ -33,7 +34,7 @@ const NavBar = () => {
               style={{ cursor: "pointer" }}
               className="navbar-brand"
             >
-              Project
+              <img src={logo} height={20} />
             </a>
             <div className={classes.MobileNavButton}>
               <a
@@ -63,18 +64,22 @@ const NavBar = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link  className="nav-link active" aria-current="page" to="/discuss">
-                    Discuss
+                  <Link
+                    className="nav-link "
+                    aria-current="page"
+                    to="/discuss"
+                  >
+                    <p style={{ fontWeight: "600" }}>Discuss</p>
+                  </Link>
+                </li>
+                <li className="nav-item ">
+                  <Link className="nav-link " to="/notes">
+                    <p style={{ fontWeight: "600" }}>Notes</p>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/notes">
-                    Notes
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/contribute">
-                    Contribute
+                  <Link className="nav-link " to="/contribute">
+                    <p style={{ fontWeight: "600" }}>Contribute</p>
                   </Link>
                 </li>
               </ul>
@@ -88,7 +93,8 @@ const NavBar = () => {
                       data-bs-toggle="modal"
                       data-bs-target="#Login"
                     >
-                      Login
+                     <p style={{ fontWeight: "500" , color: "black" }}>Login</p>
+                      
                     </button>
 
                     <p
@@ -109,7 +115,8 @@ const NavBar = () => {
                         navigate("/signup");
                       }}
                     >
-                      Signup
+                    <p style={{ fontWeight: "500" , color: "black" }}>Signup</p>
+                      
                     </button>
                   </form>
                 ) : (

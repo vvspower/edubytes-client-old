@@ -47,11 +47,11 @@ const UniversityCarousel = () => {
             
           </div>
           <div class="carousel-item">
-            <img src={adpic} class="d-block w-100" alt="..." />
+            <img src={nust} class="d-block w-100" alt="..." />
             
           </div>
           <div class="carousel-item">
-            <img src={adpic} class="d-block w-100" alt="..." />
+            <img src={nust} class="d-block w-100" alt="..." />
             
           </div>
         </div>

@@ -56,8 +56,8 @@ const CreatePostModal = () => {
                 marginBottom: "20px",
               }}
             >
-              <TopCard title="Get Notes" image={notes} color="white" />
-              <TopCard title="Start Teaching" image={teach} color="#3ac66b" />
+              <TopCard title="Get Notes" image={notes} color="white" link="notes" />
+              <TopCard title="Start Teaching" image={teach} color="#3ac66b" link="teacher" />
               <ContributeCard />
               <div
                 style={{

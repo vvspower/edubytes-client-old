@@ -206,7 +206,7 @@ const UserPost = () => {
                       <span>•</span>
                       <span>{date.toLocaleString()}</span>
                     </div>
-                    { BlogById.image !== "none" ? <div>
+                    { BlogById.image !== "" ? <div>
                       <img className={classes.postImage} src={BlogById.image} />
                     </div> : null}
                     <p

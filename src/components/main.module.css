@@ -28,7 +28,6 @@
 .Increase img {
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
   border: 1px solid #f1f3f5;
-
   border-radius: 25px;
   padding: 3px;
 }
@@ -41,6 +40,21 @@
   max-width: 720px;
   margin-right: 0px;
   border: 1px solid #f1f3f5;
+}
+
+.LoadMore {
+  margin: 0 auto;
+  width: 100px;
+  margin-top: 10px;
+}
+
+.LoadMore button {
+  border: 0;
+  padding: 8px;
+  width: 120px;
+  border-radius: 16px;
+  font-size: 12px;
+  background-color: #e9ecef;
 }
 
 .Popular {
