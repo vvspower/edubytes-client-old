@@ -17,6 +17,7 @@ const DataState = (props) => {
   const [isliked, setisliked] = useState(false);
   const [uploadNoteSuccess, setUploadNoteSucess] = useState(false);
   const [Notes , setNotes] = useState([])
+  const [loadedPosts , setLoadedPosts] = useState(0)
 
 
   // Signup API
@@ -76,8 +77,27 @@ const DataState = (props) => {
     );
     const json = await response.json();
     console.log(json);
+    setLoadedPosts(json.length)
     setBlogs(json);
   };
+
+  const LoadMoreBlogs = async (id) => {
+    const response = await fetch(
+      `http://localhost:5000/api/app//loadmoreblogposts/${loadedPosts}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        
+      }
+    );
+    const json = await response.json();
+    console.log(json);
+    setLoadedPosts(json.length)
+    setBlogs(json);
+  };
+  
 
 
   const Contribute = async (title , link , type , subject) => {
@@ -385,7 +405,8 @@ console.log(token.authToken)
         Notes,
         fetchResources,
         fetchUserResources,
-        fetchAllUsers
+        fetchAllUsers,
+        LoadMoreBlogs,
       }}
     >
       {props.children}

@@ -1,10 +1,10 @@
 .Footer {
-  border-top: 1px solid #e9ecef;
+  /* border-top: 1px solid #e9ecef; */
  
   padding-top: 20px;
   color: white;
   font-size: 14px;
-  background-color: #212529;
+  /* background-color: #212529; */
   margin-top: 40px;
   padding-bottom: 20px;
  
@@ -16,6 +16,13 @@
   width: 52%;
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid #e9ecef;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.Container a {
+  color: black;
 }
 
 .Links {
@@ -33,12 +40,19 @@
 @media only screen and (max-width: 580px) {
   .Links {
     flex-direction: column;
+    margin-left: 20px;
     
+  }
+  .Container img { 
+    margin-left: 20px;
   }
 
   .Container {
     width: 100%;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    align-items: baseline;
+    flex-direction: column;
+/* margin-left: 50px; */
 
   }
 

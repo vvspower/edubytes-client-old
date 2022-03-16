@@ -1,31 +1,34 @@
 import React from "react";
 import classes from "./footer.module.css";
+import logo from "../../Images/edubytes.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <div className={classes.Footer}>
       <div className={classes.Container}>
+        {/* <div className={classes.Links}> */}
         <div>
-          <h6>StudentConnect</h6>
-          <div className={classes.Links}>
-            <a href="github">University Connection</a>
-            <a href="github">Discuss</a>
-            <a href="github">Contribute</a>
-            <a href="github">Tutor</a>
-            <a href="github">Contact</a>
-            <a href="github">Notes</a>
-          </div>
+          <img src={logo} height={20} />
         </div>
-        <div>
-          <h6>Developer</h6>
-          <div className={classes.Links}>
-            <a href="github">Github</a>
-            <a href="github">Linkedin</a>
-            <a href="github">StackOverflow</a>
-            <a href="github">Facebook</a>
-            <a href="github">Youtube</a>
-          </div>
+        <div className={classes.Links}>
+          <Link style={{ color: "black" }} to="/contribute">
+            Contribute
+          </Link>
+          <Link style={{ color: "black" }} to="/Discuss">
+            Discuss
+          </Link>
+          <Link style={{ color: "black" }} to="/Notes">
+            Notes
+          </Link>
+          <Link style={{ color: "black" }} to="/contribute">
+            Github
+          </Link>
+          <Link style={{ color: "black" }} to="/contribute">
+            Linkedin
+          </Link>
         </div>
+        {/* </div> */}
       </div>
     </div>
   );

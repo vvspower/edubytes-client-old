@@ -25,6 +25,7 @@ import TopUsers from "./TopUsers/TopUsers";
 
 const Main = () => {
   const context = useContext(dataContext);
+  const LoadMoreBlogs = context.LoadMoreBlogs
   const clickuser = context.clickuser;
   const setclickuser = context.setclickuser;
   const blogs = context.blogs;
@@ -190,7 +191,9 @@ const Main = () => {
             </div>
           </div>
           <div className={classes.LoadMore}>
-            <button>Load More</button>
+            <button onClick={() => {
+              LoadMoreBlogs()
+            }} >Load More</button>
           </div>
         </div>
         <div className={classes.Cards}>
