@@ -23,6 +23,14 @@
   text-align: center;
 }
 
+.LogoIMG {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  
+}
+
 .Create span {
   color: #212529;
   cursor: pointer;

@@ -21,14 +21,13 @@ const UserProfile = () => {
   const [user, setUser] = useState({});
   const [bio, setbio] = useState("");
   const [imageSelected, setImageSelected] = useState("");
-  const [saveChange , setSaveChange ] = useState(false)
+  const [saveChange, setSaveChange] = useState(false);
   const [pfp, setpfp] = useState("");
 
-  
+  const address = "https://project1400authapi.herokuapp.com";
 
   console.log(id);
   console.log(bio);
- 
 
   useEffect(async () => {
     const userid = await fetchUserInfo(id);
@@ -46,7 +45,7 @@ const UserProfile = () => {
 
   const EditProfile = async () => {
     let success = false;
-    const response = await fetch(`http://localhost:5000/api/auth/edituser`, {
+    const response = await fetch(`${address}/api/auth/edituser`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -59,8 +58,8 @@ const UserProfile = () => {
     });
     const json = await response.json();
     success = true;
-    if(success) {
-      window.location.reload()
+    if (success) {
+      window.location.reload();
     }
     console.log(json);
   };
@@ -75,7 +74,7 @@ const UserProfile = () => {
       "https://api.cloudinary.com/v1_1/disle0uxb/image/upload",
       formData
     ).then((response) => {
-      setSaveChange(true)
+      setSaveChange(true);
       console.log(response.data.url);
       setpfp(response.data.url.toString());
     });
@@ -84,9 +83,10 @@ const UserProfile = () => {
   return (
     <>
       <div className="container">
-        <div style={{ display: "flex", gap: "20px", marginTop: "30px" }}>
-          <div className={classes.SideBar} style={{ maxWidth: "320px" }}>
+        <div className={classes.Container}>
+          <div className={classes.SideBar}>
             <img
+              className={classes.UserImage}
               style={{ borderRadius: "50%" }}
               src={user.pfp}
               height={300}
@@ -94,20 +94,25 @@ const UserProfile = () => {
             />
             <div style={{ marginTop: "10px", marginLeft: "10px" }}>
               <h3 style={{ margin: 0 }}>{user.name}</h3>
-              <p style={{ color: "#868e96", fontSize: "18px" }}>@{user?.name?.split(" ")?.join("-").toLowerCase()}</p>
+              <p style={{ color: "#868e96", fontSize: "14px" }}>
+                @{user?.name?.split(" ")?.join("-").toLowerCase()}
+              </p>
               <p>{user.bio}</p>
-              { localStorage.getItem("auth-token") !== null && localStorage.getItem("user") === id ? <button
-                onClick={() => {
-                  setbio(user.bio);
-                }}
-                type="button"
-                className="btn btn-light"
-                data-bs-toggle="modal"
-                data-bs-target="#EditProfileModal"
-                className={classes.EditProfile}
-              >
-                Edit Profile
-              </button> : null}
+              {localStorage.getItem("auth-token") !== null &&
+              localStorage.getItem("user") === id ? (
+                <button
+                  onClick={() => {
+                    setbio(user.bio);
+                  }}
+                  type="button"
+                  className="btn btn-light"
+                  data-bs-toggle="modal"
+                  data-bs-target="#EditProfileModal"
+                  className={classes.EditProfile}
+                >
+                  Edit Profile
+                </button>
+              ) : null}
               <div className={classes.Follows}>
                 <div
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
@@ -135,8 +140,14 @@ const UserProfile = () => {
             </div>
             <div className={classes.Contributions}>
               <h6>Contributions</h6>
-              <UserContribution/>
+              <UserContribution />
             </div>
+          </div>
+          <div className={classes.ContributionsMobile}>
+            <h6>Contributions</h6>
+            <aside>
+              <UserContribution />
+            </aside>
           </div>
           <div className={classes.Seperator}>
             <div>
@@ -146,22 +157,26 @@ const UserProfile = () => {
                   <h5>Contributions</h5>
                 </div>
               </div>
-              { userblog.length > 0 ?userblog.map((item, i) => {
-                return (
-                  <div key={item._id}>
-                    <HotPosts
-                    key={item._id}
-                      title={item.title}
-                      description={item.description}
-                      id={item._id}
-                      username={item.username}
-                      user={item.user}
-                      likes={item.likes}
-                      tag={item.tag}
-                    />
-                  </div>
-                );
-              }) : <h2 style={{marginTop: "20px"}}>No Posts</h2>}
+              {userblog.length > 0 ? (
+                userblog.map((item, i) => {
+                  return (
+                    <div key={item._id}>
+                      <HotPosts
+                        key={item._id}
+                        title={item.title}
+                        description={item.description}
+                        id={item._id}
+                        username={item.username}
+                        user={item.user}
+                        likes={item.likes}
+                        tag={item.tag}
+                      />
+                    </div>
+                  );
+                })
+              ) : (
+                <h2 style={{ marginTop: "20px" }}>No Posts</h2>
+              )}
             </div>
           </div>
         </div>
@@ -222,21 +237,25 @@ const UserProfile = () => {
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              { saveChange ? <button
-                onClick={EditProfile}
-                type="button"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
-                Save changes
-              </button> : null }
+              {!saveChange ? (
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              ) : null}
+              {saveChange ? (
+                <button
+                  onClick={EditProfile}
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Save changes
+                </button>
+              ) : null}
             </div>
           </div>
         </div>

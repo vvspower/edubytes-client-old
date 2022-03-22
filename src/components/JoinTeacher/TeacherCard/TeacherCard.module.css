@@ -1,0 +1,24 @@
+.Container {
+    background-color: white;
+    max-width: 350px;
+    padding: 10px;
+    border-radius: 10px;
+  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.1); */
+
+
+}
+
+.Container img {
+    border-radius: 50%;
+}
+
+.Container h2 {
+    margin: 0;
+}
+
+.Container span {
+    color: #37b24d;
+}
+.Container p {
+    color: #339af0;
+}

@@ -1,26 +1,26 @@
-import React , {useContext , useEffect} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import NoteCard from "./NoteCard/NoteCard";
 import classes from "./ViewNotes.module.css";
-import dataContext from '../Context.js/dataContext'
+import dataContext from "../Context.js/dataContext";
 
 const ViewNotes = () => {
-    const context = useContext(dataContext)
-    const Notes = context.Notes
-    const fetchResources = context.fetchResources
+  const context = useContext(dataContext);
+  const Notes = context.Notes;
+  const fetchResources = context.fetchResources;
+  const [searchTerm, setSearchTerm] = useState("");
 
-    console.log(Notes)
+  console.log(Notes);
 
-    useEffect(() => {
-      fetchResources()
-    }, [])
-    
+  useEffect(() => {
+    fetchResources();
+  }, []);
 
   return (
     <div className="container">
       <div className={classes.ViewNotes}>
         <div className={classes.Search}>
           <svg
-          style={{marginLeft: "10px"}}
+            style={{ marginLeft: "10px" }}
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
             viewBox="0 0 20 20"
@@ -39,13 +39,33 @@ const ViewNotes = () => {
             placeholder="Search for Notes"
             aria-label="Recipient's username"
             aria-describedby="basic-addon2"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
           />
         </div>
-        <div className={classes.NoteRender} >
-
-            {Notes.map((item , i) => {
-                return <NoteCard title={item.name} subject={item.subject} type={item.type} link={item.link} user={item.user} date={item.date}/>
-            })}
+        <div className={classes.NoteRender}>
+          {Notes.filter((val) => {
+            if (searchTerm == "") {
+              return val;
+            } else if (
+              val.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              val.subject.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          }).map((item, i) => {
+            return (
+              <NoteCard
+                title={item.name}
+                subject={item.subject}
+                type={item.type}
+                link={item.link}
+                user={item.user}
+                date={item.date}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

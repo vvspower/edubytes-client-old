@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 const NoteCard = (props) => {
   const [userinfo , setuserinfo] = useState({})
+
+  const address = "http://localhost:5000"
  
 
 
   const fetchUserInfo = async () => {
 
     const response = await fetch(
-      `http://localhost:5000/api/auth/getusernoauth/${props.user}`,
+      `${address}/api/auth/getusernoauth/${props.user}`,
       {
         method: "GET",
         headers: {

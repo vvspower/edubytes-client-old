@@ -14,6 +14,13 @@
   margin: 15px 0px;
   display: flex;
 }
+.Loading {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
+  /* display: none; */
+}
 
 .Increase {
   display: flex;
@@ -94,6 +101,13 @@
     padding-bottom: 0;
   }
 
+
+  @media only screen and (max-width: 1024px) {
+    
+  .NoteContainer {
+    margin-left: 0px;
+  }
+  }
 
 @media only screen and (max-width: 850px) {
   .Container {

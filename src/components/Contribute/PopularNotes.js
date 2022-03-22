@@ -3,6 +3,7 @@ import classes from "./contribute.module.css";
 import NoteCard from "./NoteCard";
 import { Link } from "react-router-dom";
 import dataContext from "../Context.js/dataContext";
+import loader from '../../Images/default-loading.gif'
 
 
 const PopularNotes = () => {
@@ -39,7 +40,7 @@ const PopularNotes = () => {
         </Link>
       </div>
       <div>
-        {Notes.map((item, i) => {
+        {Notes.length < 1 ? <img className={classes.Loading} src={loader} height={50}/> : Notes.map((item, i) => {
           return <NoteCard title={item.name} user={item.user} link={item.link}/>
         }) }
       </div>

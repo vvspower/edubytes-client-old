@@ -12,6 +12,9 @@ const UserModal = () => {
   const loggedUser = context.loggedUser;
   const logout = () => {
     localStorage.removeItem("auth-token");
+    localStorage.removeItem("user");
+
+    navigate("/")
     window.location.reload();
   };
   console.log(loggedUser);
@@ -119,7 +122,9 @@ const UserModal = () => {
           </div>
           <div
             onClick={() => {
+              
               logout();
+              
             }}
             className={classes.Buttons}
           >

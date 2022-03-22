@@ -7,6 +7,7 @@ import like from "../../Images/like.png";
 import likeamount from "../../Images/likeamount.png";
 import pencil from "../../Images/pencil.png";
 import user from "../../Images/user.png";
+import DeleteUserPostModal from "./DeleteUserPostModal";
 
 const UserPost = () => {
   let dp;
@@ -39,12 +40,11 @@ const UserPost = () => {
   const [replypfp, setreplypfp] = useState("");
   const date = new Date(BlogById.date);
 
+  const address = "http://localhost:5000"
+
   console.log("///////////////");
   console.log(replies);
   console.log("///////////////");
-
-
-
 
   console.log(userid);
 
@@ -52,7 +52,7 @@ const UserPost = () => {
     console.log(id);
 
     const response = await fetch(
-      `http://localhost:5000/api/auth/getusernoauth/${userid}`,
+      `${address}/api/auth/getusernoauth/${userid}`,
       {
         method: "GET",
         headers: {
@@ -69,9 +69,9 @@ const UserPost = () => {
   };
 
   const getPfpreply = async (user) => {
-    console.log(user)
+    console.log(user);
     const response = await fetch(
-      `http://localhost:5000/api/auth/getusernoauth/${user}`,
+      `${address}/api/auth/getusernoauth/${user}`,
       {
         method: "GET",
         headers: {
@@ -81,7 +81,7 @@ const UserPost = () => {
     );
     const json = await response.json();
     console.log(json);
-    
+
     setreplypfp(json.pfp);
     return json.pfp;
   };
@@ -93,12 +93,11 @@ const UserPost = () => {
     console.log(BlogById);
     const success = await fetchBlogById(id);
     setSuccess(success);
-    if(localStorage.getItem('auth-token') !== null) {
-      checkifliked(id)
+    if (localStorage.getItem("auth-token") !== null) {
+      checkifliked(id);
     }
     setblogid(BlogById);
     getPfp(userid);
-    
   }, []);
 
   console.log(BlogById.user);
@@ -106,7 +105,7 @@ const UserPost = () => {
 
   const likepostapi = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app/likepost/${id}`,
+      `${address}/api/app/likepost/${id}`,
       {
         method: "POST",
         headers: {
@@ -121,7 +120,7 @@ const UserPost = () => {
 
   const unlikepostapi = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app/unlikepost/${id}`,
+      `${address}/api/app/unlikepost/${id}`,
       {
         method: "DELETE",
         headers: {
@@ -166,6 +165,7 @@ const UserPost = () => {
 
   return (
     <div className={classes.Universal} style={{ marginTop: "20px" }}>
+      <DeleteUserPostModal id={BlogById._id}/>
       {BlogById?.user !== undefined ? (
         <div className="container">
           {success ? (
@@ -206,20 +206,25 @@ const UserPost = () => {
                       <span>•</span>
                       <span>{date.toLocaleString()}</span>
                     </div>
-                    { BlogById.image !== "" ? <div>
-                      <img className={classes.postImage} src={BlogById.image} />
-                    </div> : null}
+                    {BlogById.image !== "" ? (
+                      <div>
+                        <img
+                        width="99%"
+                          className={classes.postImage}
+                          src={BlogById.image}
+                        />
+                      </div>
+                    ) : null}
                     <p
                       style={{
                         marginTop: "10px",
                         whiteSpace: "pre-line",
                         verticalAlign: "bottom  ",
-                        paddingBottom: "20px"
+                        paddingBottom: "20px",
                       }}
                     >
                       {BlogById.description}
                     </p>
-                    
                   </div>
                   <div className={classes.Interaction}>
                     <div
@@ -230,7 +235,7 @@ const UserPost = () => {
                       }}
                     >
                       <div style={{ display: "flex", alignItems: "center" }}>
-                        <div>
+                        { localStorage.getItem("auth-token") ?  <div>
                           <svg
                             onClick={() => {
                               likepost();
@@ -250,7 +255,7 @@ const UserPost = () => {
                           >
                             <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                           </svg>
-                        </div>
+                        </div> : <p style={{color: "white"}}>.</p>}
                         <img
                           style={{ marginLeft: "5px" }}
                           src={likeamount}
@@ -260,8 +265,9 @@ const UserPost = () => {
                       </div>
 
                       {/* <span className={classes.ReportBtn}>...</span> */}
-                      <div>
+                      <div className={classes.Buttons}>
                         <svg
+                          style={{ cursor: "pointer" }}
                           xmlns="http://www.w3.org/2000/svg"
                           class="h-5 w-5"
                           viewBox="0 0 20 20"
@@ -270,12 +276,37 @@ const UserPost = () => {
                         >
                           <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
                         </svg>
-                        <span style={{ marginLeft: "4px" }}>Share</span>
+                        <span style={{ marginLeft: "4px", fontSize: "12px" }}>
+                          Share
+                        </span>
                       </div>
+                      { BlogById.user === localStorage.getItem("user") ?
+                        <div className={classes.Buttons}>
+                          <button data-bs-toggle="modal" data-bs-target="#delete_modal" style={{backgroundColor: "white" , border: "0" , width: "20px"}}>
+                            <svg
+                              style={{ cursor: "pointer" }}
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill="#adb5bd"
+                              height={20}
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                          </button>
+                          <span style={{ marginLeft: "4px", fontSize: "12px" }}>
+                            Delete
+                          </span>
+                        </div>
+                      : null}
                     </div>
 
                     {showreply === false ? (
-                      <div className={classes.Reply}>
+                      localStorage.getItem("auth-token") ? <div className={classes.Reply}>
                         <button
                           onClick={() => {
                             setshowreply(true);
@@ -301,14 +332,14 @@ const UserPost = () => {
                           </svg>
                           Reply to discussion
                         </button>
-                      </div>
+                      </div> : <p>Log in to Reply</p>
                     ) : null}
                   </div>
                 </div>
                 {showreply ? (
                   <div className={classes.ReplyModal}>
                     <textarea
-                    style={{borderRadius: "20px"}}
+                      style={{ borderRadius: "20px" }}
                       onChange={(e) => {
                         setreply(e.target.value);
                       }}
@@ -318,17 +349,18 @@ const UserPost = () => {
                       // aria-describedby="emailHelp"
                       placeholder="Reply"
                     />
-                    <button onClick={() => {
-                      setshowreply(false);
-                    }} style={{backgroundColor: "#adb5bd"}}>
+                    <button
+                      onClick={() => {
+                        setshowreply(false);
+                      }}
+                      style={{ backgroundColor: "#adb5bd" }}
+                    >
                       Cancel
                     </button>
                     <button
-                    
                       onClick={() => {
                         replyToPost();
                         setshowreply(false);
-
                       }}
                     >
                       <svg
@@ -351,12 +383,13 @@ const UserPost = () => {
                     </button>
                   </div>
                 ) : null}
-                <div className={classes.ReplyNum}>{replies.length} {replies.length === 1 ? "Reply" : "Replies"}</div>
+                <div className={classes.ReplyNum}>
+                  {replies.length} {replies.length === 1 ? "Reply" : "Replies"}
+                </div>
                 {replysuccess ? (
                   <div>
                     {replies.map((item, id) => {
                       const datecomment = new Date(item.date);
-
 
                       return (
                         <div className={classes.ReplyCards}>
@@ -372,8 +405,8 @@ const UserPost = () => {
                               }}
                             >
                               <img
-                              style={{borderRadius: "50%"}}
-                              src={item.pfp}
+                                style={{ borderRadius: "50%" }}
+                                src={item.pfp}
                                 height={30}
                                 width={30}
                               />

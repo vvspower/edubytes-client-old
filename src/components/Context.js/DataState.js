@@ -20,6 +20,9 @@ const DataState = (props) => {
   const [loadedPosts , setLoadedPosts] = useState(0)
 
 
+  const address = "http://localhost:5000"
+
+
   // Signup API
   const Signup = async (name , email , password) => {
     let success = false
@@ -45,10 +48,13 @@ const DataState = (props) => {
 
   };
 
+
+  
+
   // API to get the userID from the auth-token created when a new user is signed in
   const getUserAndRedirect = async (token) => {
     let success = false
-    const response = await fetch(`http://localhost:5000/api/auth/getuser`, {
+    const response = await fetch(`${address}/api/auth/getuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +72,7 @@ const DataState = (props) => {
 // Fetch all blogs on the website 
   const fetchBlog = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchallblogposts`,
+      `${address}/api/app/fetchallblogposts`,
       {
         method: "GET",
         headers: {
@@ -83,7 +89,7 @@ const DataState = (props) => {
 
   const LoadMoreBlogs = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app//loadmoreblogposts/${loadedPosts}`,
+      `${address}/api/app/loadmoreblogposts/${loadedPosts}`,
       {
         method: "GET",
         headers: {
@@ -103,7 +109,7 @@ const DataState = (props) => {
   const Contribute = async (title , link , type , subject) => {
     console.log(title ,link , type , subject)
     const response = await fetch(
-      `http://localhost:5000/api/app/resource`,
+      `${address}/api/app/resource`,
       {
         method: "POST",
         headers: {
@@ -131,7 +137,7 @@ const DataState = (props) => {
   const fetchBlogById = async (id) => {
     let success = false;
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchblog/${id}`,
+      `${address}/api/app/fetchblog/${id}`,
       {
         method: "GET",
         headers: {
@@ -150,7 +156,7 @@ const DataState = (props) => {
   const fetchUserSpecificBlog = async (id) => {
     let success = false;
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchuserblogs/${id}`,
+      `${address}/api/app/fetchuserblogs/${id}`,
       {
         method: "GET",
         headers: {
@@ -169,7 +175,7 @@ const DataState = (props) => {
   const fetchUserInfo = async (id) => {
     sethoversuccess(false);
     const response = await fetch(
-      `http://localhost:5000/api/auth/getusernoauth/${id}`,
+      `${address}/api/auth/getusernoauth/${id}`,
       {
         method: "GET",
         headers: {
@@ -188,7 +194,7 @@ const DataState = (props) => {
   // Login User API
 
   const LoginUser = async (email, password) => {
-    const response = await fetch(`http://localhost:5000/api/auth/login`, {
+    const response = await fetch(`${address}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -200,7 +206,7 @@ const DataState = (props) => {
     });
     const token = await response.json();
 console.log(token.authToken)
-    const getid = await fetch(`http://localhost:5000/api/auth/getUserId`, {
+    const getid = await fetch(`${address}/api/auth/getUserId`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -224,7 +230,7 @@ console.log(token.authToken)
 
   const PostQuestion = async (title, desc, tags , image) => {
     setPostedBlog(false);
-    const response = await fetch(`http://localhost:5000/api/app/post`, {
+    const response = await fetch(`${address}/api/app/post`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -251,7 +257,7 @@ console.log(token.authToken)
   // Reply API
 
   const PostReply = async (postid, reply) => {
-    const response = await fetch(`http://localhost:5000/api/app/reply`, {
+    const response = await fetch(`${address}/api/app/reply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -276,7 +282,7 @@ console.log(token.authToken)
   const fetchReplies = async (id) => {
     let success = false;
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchreplies/${id}`,
+      `${address}/api/app/fetchreplies/${id}`,
       {
         method: "GET",
         headers: {
@@ -289,12 +295,32 @@ console.log(token.authToken)
     setReplySuccess(success);
     setreplies(json);
     console.log(json);
+    return json
+  };
+
+  // /deleteBlog/:id
+
+  const DeleteBlog = async (id) => {
+    let success = false;
+    const response = await fetch(
+      `${address}/api/app/deleteBlog/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          'auth-token': localStorage.getItem("auth-token")
+        },
+      }
+    );
+    const json = await response.json();
+    success = true;
+    return success
   };
 
 
 
   const fetchUserWithAuth = async (token) => {
-    const response = await fetch(`http://localhost:5000/api/auth/getuser`, {
+    const response = await fetch(`${address}/api/auth/getuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -310,7 +336,7 @@ console.log(token.authToken)
 
   const checkifliked = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchliked/${id}`,
+      `${address}/api/app/fetchliked/${id}`,
       {
         method: "GET",
         headers: {
@@ -326,7 +352,7 @@ console.log(token.authToken)
 
   const fetchResources = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchallresources`,
+      `${address}/api/app/fetchallresources`,
       {
         method: "GET",
         headers: {
@@ -340,7 +366,7 @@ console.log(token.authToken)
 
   const fetchUserResources = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/app/fetchuserresources/${id}`,
+      `${address}/api/app/fetchuserresources/${id}`,
       {
         method: "GET",
         headers: {
@@ -354,7 +380,7 @@ console.log(token.authToken)
 
   const fetchAllUsers = async () => {
     const response = await fetch(
-      `http://localhost:5000/api/auth/fetchallusers`,
+      `${address}/api/auth/fetchallusers`,
       {
         method: "GET",
         headers: {
@@ -407,6 +433,7 @@ console.log(token.authToken)
         fetchUserResources,
         fetchAllUsers,
         LoadMoreBlogs,
+        DeleteBlog
       }}
     >
       {props.children}

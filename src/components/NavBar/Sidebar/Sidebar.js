@@ -28,11 +28,11 @@ const Sidebar = () => {
                 role="button"
                 aria-controls="offcanvasExample" style={{border: 0 , borderBottom: "2px solid #f1f3f5" ,backgroundColor: "#fff" , display: "flex" ,  justifyContent: "flex-start"}}>
             <div
-              onClick={() => navigate(`/u/user?id=${loggedUser.userId}`)}
+              
               className={classes.User}
             >
               {localStorage.getItem("auth-token") ? (
-                <div>
+                <div onClick={() => navigate(`/u/user?id=${loggedUser.userId}`)}>
                   <img
                     style={{marginRight: "50px" , marginBottom: "5px"}}
                     src={loggedUser?.user?.pfp}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import classes from "./auth.module.css";
 import dataContext from "../Context.js/dataContext";
 import { useNavigate } from "react-router-dom";
+import logo from '../../Images/edubytes.png'
 
 const LoginModal = () => {
   const navigate = useNavigate()
@@ -56,13 +57,7 @@ const LoginModal = () => {
               class="modal-content"
             >
               <div style={{ border: "0" }} class="modal-header">
-                <h4
-                  style={{ marginLeft: "120px" }}
-                  class="modal-title"
-                  id="exampleModalLabel"
-                >
-                  Project
-                </h4>
+                <img className={classes.LogoIMG} src={logo} />
                 <button
                   style={{ marginLeft: "10px" }}
                   type="button"

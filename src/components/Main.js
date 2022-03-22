@@ -20,12 +20,13 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import UniversityCard from "./UniversityCard/UniversityCard";
 import TopUsers from "./TopUsers/TopUsers";
+import loader from "../Images/default-loading.gif";
 // import 'style!css!react-responsive-carousel/lib/styles/carousel.css';
 // import css from "file.css";
 
 const Main = () => {
   const context = useContext(dataContext);
-  const LoadMoreBlogs = context.LoadMoreBlogs
+  const LoadMoreBlogs = context.LoadMoreBlogs;
   const clickuser = context.clickuser;
   const setclickuser = context.setclickuser;
   const blogs = context.blogs;
@@ -33,6 +34,7 @@ const Main = () => {
   const SortByLikes = context.SortByLikes;
 
   const [progress, setProgress] = useState(30);
+  console.log(blogs)
 
   useEffect(() => {
     console.log(context.example);
@@ -172,29 +174,37 @@ const Main = () => {
               </Carousel>
             </div>
             <div>
-              {blogs.map((item, i) => {
-                console.log(item.image);
-                return (
-                  <LatestNotes
-                    title={item.title}
-                    description={item.description}
-                    id={item._id}
-                    username={item.username}
-                    user={item.user}
-                    image={item.image}
-                    tag={item.tag}
-                    pfp={item.pfp}
-                    date={item.date}
-                  />
-                );
-              })}
+              {blogs.length < 1 ? (
+                <img className={classes.Loading} height={50} src={loader} />
+              ) : (
+                blogs.map((item, i) => {
+                  console.log(item.image);
+                  return (
+                    <LatestNotes
+                      title={item.title}
+                      description={item.description}
+                      id={item._id}
+                      username={item.username}
+                      user={item.user}
+                      image={item.image}
+                      tag={item.tag}
+                      pfp={item.pfp}
+                      date={item.date}
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
-          <div className={classes.LoadMore}>
-            <button onClick={() => {
-              LoadMoreBlogs()
-            }} >Load More</button>
-          </div>
+          { blogs.length > 0 ? <div className={classes.LoadMore}>
+            <button
+              onClick={() => {
+                LoadMoreBlogs();
+              }}
+            >
+              Load More
+            </button> 
+          </div> : null}
         </div>
         <div className={classes.Cards}>
           <PopularNotes />

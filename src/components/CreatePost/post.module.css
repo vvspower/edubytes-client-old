@@ -4,6 +4,23 @@
   margin-left: 125px;
 }
 
+.Loadmore {
+  margin: 0 auto;
+  width: 100px;
+  margin-top: 10px;
+
+}
+
+.Loadmore button {
+ 
+  border: 0;
+  padding: 8px;
+  width: 120px;
+  border-radius: 16px;
+  font-size: 12px;
+  background-color: #e9ecef;
+}
+
 .askText {
   font-size: 16px;
   color: #74c0fc;
@@ -111,7 +128,8 @@ textarea:focus {
   border: 1px solid #007aff;
 }
 
-.Categories button {
+.MobileButton {
+  display: none;
   border: 0;
   border: 0;
   color: white;
@@ -119,7 +137,6 @@ textarea:focus {
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 14px;
-  z-index: 10;
   margin-left: 2px;
   background-color: #007aff;
 }
@@ -164,6 +181,10 @@ textarea:focus {
 @media only screen and (max-width: 850px) {
   .TopCards {
     display: none;
+  }
+
+  .MobileButton {
+   display: block;
   }
 
   .Categories {

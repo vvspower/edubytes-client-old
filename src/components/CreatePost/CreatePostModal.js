@@ -8,7 +8,7 @@ import post from "../../Images/write.png";
 import dataContext from "../Context.js/dataContext";
 import LatestNotes from "../LatestNotes/LatestNotes";
 import HotPosts from "./HotPosts";
-import TopUsers from "./TopUsers/TopUsers";
+import TopUsers from "../TopUsers/TopUsers"
 import InteractionBar from "./PostComponents/InteractionBar";
 import TopTags from "./TopTags/TopTags";
 import LoadingBar from "react-top-loading-bar";
@@ -21,16 +21,18 @@ import PostModal from "./PostModal/PostModal";
 const CreatePostModal = () => {
   const context = useContext(dataContext);
   const setclickuser = context.setclickuser;
-
+  const LoadMoreBlogs = context.LoadMoreBlogs;
   const fetchBlog = context.fetchBlog;
   const blogs = context.blogs;
   const [progress, setProgress] = useState(30);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchBlog();
     console.log("hello");
     setProgress(100);
   }, []);
+  console.log(blogs);
 
   return (
     <div
@@ -56,8 +58,18 @@ const CreatePostModal = () => {
                 marginBottom: "20px",
               }}
             >
-              <TopCard title="Get Notes" image={notes} color="white" link="notes" />
-              <TopCard title="Start Teaching" image={teach} color="#3ac66b" link="teacher" />
+              <TopCard
+                title="Get Notes"
+                image={notes}
+                color="white"
+                link="notes"
+              />
+              <TopCard
+                title="Start Teaching"
+                image={teach}
+                color="#3ac66b"
+                link="teacher"
+              />
               <ContributeCard />
               <div
                 style={{
@@ -113,11 +125,15 @@ const CreatePostModal = () => {
                   display: "flex",
                   gap: "20px",
                   alignItems: "center",
-                  marginTop: "10px",
+                  // marginTop: "10px",
                 }}
               >
                 <h6>Hottest</h6>
                 <h6>Sort By Likes</h6>
+              </div>
+              <div>
+                <button data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" className={classes.MobileButton}>Post Question</button>
               </div>
               <div className={classes.Search}>
                 <input
@@ -125,42 +141,57 @@ const CreatePostModal = () => {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                  }}
                 ></input>
               </div>
             </div>
             <div>
-              {blogs.map((item, i) => {
-                return (
-                  // Same as Latest Posts but with different UI and the ability to be sorted.
-                  <HotPosts
-                    title={item.title}
-                    description={item.description}
-                    id={item._id}
-                    username={item.username}
-                    user={item.user}
-                    likes={item.likes}
-                    tag={item.tag}
-                  />
-                );
-              })}
+              {blogs
+                .filter((val) => {
+                  if (searchTerm == "") {
+                    return val;
+                  } else if (
+                    val.title
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    val.description
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((item, i) => {
+                  return (
+                    // Same as Latest Posts but with different UI and the ability to be sorted.
+                    <HotPosts
+                      title={item.title}
+                      description={item.description}
+                      id={item._id}
+                      username={item.username}
+                      user={item.user}
+                      likes={item.likes.length}
+                      tag={item.tag}
+                    />
+                  );
+                })}
+            </div>
+            <div className={classes.Loadmore}>
+              <button
+                onClick={() => {
+                  LoadMoreBlogs();
+                }}
+              >
+                Load more
+              </button>
             </div>
           </div>
         </div>
         <div className={classes.SideBar}>
           <InteractionBar />
-          <div className={classes.TopUser}>
-            <h6>Top Contributors</h6>
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-            <TopUsers />
-          </div>
+          <TopUsers/>
           <TopTags />
         </div>
       </div>

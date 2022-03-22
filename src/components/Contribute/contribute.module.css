@@ -16,6 +16,14 @@
   padding-bottom: 20px;
 }
 
+.Loading {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50px;
+  /* display: none; */
+}
+
 .PopularNotes {
   background-color: white;
   /* margin-top: 10px; */

@@ -16,9 +16,11 @@ const LatestNotes = (props) => {
   // var acronym = matches.join("").toUpperCase(); // JSON
   console.log(props);
 
+  const address = "http://localhost:5000"
+
   const getPfp = async (id) => {
     const response = await fetch(
-      `http://localhost:5000/api/auth/getusernoauth/${id}`,
+      `${address}/api/auth/getusernoauth/${id}`,
       {
         method: "GET",
         headers: {

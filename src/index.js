@@ -13,6 +13,7 @@ import UserPost from "./components/UserPost/UserPost";
 import UserProfile from "./components/UserProfile/UserProfile";
 import SignupComponent from "./components/Signup/SignupComponent";
 import ViewNotes from "./components/ViewNotes/ViewNotes";
+import JoinTeacher from "./components/JoinTeacher/JoinTeacher";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,6 +30,8 @@ ReactDOM.render(
           <Route exact path="/u/:id" element={<UserProfile />} />
           <Route exact path="/signup" element={<SignupComponent />} />
           <Route exact path="/notes" element={<ViewNotes />} />
+          <Route exact path="/join" element={<JoinTeacher/>} />
+
         </Routes>
         <Footer />
         </div>

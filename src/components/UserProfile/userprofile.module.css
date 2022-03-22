@@ -8,6 +8,13 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+/* style={{ display: "flex", gap: "20px", marginTop: "30px" }} */
+.Container {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+
+}
 
 .Follows p {
   margin: 0;
@@ -147,7 +154,7 @@ background-color: #ff922b;
 .EditProfile {
   background-color: #e9ecef;
    font-weight: 500 ;
-   width: 280px ;
+   width: 95% ;
    border: 1px solid #ced4da;
    border-radius: 8px;
    height: 35px;
@@ -171,6 +178,10 @@ background-color: #ff922b;
   display: flex;
   margin-bottom: 15px;
   gap: 10px;
+}
+
+.UserImage {
+  /* display: none; */
 }
 
 .Links {
@@ -203,10 +214,54 @@ background-color: #ff922b;
   margin-bottom: 10px;
 }
 
+.ContributionsMobile {
+  display: none;
+}
+
 .UserBio aside {
   width: 300px;
   /* background-color: black; */
   /* display: flex; */
 
   gap: 10px;
+}
+
+@media only screen and (max-width: 850px) {
+  .UserImage {
+    height: 100px;
+    width: 100px;
+  }
+
+  .Container {
+    flex-direction: column;
+  
+  }
+
+  .SideBar {
+    display: flex;
+    gap: 20px;
+  }
+
+  .Contributions {
+    display: none;
+  }
+
+  .ContributionsMobile {
+    display: block;
+    
+  }
+
+  .ContributionsMobile h6 {
+    padding-bottom: 10px;
+    
+  }
+
+
+
+
+  .ContributionsMobile aside {
+    max-height: 200px;
+    overflow-x: scroll;
+  }
+
 }

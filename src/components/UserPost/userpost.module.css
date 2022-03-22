@@ -47,6 +47,10 @@
   margin-bottom: 10px;
 }
 
+.Buttons {
+
+}
+
 .ReplyModal {
   display: flex;
   align-items: center;
@@ -241,6 +245,12 @@
 }
 
 @media only screen and (max-width: 850px) {
+
+  .Buttons span {
+   display: none;
+    
+  
+  }
   .UserPost {
     width: 100%;
   }

@@ -18,11 +18,12 @@ const SignupComponent = () => {
 
 
   const createuser = async () => {
-    let success = await Signup(name , email ,password)
+    let success = await Signup(name , email , password)
     console.log(success)
     if(success) {
       let user = await getUserAndRedirect(localStorage.getItem("auth-token"))
       console.log(user)
+      localStorage.setItem("user" , user.json.userId )
         navigate(`/u/user?id=${user.json.userId}`)
     }
   }

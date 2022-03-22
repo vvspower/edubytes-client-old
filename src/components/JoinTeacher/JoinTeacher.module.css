@@ -1,0 +1,64 @@
+.Container h1 {
+    font-size: 90px;
+    font-weight: bolder;
+    word-spacing: 0px;
+    line-height: 1;
+}
+
+
+
+
+
+.Header {
+    margin: 0 auto;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.Header span {
+    color: #38d9a9;
+}
+
+
+.Header img  {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+}
+
+.Header button {
+    border: 0;
+    margin-top: 30px;
+    padding:  10px 20px;
+    border-radius: 16px;
+    background-color: #38d9a9;
+    color: white;
+    font-weight: bold;
+}
+
+.Carousel {
+    /* margin-top: 50px; */
+    background-color: #e9ecef;
+    background: repeating-linear-gradient(#f7f8fa, #f7f8fa 49.9%, #e9ecef 50.1%, #e9ecef 100%);
+    padding-bottom: 50px;
+}
+
+.spotlight {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 0 auto;
+    width: 1000px;
+    margin-bottom: 30px;
+}
+
+
+.Apply p {
+font-weight: 500;
+letter-spacing: 2px;
+margin: 0 auto;
+width: 100px;
+margin-top: 100px;
+}
