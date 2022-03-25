@@ -10,10 +10,8 @@
   background-color: white;
 }
 
-
 .AdCarousel img {
   border-radius: 16px;
-
 }
 
 .AdCarousel {
@@ -24,11 +22,9 @@
   width: 240px;
   height: 150px;
   border-radius: 8px;
-  
 }
 
 .Pic {
-
   width: 100px; /* image width */
   height: 100px; /* image height */
   display: inline-block; /* so that it behaves like the img element */
@@ -38,12 +34,12 @@
 }
 
 .Ad span {
-  margin-left: 5px;
+  /* margin-left: 5px; */
   color: #37b24d;
 }
 
-.TeacherInfo div {
-  display: flex;
+.TeacherInfo {
+  margin-top: 5px;
 }
 
 .Ad p {
@@ -95,11 +91,17 @@
   }
 
   .Ad h6 {
+    /* display: none; */
+    font-size: 12px;
+  }
+
+  .Ad span {
     display: none;
   }
   .Button p {
     margin: 0;
     font-size: 10px;
+    
   }
 
   .Ad {
@@ -121,14 +123,19 @@
   }
 
   .userImg {
-    margin-left: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
   }
 
   .Button {
     padding: 4px 25px;
+    margin-top: 10px;
   }
 
   .Button img {
     display: none;
   }
+  
 }

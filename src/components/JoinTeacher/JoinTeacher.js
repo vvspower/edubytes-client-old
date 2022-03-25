@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import classes from "./JoinTeacher.module.css";
 import teachingimg from "../../Images/teaching-vector.jpg";
 import Carousel from "react-multi-carousel";
 // import TeacherCard from "../TeacherCardvertisement/TeacherCard";
 import TeacherCard from "./TeacherCard/TeacherCard";
+import dataContext from "../Context.js/dataContext";
 import Form from "./Form/Form";
 
 const JoinTeacher = () => {
+  const context = useContext(dataContext);
+  const fetchAllAds = context.fetchAllAds;
+  const Ads = context.Ads;
+
+  useEffect(() => {
+    fetchAllAds();
+  }, []);
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -53,42 +62,11 @@ const JoinTeacher = () => {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           partialVisible={false}
         >
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
-          <div>
-            <TeacherCard />
-          </div>
+          {Ads.map((item , i) => {
+            return <div>
+              <TeacherCard name={item.name} image={item.image} subject={item.subject} institution={item.institution}/>
+            </div>
+          })}
         </Carousel>
       </div>
       <div className={classes.Apply}>

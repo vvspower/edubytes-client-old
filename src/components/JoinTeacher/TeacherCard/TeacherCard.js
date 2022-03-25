@@ -2,19 +2,18 @@ import React from "react";
 import user from "../../../Images/user.png";
 import classes from "./TeacherCard.module.css";
 
-const TeacherCard = () => {
+const TeacherCard = (props) => {
   return (
     <div className={classes.Container}>
       <div className="d-flex gap-4 align-items-center ">
-        <img src={user} height={100} />
+        <img src={props.image} height={100} width={100} />
         <div>
-          <h2>Shamvil Raza</h2>
+          <h5>{props.name}</h5>
           <div> 
             <div className="d-flex gap-2 align-items-center">
-              <h6>A level</h6>
-              <span>10K/Month</span>
+              <span>{props.subject}</span>
             </div>
-            <p>Mathematics</p>
+            <p>{props.institution}</p>
           </div>
         </div>
       </div>

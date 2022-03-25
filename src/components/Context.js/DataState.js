@@ -16,44 +16,38 @@ const DataState = (props) => {
   const [replysuccess, setReplySuccess] = useState(false);
   const [isliked, setisliked] = useState(false);
   const [uploadNoteSuccess, setUploadNoteSucess] = useState(false);
-  const [Notes , setNotes] = useState([])
-  const [loadedPosts , setLoadedPosts] = useState(0)
+  const [Notes, setNotes] = useState([]);
+  const [loadedPosts, setLoadedPosts] = useState(0);
+  const [Ads, setAds] = useState([])
 
-
-  const address = "http://localhost:5000"
-
+  const address = "http://localhost:5000";
 
   // Signup API
-  const Signup = async (name , email , password) => {
-    let success = false
-    const response = await fetch(
-      `http://localhost:5000/api/auth/createuser`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-        }),
-      }
-    );
+  const Signup = async (name, email, password) => {
+    let success = false;
+    const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+      }),
+    });
     const json = await response.json();
-    if(json.success){localStorage.setItem("auth-token" , json.authToken) 
-  success = true}
-    
-    return success
+    if (json.success) {
+      localStorage.setItem("auth-token", json.authToken);
+      success = true;
+    }
 
+    return success;
   };
-
-
-  
 
   // API to get the userID from the auth-token created when a new user is signed in
   const getUserAndRedirect = async (token) => {
-    let success = false
+    let success = false;
     const response = await fetch(`${address}/api/auth/getuser`, {
       method: "POST",
       headers: {
@@ -62,28 +56,22 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    success = true
-    let reply = {success , json}
-    return reply
-   
+    success = true;
+    let reply = { success, json };
+    return reply;
   };
 
-
-// Fetch all blogs on the website 
+  // Fetch all blogs on the website
   const fetchBlog = async (id) => {
-    const response = await fetch(
-      `${address}/api/app/fetchallblogposts`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        
-      }
-    );
+    const response = await fetch(`${address}/api/app/fetchallblogposts`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
     console.log(json);
-    setLoadedPosts(json.length)
+    setLoadedPosts(json.length);
     setBlogs(json);
   };
 
@@ -95,56 +83,45 @@ const DataState = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        
       }
     );
     const json = await response.json();
     console.log(json);
-    setLoadedPosts(json.length)
+    setLoadedPosts(json.length);
     setBlogs(json);
   };
-  
 
-
-  const Contribute = async (title , link , type , subject) => {
-    console.log(title ,link , type , subject)
-    const response = await fetch(
-      `${address}/api/app/resource`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("auth-token")
-        },
-        body: JSON.stringify({
-          name: title,
-          type: type,
-          subject: subject,
-          link: link
-        }),
-      }
-    );
+  const Contribute = async (title, link, type, subject) => {
+    console.log(title, link, type, subject);
+    const response = await fetch(`${address}/api/app/resource`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+      body: JSON.stringify({
+        name: title,
+        type: type,
+        subject: subject,
+        link: link,
+      }),
+    });
     const json = await response.json();
-    if(json.success) {
-      setUploadNoteSucess(true)
+    if (json.success) {
+      setUploadNoteSucess(true);
     }
     console.log(json);
   };
 
-
-
   // Fetch a Specific blog using its ID
   const fetchBlogById = async (id) => {
     let success = false;
-    const response = await fetch(
-      `${address}/api/app/fetchblog/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/fetchblog/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
     console.log(json);
     success = true;
@@ -155,15 +132,12 @@ const DataState = (props) => {
 
   const fetchUserSpecificBlog = async (id) => {
     let success = false;
-    const response = await fetch(
-      `${address}/api/app/fetchuserblogs/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/fetchuserblogs/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const userblog = await response.json();
     console.log(userblog);
     success = true;
@@ -174,15 +148,12 @@ const DataState = (props) => {
   // fetches user info API when cursor hovered over a profile picture
   const fetchUserInfo = async (id) => {
     sethoversuccess(false);
-    const response = await fetch(
-      `${address}/api/auth/getusernoauth/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/auth/getusernoauth/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
     console.log(json.name);
     sethoversuccess(true);
@@ -190,7 +161,20 @@ const DataState = (props) => {
     return json;
   };
 
-  
+  const fetchUserInfoBasic = async (id) => {
+   
+    const response = await fetch(`${address}/api/auth/getusernoauth/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    console.log("🚀 ~ file: DataState.js ~ line 173 ~ fetchUserInfoBasic ~  json",  json)
+   console.log(json)
+    return  json.pfp
+  };
+
   // Login User API
 
   const LoginUser = async (email, password) => {
@@ -205,30 +189,30 @@ const DataState = (props) => {
       }),
     });
     const token = await response.json();
-console.log(token.authToken)
+    console.log(token.authToken);
     const getid = await fetch(`${address}/api/auth/getUserId`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token" : token.authToken,
+        "auth-token": token.authToken,
       },
     });
-    const id = await getid.json()
-    console.log(id)
+    const id = await getid.json();
+    console.log(id);
     // getUserId
     setautherrors(token);
     console.log(token);
     if (token?.success) {
       // if(token.error)
       localStorage.setItem("auth-token", token.authToken);
-      localStorage.setItem("user", id)
+      localStorage.setItem("user", id);
       window.location.reload();
     }
   };
 
   // Post Question API takes title , description and tag as parameter
 
-  const PostQuestion = async (title, desc, tags , image) => {
+  const PostQuestion = async (title, desc, tags, image) => {
     setPostedBlog(false);
     const response = await fetch(`${address}/api/app/post`, {
       method: "POST",
@@ -253,6 +237,29 @@ console.log(token.authToken)
     console.log(json);
   };
 
+  const EditQuestion = async (title, desc, tags, image , id) => {
+    setPostedBlog(false);
+    const response = await fetch(`${address}/api/app/updateblog/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+      body: JSON.stringify({
+        title: title,
+        description: desc,
+        tag: tags,
+        image: image,
+      }),
+    });
+    const json = await response.json();
+
+    if (json.success) {
+      window.location.reload()
+    }
+    // `/discuss/post/p?id=${props.id}&user=${props.user}`
+    console.log(json);
+  };
 
   // Reply API
 
@@ -281,43 +288,35 @@ console.log(token.authToken)
 
   const fetchReplies = async (id) => {
     let success = false;
-    const response = await fetch(
-      `${address}/api/app/fetchreplies/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/fetchreplies/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
     success = true;
     setReplySuccess(success);
     setreplies(json);
     console.log(json);
-    return json
+    return json;
   };
 
   // /deleteBlog/:id
 
   const DeleteBlog = async (id) => {
     let success = false;
-    const response = await fetch(
-      `${address}/api/app/deleteBlog/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          'auth-token': localStorage.getItem("auth-token")
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/deleteBlog/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+    });
     const json = await response.json();
     success = true;
-    return success
+    return success;
   };
-
-
 
   const fetchUserWithAuth = async (token) => {
     const response = await fetch(`${address}/api/auth/getuser`, {
@@ -335,33 +334,26 @@ console.log(token.authToken)
   // LIKING POST API
 
   const checkifliked = async (id) => {
-    const response = await fetch(
-      `${address}/api/app/fetchliked/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("auth-token"),
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/fetchliked/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+    });
     const json = await response.json();
     setisliked(json.liked);
   };
 
-
   const fetchResources = async (id) => {
-    const response = await fetch(
-      `${address}/api/app/fetchallresources`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/fetchallresources`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
-    setNotes(json)
+    setNotes(json);
   };
 
   const fetchUserResources = async (id) => {
@@ -375,24 +367,59 @@ console.log(token.authToken)
       }
     );
     const json = await response.json();
-    return json
+    return json;
   };
 
   const fetchAllUsers = async () => {
-    const response = await fetch(
-      `${address}/api/auth/fetchallusers`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/auth/fetchallusers`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
-    return json
+    return json;
   };
-  // http://localhost:5000/api/auth/fetchallusers
 
+  const fetchAllAds = async () => {
+    const response = await fetch(`${address}/api/app/fetchallads`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    console.log("🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json", json)
+    setAds(json)
+  };
+
+  const JoinTeacher = async (
+    name,
+    subject,
+    institution,
+    contact,
+    price,
+    image
+  ) => {
+    const response = await fetch(`${address}/api/app/postAd`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+      body: JSON.stringify({
+        name,
+        subject,
+        institution,
+        contact,
+        price,
+        image,
+      }),
+    });
+    const json = await response.json();
+    console.log(json);
+    return json.success
+  };
 
   return (
     <DataContext.Provider
@@ -426,14 +453,19 @@ console.log(token.authToken)
         Signup,
         Contribute,
         getUserAndRedirect,
-        uploadNoteSuccess, 
+        uploadNoteSuccess,
         setUploadNoteSucess,
         Notes,
         fetchResources,
         fetchUserResources,
         fetchAllUsers,
         LoadMoreBlogs,
-        DeleteBlog
+        DeleteBlog,
+        JoinTeacher,
+        fetchAllAds,
+        Ads,
+        EditQuestion,
+        fetchUserInfoBasic,
       }}
     >
       {props.children}

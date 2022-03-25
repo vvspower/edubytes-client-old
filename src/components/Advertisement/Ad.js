@@ -4,16 +4,25 @@ import image from "../../Images/user.png";
 import enroll from "../../Images/enroll.png";
 import { Link } from "react-router-dom";
 
-const ad = () => {
+
+
+const ad = (props) => {
+  // name={item.name}
+  // institution={item.institution}
+  // image={item.image}
+  // subject={item.subject}
+  // fees={item.price}
+
+  const fee = `${props.fees/1000}K/Month`
   return (
     <div className={classes.Ad}>
-      <Link style={{ display: "inline-block" }} to="/teacher">
-        <img className={classes.userImg} src={image} height="50px" />
+      <a style={{ display: "inline-block" }} href={props.contact} target="_blank">
+        <img className={classes.userImg} src={props.image} height="50px" width={50} />
         <div className={classes.TeacherInfo}>
-          <h6>Shamvil Raza</h6>
+          <h6 className={classes.Name} style={{color: "black"}}>{props?.name?.length < 15 ? props.name : props?.name?.substring(0,13) + ".."}</h6>
           <div>
-            <p style={{ fontSize: "12px" }}>A level Maths</p>
-            <span>10k/M</span>
+            <p style={{ fontSize: "12px" }}>{props.subject}</p>
+            <span>{`${props.fees !== "" ? fee : props.institution }`}</span>
           </div>
         </div>
         {/* <h6>10000/Month</h6> */}
@@ -21,7 +30,7 @@ const ad = () => {
           <img height="15px" src={enroll} />
           <p>Enroll</p>
         </article>
-      </Link>
+      </a>
     </div>
   );
 };

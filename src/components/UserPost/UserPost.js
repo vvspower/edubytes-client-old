@@ -8,6 +8,7 @@ import likeamount from "../../Images/likeamount.png";
 import pencil from "../../Images/pencil.png";
 import user from "../../Images/user.png";
 import DeleteUserPostModal from "./DeleteUserPostModal";
+import EditUserPostModal from "./EditUserPostModal";
 
 const UserPost = () => {
   let dp;
@@ -40,7 +41,7 @@ const UserPost = () => {
   const [replypfp, setreplypfp] = useState("");
   const date = new Date(BlogById.date);
 
-  const address = "http://localhost:5000"
+  const address = "http://localhost:5000";
 
   console.log("///////////////");
   console.log(replies);
@@ -70,15 +71,12 @@ const UserPost = () => {
 
   const getPfpreply = async (user) => {
     console.log(user);
-    const response = await fetch(
-      `${address}/api/auth/getusernoauth/${user}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/auth/getusernoauth/${user}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
     console.log(json);
 
@@ -104,31 +102,25 @@ const UserPost = () => {
   console.log(blogid);
 
   const likepostapi = async (id) => {
-    const response = await fetch(
-      `${address}/api/app/likepost/${id}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("auth-token"),
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/likepost/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+    });
     const json = await response.json();
     console.log(json);
   };
 
   const unlikepostapi = async (id) => {
-    const response = await fetch(
-      `${address}/api/app/unlikepost/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("auth-token"),
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/unlikepost/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+    });
     const json = await response.json();
     console.log(json);
   };
@@ -165,7 +157,15 @@ const UserPost = () => {
 
   return (
     <div className={classes.Universal} style={{ marginTop: "20px" }}>
-      <DeleteUserPostModal id={BlogById._id}/>
+      <DeleteUserPostModal id={BlogById._id} />
+      <EditUserPostModal
+        id={BlogById?._id}
+        title={BlogById?.title}
+        description={BlogById?.description}
+        tag={BlogById?.tag}
+        image={BlogById?.image}
+      />
+
       {BlogById?.user !== undefined ? (
         <div className="container">
           {success ? (
@@ -209,7 +209,7 @@ const UserPost = () => {
                     {BlogById.image !== "" ? (
                       <div>
                         <img
-                        width="99%"
+                          width="99%"
                           className={classes.postImage}
                           src={BlogById.image}
                         />
@@ -232,30 +232,41 @@ const UserPost = () => {
                         display: "flex",
                         alignItems: "center",
                         gap: "22px",
+                        justifyContent: "center",
                       }}
                     >
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        { localStorage.getItem("auth-token") ?  <div>
-                          <svg
-                            onClick={() => {
-                              likepost();
-                            }}
-                            style={{
-                              backgroundColor: "#e9ecef",
-                              padding: "3px",
-                              borderRadius: "50px",
-                              cursor: "pointer",
-                            }}
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill={isliked ? "#4263eb" : " #adb5bd"}
-                            // #4263eb
-                            height={22}
-                          >
-                            <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                          </svg>
-                        </div> : <p style={{color: "white"}}>.</p>}
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {localStorage.getItem("auth-token") ? (
+                          <div>
+                            <svg
+                              onClick={() => {
+                                likepost();
+                              }}
+                              style={{
+                                backgroundColor: "#e9ecef",
+                                padding: "3px",
+                                borderRadius: "50px",
+                                cursor: "pointer",
+                              }}
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill={isliked ? "#4263eb" : " #adb5bd"}
+                              // #4263eb
+                              height={22}
+                            >
+                              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                            </svg>
+                          </div>
+                        ) : (
+                          <p style={{ color: "white" }}>.</p>
+                        )}
                         <img
                           style={{ marginLeft: "5px" }}
                           src={likeamount}
@@ -265,9 +276,10 @@ const UserPost = () => {
                       </div>
 
                       {/* <span className={classes.ReportBtn}>...</span> */}
+
                       <div className={classes.Buttons}>
                         <svg
-                          style={{ cursor: "pointer" }}
+                          style={{ cursor: "pointer", marginTop: "5px" }}
                           xmlns="http://www.w3.org/2000/svg"
                           class="h-5 w-5"
                           viewBox="0 0 20 20"
@@ -276,63 +288,95 @@ const UserPost = () => {
                         >
                           <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
                         </svg>
-                        <span style={{ marginLeft: "4px", fontSize: "12px" }}>
-                          Share
-                        </span>
+                        {/* SHARE BUTTON */}
                       </div>
-                      { BlogById.user === localStorage.getItem("user") ?
+                      {BlogById.user === localStorage.getItem("user") ? (
                         <div className={classes.Buttons}>
-                          <button data-bs-toggle="modal" data-bs-target="#delete_modal" style={{backgroundColor: "white" , border: "0" , width: "20px"}}>
-                            <svg
-                              style={{ cursor: "pointer" }}
-                              xmlns="http://www.w3.org/2000/svg"
-                              class="h-5 w-5"
-                              viewBox="0 0 20 20"
-                              fill="#adb5bd"
-                              height={20}
+                          <div>
+                            {/* DELETE BUTTON */}
+                            <button
+                              data-bs-toggle="modal"
+                              data-bs-target="#delete_modal"
+                              style={{
+                                backgroundColor: "white",
+                                border: "0",
+                                width: "20px",
+                              }}
                             >
-                              <path
-                                fill-rule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"
-                              />
-                            </svg>
-                          </button>
-                          <span style={{ marginLeft: "4px", fontSize: "12px" }}>
-                            Delete
-                          </span>
+                              <svg
+                                style={{ cursor: "pointer" }}
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="#adb5bd"
+                                height={20}
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <div>
+                            {/* EDIT BUTTON */}
+                            <button
+                              data-bs-toggle="modal"
+                              data-bs-target="#edit_modal"
+                              style={{
+                                backgroundColor: "white",
+                                border: "0",
+                                width: "20px",
+                              }}
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="#adb5bd"
+                                height={20}
+                              >
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                              </svg>
+                            </button>
+                          </div>
                         </div>
-                      : null}
+                      ) : null}
                     </div>
 
                     {showreply === false ? (
-                      localStorage.getItem("auth-token") ? <div className={classes.Reply}>
-                        <button
-                          onClick={() => {
-                            setshowreply(true);
-                          }}
-                          data-bs-toggle="modal"
-                          data-bs-target="#replyModal"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            height="20px"
-                            style={{ marginRight: "5px" }}
+                      localStorage.getItem("auth-token") ? (
+                        <div className={classes.Reply}>
+                          <button
+                            onClick={() => {
+                              setshowreply(true);
+                            }}
+                            data-bs-toggle="modal"
+                            data-bs-target="#replyModal"
                           >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                            />
-                          </svg>
-                          Reply to discussion
-                        </button>
-                      </div> : <p>Log in to Reply</p>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="h-6 w-6"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              height="20px"
+                              style={{ marginRight: "5px" }}
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                              />
+                            </svg>
+                            Reply to discussion
+                          </button>
+                        </div>
+                      ) : (
+                        <p>Log in to Reply</p>
+                      )
                     ) : null}
                   </div>
                 </div>
@@ -427,27 +471,10 @@ const UserPost = () => {
                               style={{
                                 display: "flex",
                                 gap: "22px",
-                                alignItems: "center",
+                                // alignItems: "center",
+                                justifyContent: "center",
                               }}
                             >
-                              <div style={{ display: "flex", gap: "5px" }}>
-                                <svg
-                                  style={{
-                                    backgroundColor: "#e9ecef",
-                                    padding: "3px",
-                                    borderRadius: "50px",
-                                  }}
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  class="h-5 w-5"
-                                  viewBox="0 0 20 20"
-                                  fill="#adb5bd"
-                                  //#4263eb
-                                  height={22}
-                                >
-                                  <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                </svg>
-                                <span>0</span>
-                              </div>
                               <div>
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"

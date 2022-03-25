@@ -8,7 +8,7 @@ import post from "../../Images/write.png";
 import dataContext from "../Context.js/dataContext";
 import LatestNotes from "../LatestNotes/LatestNotes";
 import HotPosts from "./HotPosts";
-import TopUsers from "../TopUsers/TopUsers"
+import TopUsers from "../TopUsers/TopUsers";
 import InteractionBar from "./PostComponents/InteractionBar";
 import TopTags from "./TopTags/TopTags";
 import LoadingBar from "react-top-loading-bar";
@@ -26,6 +26,7 @@ const CreatePostModal = () => {
   const blogs = context.blogs;
   const [progress, setProgress] = useState(30);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loadstate, setloadstate] = useState(true);
 
   useEffect(() => {
     fetchBlog();
@@ -132,8 +133,13 @@ const CreatePostModal = () => {
                 <h6>Sort By Likes</h6>
               </div>
               <div>
-                <button data-bs-toggle="modal"
-                  data-bs-target="#exampleModal" className={classes.MobileButton}>Post Question</button>
+                <button
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  className={classes.MobileButton}
+                >
+                  Post Question
+                </button>
               </div>
               <div className={classes.Search}>
                 <input
@@ -142,6 +148,12 @@ const CreatePostModal = () => {
                   placeholder="Search"
                   aria-label="Search"
                   onChange={(e) => {
+                    if (e.target.value.length > 0) {
+                      setloadstate(false);
+                    } else  { 
+                      setloadstate(true);
+
+                    }
                     setSearchTerm(e.target.value);
                   }}
                 ></input>
@@ -160,7 +172,6 @@ const CreatePostModal = () => {
                       .toLowerCase()
                       .includes(searchTerm.toLowerCase())
                   ) {
-                    return val;
                   }
                 })
                 .map((item, i) => {
@@ -178,20 +189,22 @@ const CreatePostModal = () => {
                   );
                 })}
             </div>
-            <div className={classes.Loadmore}>
-              <button
-                onClick={() => {
-                  LoadMoreBlogs();
-                }}
-              >
-                Load more
-              </button>
-            </div>
+            {loadstate ? (
+              <div className={classes.Loadmore}>
+                <button
+                  onClick={() => {
+                    LoadMoreBlogs();
+                  }}
+                >
+                  Load more
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
         <div className={classes.SideBar}>
           <InteractionBar />
-          <TopUsers/>
+          <TopUsers />
           <TopTags />
         </div>
       </div>

@@ -27,18 +27,22 @@ import loader from "../Images/default-loading.gif";
 const Main = () => {
   const context = useContext(dataContext);
   const LoadMoreBlogs = context.LoadMoreBlogs;
+  const fetchAllAds = context.fetchAllAds;
   const clickuser = context.clickuser;
   const setclickuser = context.setclickuser;
   const blogs = context.blogs;
   const fetchBlog = context.fetchBlog;
   const SortByLikes = context.SortByLikes;
+  const Ads = context.Ads;
 
   const [progress, setProgress] = useState(30);
-  console.log(blogs)
+  console.log(blogs);
+  console.log(Ads);
 
   useEffect(() => {
     console.log(context.example);
     // fetches the global blogs from the backend at the start of the load
+    fetchAllAds();
     fetchBlog();
     setProgress(100);
   }, []);
@@ -135,42 +139,20 @@ const Main = () => {
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 partialVisible={false}
               >
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
-                <div>
-                  <Ad />
-                </div>
+                {Ads?.map((item, i) => {
+                  return (
+                    <div>
+                      <Ad
+                        name={item.name}
+                        institution={item.institution}
+                        image={item.image}
+                        subject={item.subject}
+                        fees={item.price}
+                        contact={item.contact}
+                      />
+                    </div>
+                  );
+                })}
               </Carousel>
             </div>
             <div>
@@ -196,15 +178,17 @@ const Main = () => {
               )}
             </div>
           </div>
-          { blogs.length > 0 ? <div className={classes.LoadMore}>
-            <button
-              onClick={() => {
-                LoadMoreBlogs();
-              }}
-            >
-              Load More
-            </button> 
-          </div> : null}
+          {blogs.length > 0 ? (
+            <div className={classes.LoadMore}>
+              <button
+                onClick={() => {
+                  LoadMoreBlogs();
+                }}
+              >
+                Load More
+              </button>
+            </div>
+          ) : null}
         </div>
         <div className={classes.Cards}>
           <PopularNotes />
