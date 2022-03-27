@@ -19,6 +19,7 @@ const DataState = (props) => {
   const [Notes, setNotes] = useState([]);
   const [loadedPosts, setLoadedPosts] = useState(0);
   const [Ads, setAds] = useState([])
+  const [moreBlogs , setMoreBlogs] = useState(true)
 
   const address = "http://localhost:5000";
 
@@ -87,8 +88,10 @@ const DataState = (props) => {
     );
     const json = await response.json();
     console.log(json);
-    setLoadedPosts(json.length);
-    setBlogs(json);
+    setLoadedPosts(json.blogposts.length);
+    setMoreBlogs(json.morePosts)
+    
+    setBlogs(json.blogposts);
   };
 
   const Contribute = async (title, link, type, subject) => {
@@ -466,6 +469,7 @@ const DataState = (props) => {
         Ads,
         EditQuestion,
         fetchUserInfoBasic,
+        moreBlogs,
       }}
     >
       {props.children}

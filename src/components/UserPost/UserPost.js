@@ -9,6 +9,7 @@ import pencil from "../../Images/pencil.png";
 import user from "../../Images/user.png";
 import DeleteUserPostModal from "./DeleteUserPostModal";
 import EditUserPostModal from "./EditUserPostModal";
+import { Link } from "react-router-dom";
 
 const UserPost = () => {
   let dp;
@@ -179,10 +180,10 @@ const UserPost = () => {
                     >
                       <ol style={{ marginBottom: "2px" }} class="breadcrumb">
                         <li class="breadcrumb-item">
-                          <a href="#">Home</a>
+                          <Link to="/">Home</Link>
                         </li>
                         <li class="breadcrumb-item " aria-current="page">
-                          <a href="#">discuss</a>
+                          <Link to="/discuss">discuss</Link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                           {BlogById.title.substring(0, 30)}...
@@ -506,11 +507,11 @@ const UserPost = () => {
                   </div>
                   <div className={classes.Info}>
                     <p>Number of particpants</p>
-                    <span>0</span>
+                    <span>{BlogById.likes.length + replies.length + 1}</span>
                   </div>
                   <div className={classes.Info}>
                     <p>Views</p>
-                    <span>0</span>
+                    <span>?</span>
                   </div>
                 </div>
                 <div className={classes.Tags}>

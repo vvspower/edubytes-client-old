@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./contribute.module.css";
 import image from "../../Images/presentation.png";
+import { Link } from "react-router-dom";
 
 const TeachCard = () => {
   return (
@@ -14,7 +15,7 @@ const TeachCard = () => {
           <img src={image} height="60px" />
         </div>
       </div>
-      <a href="/join">Join</a>
+      <Link to="/join">Join</Link>
     </div>
   );
 };

@@ -78,7 +78,7 @@ const LatestNotes = (props) => {
           </p>
           {props.image !== "" ? (
             <div>
-              <img src={props.image} />
+              <img style={{maxWidth: ""}} src={props.image} />
             </div>
           ) : null}
         </div>

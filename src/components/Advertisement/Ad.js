@@ -21,7 +21,7 @@ const ad = (props) => {
         <div className={classes.TeacherInfo}>
           <h6 className={classes.Name} style={{color: "black"}}>{props?.name?.length < 15 ? props.name : props?.name?.substring(0,13) + ".."}</h6>
           <div>
-            <p style={{ fontSize: "12px" }}>{props.subject}</p>
+            <p className={classes.Subject}>{props.subject}</p>
             <span>{`${props.fees !== "" ? fee : props.institution }`}</span>
           </div>
         </div>

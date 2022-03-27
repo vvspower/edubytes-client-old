@@ -4,15 +4,18 @@ p {
 
 
 .Contribute  {
-  margin: 0 auto;
-  width: 800px;
+  /* margin: 0 auto;
+  width: 800px; */
   /* background-color: white; */
   /* padding: 20px; */
   /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.1); */
   border-radius: 8px;
   padding-bottom: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 42px;
+  display: flex;
+  justify-content: space-around;
+  
 
 }
 
@@ -26,6 +29,16 @@ p {
   max-width: 200px;
 }
 
+.FileUpload  {
+  /* border: 1px solid black; */
+  padding: 10px  20px;
+  border-radius: 10px;
+  background-color: #ff922b;
+  font-weight: 600;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
 .Bottom span {
   
  /* padding-top: 20px; */
@@ -53,9 +66,29 @@ p {
   
 }
 
+.PopularNotesContainer a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: black;
+
+}
+
+.PopularNotes {
+  background-color: white;
+  /* max-height: 50px; */
+  padding: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  border-radius: 10px;
+  width: 300px;
+  cursor: pointer;
+ 
+
+}
+
 .Drag {
-  margin: 0 auto;
-  width: 500px;
+  /* margin: 0 auto; */
+  /* width: 500px; */
   
 }
 
@@ -66,14 +99,20 @@ p {
 
 
 .Header {
-  margin: 0 auto;
-  max-width: 800px;
+  /* margin: 0 auto;
+  max-width: 800px; */
 }
+
+.Header h1 {
+font-size: 120px;
+}
+
+
 
 .Carousel {
   padding-top: 60px;
-  margin: 0 auto;
-  max-width: 800px;
+ margin: 0 auto;
+ max-width: 800px;
   align-items: center;
   padding-bottom: 60px;
 }
@@ -104,6 +143,10 @@ p {
     width: 100%;
   }
 
+  .Header h1 {
+    font-size: 50px;
+  }
+
   .Carousel {
    padding-top: 20px;
    padding-bottom: 20px;
@@ -119,6 +162,10 @@ p {
     flex-direction: column;
     align-items: center;
     gap: 40px;
+  }
+
+  .PopularNotesContainer {
+    display: none;
   }
 }
 

@@ -59,6 +59,10 @@
   background-color: #dbedff;
 }
 
+.Subject {
+  font-size: 12px;
+}
+
 .Button p {
   margin: 0;
 }
@@ -138,4 +142,11 @@
     display: none;
   }
   
+}
+
+
+@media only screen and (max-width: 385px) {
+  .Subject {
+    font-size: 10px;
+  }
 }

@@ -15,13 +15,13 @@ const UserContribution = (props) => {
     setNotes(notes);
   }, []);
 
-  console.log(Notes);
+  console.log(props);
 
   return (
     <div>
       { Notes.length > 0 ? Notes.map((item, i) => {
         return (
-          <div key={props._id} className={classes.Notes}>
+          <div key={item?._id} className={classes.Notes}>
             <a href={item.link} target="_blank">
               <h6>{item.name}</h6>
               <svg

@@ -99,7 +99,10 @@ const UserModal = () => {
                 d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <p>Your questions</p>
+            <p onClick={() => {
+                navigate(`/u/user?id=${loggedUser.userId}`);
+                setclickuser(false);
+              }}>Your questions</p>
           </div>
           <div className={classes.Buttons}>
             <svg
@@ -118,7 +121,10 @@ const UserModal = () => {
                 d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
               />
             </svg>
-            <p>Likes</p>
+            <p onClick={() => {
+                navigate(`/u/user?id=${loggedUser.userId}`);
+                setclickuser(false);
+              }}>Likes</p>
           </div>
           <div
             onClick={() => {

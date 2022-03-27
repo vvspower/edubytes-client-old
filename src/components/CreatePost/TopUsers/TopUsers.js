@@ -3,7 +3,7 @@ import classes from "./topuser.module.css";
 
 const TopUsers = (props) => {
   return (
-    <div>
+    <div >
       <div className={classes.TopUser}>
         <div>
           <h6

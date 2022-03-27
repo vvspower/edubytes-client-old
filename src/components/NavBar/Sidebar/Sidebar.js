@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import user from "../../../Images/user.png";
 import classes from "./sidebar.module.css";
 import dataContext from "../../Context.js/dataContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const context = useContext(dataContext);
+
   const loggedUser = context.loggedUser;
 
   const logout = () => {
@@ -23,18 +24,26 @@ const Sidebar = () => {
           aria-labelledby="offcanvasExampleLabel"
           style={{ maxWidth: "220px" }}
         >
-          <button data-bs-toggle="offcanvas"
-                href="#offcanvasExample"
-                role="button"
-                aria-controls="offcanvasExample" style={{border: 0 , borderBottom: "2px solid #f1f3f5" ,backgroundColor: "#fff" , display: "flex" ,  justifyContent: "flex-start"}}>
-            <div
-              
-              className={classes.User}
-            >
+          <button
+            data-bs-toggle="offcanvas"
+            href="#offcanvasExample"
+            role="button"
+            aria-controls="offcanvasExample"
+            style={{
+              border: 0,
+              borderBottom: "2px solid #f1f3f5",
+              backgroundColor: "#fff",
+              display: "flex",
+              justifyContent: "flex-start",
+            }}
+          >
+            <div className={classes.User}>
               {localStorage.getItem("auth-token") ? (
-                <div onClick={() => navigate(`/u/user?id=${loggedUser.userId}`)}>
+                <div
+                  onClick={() => navigate(`/u/user?id=${loggedUser.userId}`)}
+                >
                   <img
-                    style={{marginRight: "50px" , marginBottom: "5px"}}
+                    style={{ marginRight: "50px", marginBottom: "5px" }}
                     src={loggedUser?.user?.pfp}
                     height={50}
                     width={50}
@@ -55,7 +64,14 @@ const Sidebar = () => {
                     Login
                   </button>
                   <span>or</span>
-                  <button>Signup</button>
+                  <button>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to="/signup"
+                    >
+                      Signup
+                    </Link>
+                  </button>
                 </div>
               )}
             </div>
@@ -72,18 +88,33 @@ const Sidebar = () => {
               >
                 Discuss
               </button>{" "}
-              <button  data-bs-dismiss="offcanvas"
-                aria-label="Close" onClick={() => {
+              <button
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+                onClick={() => {
                   navigate("/contribute");
-                }}>Contribute</button>
-              <button  data-bs-dismiss="offcanvas"
+                }}
+              >
+                Contribute
+              </button>
+              <button
+                data-bs-dismiss="offcanvas"
                 aria-label="Close"
                 onClick={() => {
                   navigate("/notes");
-                }}>Notes</button>
-              <button>Teach</button>
-
-
+                }}
+              >
+                Notes
+              </button>
+              <button
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+                onClick={() => {
+                  navigate("/join");
+                }}
+              >
+                Teach
+              </button>
             </div>
             <div>
               <button>Contact </button>
@@ -92,7 +123,13 @@ const Sidebar = () => {
               <aside style={{}} className={classes.UserModal}>
                 <div>
                   <aside className={classes.LogoButtons}>
-                    <button>
+                    <button
+                      data-bs-dismiss="offcanvas"
+                      aria-label="Close"
+                      onClick={() => {
+                        navigate(`/u/user?id=${loggedUser.userId}`);
+                      }}
+                    >
                       <svg
                         style={{ opacity: "0.6" }}
                         xmlns="http://www.w3.org/2000/svg"
@@ -109,11 +146,23 @@ const Sidebar = () => {
                           d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                         />
                       </svg>
-                      <p>Your notes</p>
+                      <p
+                        onClick={() => {
+                          navigate(`/u/user?id=${loggedUser.userId}`);
+                        }}
+                      >
+                        Your notes
+                      </p>
                     </button>
                   </aside>
                   <aside className={classes.LogoButtons}>
-                    <button>
+                    <button
+                      data-bs-dismiss="offcanvas"
+                      aria-label="Close"
+                      onClick={() => {
+                        navigate(`/u/user?id=${loggedUser.userId}`);
+                      }}
+                    >
                       <svg
                         style={{ opacity: "0.6" }}
                         xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +183,13 @@ const Sidebar = () => {
                     </button>
                   </aside>
                   <aside className={classes.LogoButtons}>
-                    <button>
+                    <button
+                      data-bs-dismiss="offcanvas"
+                      aria-label="Close"
+                      onClick={() => {
+                        navigate(`/u/user?id=${loggedUser.userId}`);
+                      }}
+                    >
                       <svg
                         style={{ opacity: "0.6" }}
                         xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +206,13 @@ const Sidebar = () => {
                           d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
                         />
                       </svg>
-                      <p>Likes</p>
+                      <p
+                        onClick={() => {
+                          navigate(`/u/user?id=${loggedUser.userId}`);
+                        }}
+                      >
+                        Likes
+                      </p>
                     </button>
                   </aside>
                   <aside className={classes.LogoButtons}>

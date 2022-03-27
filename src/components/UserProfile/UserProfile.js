@@ -39,7 +39,8 @@ const UserProfile = () => {
     console.log(userid);
   }, []);
 
-  console.log(userblog);
+  
+  console.log("🚀 ~ file: UserProfile.js ~ line 43 ~ UserProfile ~ userblog", userblog)
 
   console.log(bio);
 
@@ -105,7 +106,7 @@ const UserProfile = () => {
                     setbio(user.bio);
                   }}
                   type="button"
-                  className="btn btn-light"
+                  // className="btn btn-light"
                   data-bs-toggle="modal"
                   data-bs-target="#EditProfileModal"
                   className={classes.EditProfile}
@@ -140,13 +141,13 @@ const UserProfile = () => {
             </div>
             <div className={classes.Contributions}>
               <h6>Contributions</h6>
-              <UserContribution />
+              <UserContribution  />
             </div>
           </div>
           <div className={classes.ContributionsMobile}>
             <h6>Contributions</h6>
             <aside>
-              <UserContribution />
+              <UserContribution  />
             </aside>
           </div>
           <div className={classes.Seperator}>
@@ -157,18 +158,17 @@ const UserProfile = () => {
                   <h5>Contributions</h5>
                 </div>
               </div>
-              {userblog.length > 0 ? (
-                userblog.map((item, i) => {
+              {userblog?.length > 0 ? (
+                userblog?.map((item, i) => {
                   return (
-                    <div key={item._id}>
+                    <div >
                       <HotPosts
-                        key={item._id}
                         title={item.title}
                         description={item.description}
                         id={item._id}
                         username={item.username}
                         user={item.user}
-                        likes={item.likes}
+                        likes={item.likes.length}
                         tag={item.tag}
                       />
                     </div>

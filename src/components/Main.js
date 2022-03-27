@@ -26,6 +26,7 @@ import loader from "../Images/default-loading.gif";
 
 const Main = () => {
   const context = useContext(dataContext);
+  const moreBlogs = context.moreBlogs
   const LoadMoreBlogs = context.LoadMoreBlogs;
   const fetchAllAds = context.fetchAllAds;
   const clickuser = context.clickuser;
@@ -179,7 +180,7 @@ const Main = () => {
             </div>
           </div>
           {blogs.length > 0 ? (
-            <div className={classes.LoadMore}>
+            moreBlogs ? <div className={classes.LoadMore}>
               <button
                 onClick={() => {
                   LoadMoreBlogs();
@@ -187,7 +188,7 @@ const Main = () => {
               >
                 Load More
               </button>
-            </div>
+            </div> : <h6 style={{width: "200px"}} className={classes.LoadMore}>No More Blogs To Load</h6>
           ) : null}
         </div>
         <div className={classes.Cards}>

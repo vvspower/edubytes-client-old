@@ -20,6 +20,7 @@ import PostModal from "./PostModal/PostModal";
 
 const CreatePostModal = () => {
   const context = useContext(dataContext);
+  const moreBlogs = context.moreBlogs;
   const setclickuser = context.setclickuser;
   const LoadMoreBlogs = context.LoadMoreBlogs;
   const fetchBlog = context.fetchBlog;
@@ -30,6 +31,7 @@ const CreatePostModal = () => {
 
   useEffect(() => {
     fetchBlog();
+
     console.log("hello");
     setProgress(100);
   }, []);
@@ -69,7 +71,7 @@ const CreatePostModal = () => {
                 title="Start Teaching"
                 image={teach}
                 color="#3ac66b"
-                link="teacher"
+                link="join"
               />
               <ContributeCard />
               <div
@@ -93,25 +95,45 @@ const CreatePostModal = () => {
                     />
                   </button>
                 </div>
-                <div
-                  className={classes.Post}
-                  type="button"
-                  // class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
-                  <h6>Post a Question</h6>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-pencil"
-                    viewBox="0 0 16 16"
+                {localStorage.getItem("auth-token") ? (
+                  <div
+                    className={classes.Post}
+                    type="button"
+                    // class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
                   >
-                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
-                  </svg>
-                </div>
+                    <h6>Post a Question</h6>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-pencil"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                    </svg>
+                  </div>
+                ) : (
+                  <div
+                    className={classes.Post}
+                    type="button"
+                    // class="btn btn-primary"
+                  >
+                    <h6>Login To Post</h6>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-pencil"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                    </svg>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -129,8 +151,8 @@ const CreatePostModal = () => {
                   // marginTop: "10px",
                 }}
               >
-                <h6>Hottest</h6>
-                <h6>Sort By Likes</h6>
+                
+                <h6>Sorted By Likes</h6>
               </div>
               <div>
                 <button
@@ -147,12 +169,12 @@ const CreatePostModal = () => {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  value={searchTerm}
                   onChange={(e) => {
                     if (e.target.value.length > 0) {
                       setloadstate(false);
-                    } else  { 
+                    } else {
                       setloadstate(true);
-
                     }
                     setSearchTerm(e.target.value);
                   }}
@@ -170,9 +192,16 @@ const CreatePostModal = () => {
                       .includes(searchTerm.toLowerCase()) ||
                     val.description
                       .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                      val.tag
+                      .toLowerCase()
                       .includes(searchTerm.toLowerCase())
                   ) {
+                    return val;
                   }
+                })
+                .sort(function (a, b) {
+                  return b.likes.length - a.likes.length;
                 })
                 .map((item, i) => {
                   return (
@@ -183,27 +212,32 @@ const CreatePostModal = () => {
                       id={item._id}
                       username={item.username}
                       user={item.user}
-                      likes={item.likes.length}
+                      likes={item.likes  ? item.likes.length : "0" }
                       tag={item.tag}
                     />
                   );
                 })}
             </div>
             {loadstate ? (
-              <div className={classes.Loadmore}>
-                <button
-                  onClick={() => {
-                    LoadMoreBlogs();
-                  }}
-                >
-                  Load more
-                </button>
-              </div>
+              moreBlogs ? (
+                <div className={classes.Loadmore}>
+                  <button
+                    onClick={() => {
+                      LoadMoreBlogs();
+                    }}
+                  >
+                    Load more
+                  </button>
+                </div>
+              ) : (
+                <h6 style={{ width: "200px" }} className={classes.Loadmore}>
+                  No more blogs to load
+                </h6>
+              )
             ) : null}
           </div>
         </div>
         <div className={classes.SideBar}>
-          <InteractionBar />
           <TopUsers />
           <TopTags />
         </div>

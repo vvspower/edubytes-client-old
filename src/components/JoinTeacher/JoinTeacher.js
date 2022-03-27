@@ -62,17 +62,30 @@ const JoinTeacher = () => {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           partialVisible={false}
         >
-          {Ads.map((item , i) => {
-            return <div>
-              <TeacherCard name={item.name} image={item.image} subject={item.subject} institution={item.institution}/>
-            </div>
+          {Ads.map((item, i) => {
+            return (
+              <div>
+                <TeacherCard
+                  name={item.name}
+                  image={item.image}
+                  subject={item.subject}
+                  institution={item.institution}
+                />
+              </div>
+            );
           })}
         </Carousel>
       </div>
       <div className={classes.Apply}>
         <p>APPLY</p>
-        <div className="mt-4">
-          <Form />
+        <div style={{marginRight: "30px"}} className="mt-4">
+          {localStorage.getItem("auth-token") ? (
+            <Form />
+          ) : (
+            <div style={{maxWidth: "300px" , margin: "0 auto"}} class="alert alert-danger" role="alert">
+              Please Log in to Continue
+            </div>
+          )}
         </div>
       </div>
     </div>

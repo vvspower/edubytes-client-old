@@ -74,34 +74,25 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .Popular {
+    max-width: 360px;
+  }
+}
 @media only screen and (max-width: 390px) {
   .Popular {
-    margin: 0;
     max-width: 360px;
-    margin-left: 15px;
-  }
-  .Bottom {
-    justify-content: space-between;
   }
 }
 @media only screen and (max-width: 375px) {
   .Popular {
-    margin: 0;
     max-width: 345px;
-    margin-left: 15px;
-  }
-  .Bottom {
-    justify-content: space-between;
   }
 }
 
+
 @media only screen and (max-width: 320px) {
   .Popular {
-    margin: 0;
     max-width: 290px;
-    margin-left: 15px;
-  }
-  .Bottom {
-    justify-content: space-between;
   }
 }

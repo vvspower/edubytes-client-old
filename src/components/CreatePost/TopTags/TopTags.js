@@ -7,18 +7,18 @@ const TopTags = () => {
       <h6>Hot topic list</h6>
       <div style={{ marginTop: "15px" }}>
         <span className="badge rounded-pill">Physics</span>
-        <span className="badge rounded-pill">Javascript</span>
-        <span className="badge rounded-pill">Javascript</span>
-        <span className="badge rounded-pill">Maths</span>
-        <span className="badge rounded-pill">Javascript</span>
-        <span className="badge rounded-pill">Computer Science</span>
         <span className="badge rounded-pill">Chemistry</span>
-        <span className="badge rounded-pill">Looking for help</span>
-        <span className="badge rounded-pill">Accounts</span>
+        <span className="badge rounded-pill">Biology</span>
+        <span className="badge rounded-pill">Computer Science</span>
+        <span className="badge rounded-pill">Help</span>
+        <span className="badge rounded-pill">Question</span>
+        <span className="badge rounded-pill">Accounting</span>
+        <span className="badge rounded-pill">Maths</span>
         <span className="badge rounded-pill">MCQ</span>
+        <span className="badge rounded-pill">Quick</span>
         <span className="badge rounded-pill"></span>
-        <span className="badge rounded-pill">Javascript</span>
-        <span className="badge rounded-pill">Javascript</span>
+        <span className="badge rounded-pill">All</span>
+        <span className="badge rounded-pill">:)</span>
       </div>
     </div>
   );

@@ -150,6 +150,10 @@ textarea:focus {
   margin-right: 8px;
 }
 
+.SideBar {
+  margin-top: 10px;
+}
+
 .Btn {
   background-image: linear-gradient(
     to right,
