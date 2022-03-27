@@ -91,13 +91,22 @@ background-color: #ff922b;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
   border-radius: 16px;
   margin-bottom: 10px;
+  max-height: 780px;
 
+}
+
+.AdSection {
+  margin-top: 20px;
+  max-width: 800px;
 }
 
 .Contributions {
   margin-top: 20px;
   padding-top: 10px;
   border-top: 1px solid #e9ecef;
+  max-height: 300px;
+  overflow-y: scroll;
+
 }
 
 .UserInfo {
@@ -240,6 +249,7 @@ background-color: #ff922b;
   .SideBar {
     display: flex;
     gap: 20px;
+  
   }
 
   .Contributions {
@@ -254,6 +264,10 @@ background-color: #ff922b;
   .ContributionsMobile h6 {
     padding-bottom: 10px;
     
+  }
+
+  .AdSection {
+    display: none;
   }
 
 

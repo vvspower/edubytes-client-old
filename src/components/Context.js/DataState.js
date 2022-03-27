@@ -19,6 +19,8 @@ const DataState = (props) => {
   const [Notes, setNotes] = useState([]);
   const [loadedPosts, setLoadedPosts] = useState(0);
   const [Ads, setAds] = useState([])
+  const [userAds, setUserAds] = useState([])
+
   const [moreBlogs , setMoreBlogs] = useState(true)
 
   const address = "http://localhost:5000";
@@ -396,6 +398,19 @@ const DataState = (props) => {
     setAds(json)
   };
 
+  const fetchUserAds = async () => {
+    const response = await fetch(`${address}/api/app/fetchuserads`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token")
+      },
+    });
+    const json = await response.json();
+    console.log("🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json", json)
+    setUserAds(json)
+  };
+
   const JoinTeacher = async (
     name,
     subject,
@@ -470,6 +485,8 @@ const DataState = (props) => {
         EditQuestion,
         fetchUserInfoBasic,
         moreBlogs,
+        fetchUserAds,
+        userAds,
       }}
     >
       {props.children}

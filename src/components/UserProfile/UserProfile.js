@@ -10,9 +10,13 @@ import linkedin from "../../Images/linkedin.png";
 import HotPosts from "../CreatePost/HotPosts";
 import Axios from "axios";
 import UserContribution from "./UserContributions/UserContribution";
+import Carousel from "react-multi-carousel";
+import Ad from "./AdComponent/Ad";
 
 const UserProfile = () => {
   const context = useContext(dataContext);
+  const userAds = context.userAds;
+  const fetchUserAds = context.fetchUserAds;
   const fetchUserInfo = context.fetchUserInfo;
   const fetchUserSpecificBlog = context.fetchUserSpecificBlog;
   const search = useLocation().search;
@@ -29,18 +33,42 @@ const UserProfile = () => {
   console.log(id);
   console.log(bio);
 
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+      slidesToSlide: 4,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+    },
+  };
+
   useEffect(async () => {
     const userid = await fetchUserInfo(id);
     const { success, userblog } = await fetchUserSpecificBlog(id);
     console.log(userblog);
     setuserblog(userblog);
     setUser(userid);
-
+    fetchUserAds();
     console.log(userid);
   }, []);
 
-  
-  console.log("🚀 ~ file: UserProfile.js ~ line 43 ~ UserProfile ~ userblog", userblog)
+  console.log(
+    "🚀 ~ file: UserProfile.js ~ line 43 ~ UserProfile ~ userblog",
+    userblog
+  );
 
   console.log(bio);
 
@@ -141,13 +169,13 @@ const UserProfile = () => {
             </div>
             <div className={classes.Contributions}>
               <h6>Contributions</h6>
-              <UserContribution  />
+              <UserContribution />
             </div>
           </div>
           <div className={classes.ContributionsMobile}>
             <h6>Contributions</h6>
             <aside>
-              <UserContribution  />
+              <UserContribution />
             </aside>
           </div>
           <div className={classes.Seperator}>
@@ -161,7 +189,7 @@ const UserProfile = () => {
               {userblog?.length > 0 ? (
                 userblog?.map((item, i) => {
                   return (
-                    <div >
+                    <div>
                       <HotPosts
                         title={item.title}
                         description={item.description}
@@ -177,6 +205,31 @@ const UserProfile = () => {
               ) : (
                 <h2 style={{ marginTop: "20px" }}>No Posts</h2>
               )}
+              <div className={classes.AdSection}>
+                <Carousel
+                  itemClass="carousel-item-padding-0-px"
+                  centerMode={true}
+                  autoPlaySpeed={50000000}
+                  responsive={responsive}
+                  removeArrowOnDeviceType={["tablet", "mobile"]}
+                  partialVisible={false}
+                >
+                  {userAds?.map((item, i) => {
+                    return (
+                      <div>
+                        <Ad
+                          name={item.name}
+                          institution={item.institution}
+                          image={item.image}
+                          subject={item.subject}
+                          fees={item.price}
+                          contact={item.contact}
+                        />
+                      </div>
+                    );
+                  })}
+                </Carousel>
+              </div>
             </div>
           </div>
         </div>
@@ -263,6 +316,5 @@ const UserProfile = () => {
     </>
   );
 };
-
 
 export default UserProfile;

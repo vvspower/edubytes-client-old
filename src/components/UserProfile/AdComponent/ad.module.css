@@ -1,0 +1,152 @@
+.Ad {
+  /* border: 1px solid #e9ecef; */
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 15px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+.AdCarousel img {
+  border-radius: 16px;
+}
+
+.AdCarousel {
+  width: 240px;
+  margin-top: 10px;
+}
+.adimages {
+  width: 240px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.Pic {
+  width: 100px; /* image width */
+  height: 100px; /* image height */
+  display: inline-block; /* so that it behaves like the img element */
+}
+.userImg {
+  border-radius: 25px;
+}
+
+.Ad span {
+  /* margin-left: 5px; */
+  color: #37b24d;
+}
+
+.TeacherInfo {
+  margin-top: 5px;
+}
+
+.Ad p {
+  margin-top: 1px;
+}
+
+.Button {
+  display: flex;
+  background-color: #ebf5ff;
+  padding: 4px 45px;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.Button:hover {
+  background-color: #dbedff;
+}
+
+.Subject {
+  font-size: 12px;
+}
+
+.Button p {
+  margin: 0;
+}
+
+.Ad {
+  border-radius: 20px;
+}
+
+.Ad a {
+  font-size: 12px;
+  text-decoration: none;
+  /* background-color: #ebf5ff; */
+  /* padding: 5px 40px; */
+  border-radius: 50px;
+  /* margin-left: 80px; */
+}
+
+@media only screen and (max-width: 850px) {
+  .Ad {
+    padding: 10px;
+    /* margin-left: 0; */
+    /* max-width: 100px;
+    min-width: 120px; */
+    max-width: 120px;
+  }
+
+  .react-multi-carousel-item {
+    max-width: 230px;
+    min-width: 230px;
+  }
+
+  .Ad h6 {
+    /* display: none; */
+    font-size: 12px;
+  }
+
+  .Ad span {
+    display: none;
+  }
+  .Button p {
+    margin: 0;
+    font-size: 10px;
+    
+  }
+
+  .Ad {
+    margin-left: 11px;
+  }
+
+  .Ad p {
+    margin: 0;
+  }
+  .TeacherInfo div {
+    display: inline-block;
+  }
+
+  .TeacherInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .userImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
+  }
+
+  .Button {
+    padding: 4px 25px;
+    margin-top: 10px;
+  }
+
+  .Button img {
+    display: none;
+  }
+  
+}
+
+
+@media only screen and (max-width: 385px) {
+  .Subject {
+    font-size: 10px;
+  }
+}
