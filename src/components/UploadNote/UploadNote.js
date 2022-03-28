@@ -222,6 +222,7 @@ const UploadNote = () => {
                     </div>
                     <div>
                       <button
+                      disabled={(title.length > 5 && type.length > 3 && subject.length > 3) === true ? false : true}
                         onClick={ContributeAPI}
                         type="button"
                         className="btn btn-secondary"

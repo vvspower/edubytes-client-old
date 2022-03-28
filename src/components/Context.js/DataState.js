@@ -18,10 +18,10 @@ const DataState = (props) => {
   const [uploadNoteSuccess, setUploadNoteSucess] = useState(false);
   const [Notes, setNotes] = useState([]);
   const [loadedPosts, setLoadedPosts] = useState(0);
-  const [Ads, setAds] = useState([])
-  const [userAds, setUserAds] = useState([])
-
-  const [moreBlogs , setMoreBlogs] = useState(true)
+  const [Ads, setAds] = useState([]);
+  const [userAds, setUserAds] = useState([]);
+  const [currentAdId, setCurrentAdId] = useState("");
+  const [moreBlogs, setMoreBlogs] = useState(true);
 
   const address = "http://localhost:5000";
 
@@ -91,8 +91,8 @@ const DataState = (props) => {
     const json = await response.json();
     console.log(json);
     setLoadedPosts(json.blogposts.length);
-    setMoreBlogs(json.morePosts)
-    
+    setMoreBlogs(json.morePosts);
+
     setBlogs(json.blogposts);
   };
 
@@ -167,7 +167,6 @@ const DataState = (props) => {
   };
 
   const fetchUserInfoBasic = async (id) => {
-   
     const response = await fetch(`${address}/api/auth/getusernoauth/${id}`, {
       method: "GET",
       headers: {
@@ -175,9 +174,12 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log("🚀 ~ file: DataState.js ~ line 173 ~ fetchUserInfoBasic ~  json",  json)
-   console.log(json)
-    return  json.pfp
+    console.log(
+      "🚀 ~ file: DataState.js ~ line 173 ~ fetchUserInfoBasic ~  json",
+      json
+    );
+    console.log(json);
+    return json.pfp;
   };
 
   // Login User API
@@ -242,7 +244,7 @@ const DataState = (props) => {
     console.log(json);
   };
 
-  const EditQuestion = async (title, desc, tags, image , id) => {
+  const EditQuestion = async (title, desc, tags, image, id) => {
     setPostedBlog(false);
     const response = await fetch(`${address}/api/app/updateblog/${id}`, {
       method: "PUT",
@@ -260,7 +262,7 @@ const DataState = (props) => {
     const json = await response.json();
 
     if (json.success) {
-      window.location.reload()
+      window.location.reload();
     }
     // `/discuss/post/p?id=${props.id}&user=${props.user}`
     console.log(json);
@@ -312,6 +314,20 @@ const DataState = (props) => {
   const DeleteBlog = async (id) => {
     let success = false;
     const response = await fetch(`${address}/api/app/deleteBlog/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+    });
+    const json = await response.json();
+    success = true;
+    return success;
+  };
+
+  const DeleteAd = async (id) => {
+    let success = false;
+    const response = await fetch(`${address}/api/app/deleteAd/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -394,21 +410,31 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log("🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json", json)
-    setAds(json)
+    console.log(
+      "🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json",
+      json
+    );
+    setAds(json);
   };
 
-  const fetchUserAds = async () => {
-    const response = await fetch(`${address}/api/app/fetchuserads`, {
+  const fetchUserAds = async (id) => {
+    const response = await fetch(`${address}/api/app/fetchuserads/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("auth-token")
       },
     });
     const json = await response.json();
-    console.log("🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json", json)
-    setUserAds(json)
+    console.log(
+      "🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json",
+      json
+    );
+    if(json === {}) {
+      setUserAds([])
+    } else {
+      setUserAds(json)
+    }
+    
   };
 
   const JoinTeacher = async (
@@ -436,7 +462,7 @@ const DataState = (props) => {
     });
     const json = await response.json();
     console.log(json);
-    return json.success
+    return json.success;
   };
 
   return (
@@ -487,6 +513,9 @@ const DataState = (props) => {
         moreBlogs,
         fetchUserAds,
         userAds,
+        currentAdId,
+        setCurrentAdId,
+        DeleteAd,
       }}
     >
       {props.children}

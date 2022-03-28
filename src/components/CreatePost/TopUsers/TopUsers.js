@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./topuser.module.css";
+import loader from '../../../Images/default-loading.gif'
 
 const TopUsers = (props) => {
   return (

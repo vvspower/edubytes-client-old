@@ -12,6 +12,8 @@ import Axios from "axios";
 import UserContribution from "./UserContributions/UserContribution";
 import Carousel from "react-multi-carousel";
 import Ad from "./AdComponent/Ad";
+import DeleteConfirmationModal from "./AdComponent/DeleteConfirmationModal";
+import loader from "../../Images/default-loading.gif";
 
 const UserProfile = () => {
   const context = useContext(dataContext);
@@ -27,6 +29,8 @@ const UserProfile = () => {
   const [imageSelected, setImageSelected] = useState("");
   const [saveChange, setSaveChange] = useState(false);
   const [pfp, setpfp] = useState("");
+  const [loading, setloading] = useState(false);
+  const [saving, setsaving] = useState(false);
 
   const address = "https://project1400authapi.herokuapp.com";
 
@@ -61,9 +65,12 @@ const UserProfile = () => {
     console.log(userblog);
     setuserblog(userblog);
     setUser(userid);
-    fetchUserAds();
-    console.log(userid);
+    console.log("🚀 ~ file: UserProfile.js ~ line 68 ~ useEffect ~ userid", userid)
+    fetchUserAds(id);
+    
   }, []);
+  
+  console.log(user)
 
   console.log(
     "🚀 ~ file: UserProfile.js ~ line 43 ~ UserProfile ~ userblog",
@@ -73,6 +80,7 @@ const UserProfile = () => {
   console.log(bio);
 
   const EditProfile = async () => {
+    setsaving(true);
     let success = false;
     const response = await fetch(`${address}/api/auth/edituser`, {
       method: "PUT",
@@ -86,14 +94,17 @@ const UserProfile = () => {
       }),
     });
     const json = await response.json();
+
     success = true;
     if (success) {
       window.location.reload();
+      setsaving(true);
     }
     console.log(json);
   };
 
   const uploadImage = (file) => {
+    setloading(true);
     setImageSelected(file);
     const formData = new FormData();
     formData.append("file", file);
@@ -106,71 +117,75 @@ const UserProfile = () => {
       setSaveChange(true);
       console.log(response.data.url);
       setpfp(response.data.url.toString());
+      setloading(false);
     });
   };
 
   return (
     <>
       <div className="container">
+        <DeleteConfirmationModal />
         <div className={classes.Container}>
           <div className={classes.SideBar}>
-            <img
-              className={classes.UserImage}
-              style={{ borderRadius: "50%" }}
-              src={user.pfp}
-              height={300}
-              width={300}
-            />
-            <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-              <h3 style={{ margin: 0 }}>{user.name}</h3>
-              <p style={{ color: "#868e96", fontSize: "14px" }}>
-                @{user?.name?.split(" ")?.join("-").toLowerCase()}
-              </p>
-              <p>{user.bio}</p>
-              {localStorage.getItem("auth-token") !== null &&
-              localStorage.getItem("user") === id ? (
-                <button
-                  onClick={() => {
-                    setbio(user.bio);
-                  }}
-                  type="button"
-                  // className="btn btn-light"
-                  data-bs-toggle="modal"
-                  data-bs-target="#EditProfileModal"
-                  className={classes.EditProfile}
-                >
-                  Edit Profile
-                </button>
-              ) : null}
-              <div className={classes.Follows}>
-                <div
-                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    height={20}
-                  >
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                  </svg>
-                  <h6>2</h6>
-                  <p>Followers</p>
+            { user.length !== 0 ?
+              <div className={classes.InnerSideBar}>
+                <img
+                  className={classes.UserImage}
+                  style={{ borderRadius: "50%" }}
+                  src={user.pfp}
+                  height={300}
+                  width={300}
+                />
+                <div style={{ marginTop: "10px", marginLeft: "10px" }}>
+                  <h3 style={{ margin: 0 }}>{user.name}</h3>
+                  <p style={{ color: "#868e96", fontSize: "14px" }}>
+                    @{user?.name?.split(" ")?.join("-").toLowerCase()}
+                  </p>
+                  <p>{user.bio}</p>
+                  {localStorage.getItem("auth-token") !== null &&
+                  localStorage.getItem("user") === id ? (
+                    <button
+                      onClick={() => {
+                        setbio(user.bio);
+                      }}
+                      type="button"
+                      // className="btn btn-light"
+                      data-bs-toggle="modal"
+                      data-bs-target="#EditProfileModal"
+                      className={classes.EditProfile}
+                    >
+                      Edit Profile
+                    </button>
+                  ) : null}
+                  <div className={classes.Follows}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "5px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        height={15}
+                      >
+                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                      </svg>
+                      <h6>{user?.likes}</h6>
+                      <p>Liked</p>
+                    </div>
+                    <h6 style={{ color: "#868e96" }}>•</h6>
+                  </div>
                 </div>
-                <h6 style={{ color: "#868e96" }}>•</h6>
-                <div
-                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
-                >
-                  <h6>2</h6>
-                  <p>following</p>
+                <div className={classes.Contributions}>
+                  <h6>Contributions</h6>
+                  <UserContribution />
                 </div>
               </div>
-            </div>
-            <div className={classes.Contributions}>
-              <h6>Contributions</h6>
-              <UserContribution />
-            </div>
+            : <img src={loader} height={30}/>}
           </div>
           <div className={classes.ContributionsMobile}>
             <h6>Contributions</h6>
@@ -205,31 +220,35 @@ const UserProfile = () => {
               ) : (
                 <h2 style={{ marginTop: "20px" }}>No Posts</h2>
               )}
-              <div className={classes.AdSection}>
-                <Carousel
-                  itemClass="carousel-item-padding-0-px"
-                  centerMode={true}
-                  autoPlaySpeed={50000000}
-                  responsive={responsive}
-                  removeArrowOnDeviceType={["tablet", "mobile"]}
-                  partialVisible={false}
-                >
-                  {userAds?.map((item, i) => {
-                    return (
-                      <div>
-                        <Ad
-                          name={item.name}
-                          institution={item.institution}
-                          image={item.image}
-                          subject={item.subject}
-                          fees={item.price}
-                          contact={item.contact}
-                        />
-                      </div>
-                    );
-                  })}
-                </Carousel>
-              </div>
+              {localStorage.getItem("auth-token") !== null &&
+              localStorage.getItem("user") === id ? (
+                <div className={classes.AdSection}>
+                  <Carousel
+                    itemClass="carousel-item-padding-0-px"
+                    centerMode={true}
+                    autoPlaySpeed={50000000}
+                    responsive={responsive}
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    partialVisible={false}
+                  >
+                    {userAds?.map((item, i) => {
+                      return (
+                        <div>
+                          <Ad
+                            name={item.name}
+                            institution={item.institution}
+                            image={item.image}
+                            subject={item.subject}
+                            fees={item.price}
+                            contact={item.contact}
+                            id={item._id}
+                          />
+                        </div>
+                      );
+                    })}
+                  </Carousel>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -300,15 +319,14 @@ const UserProfile = () => {
                 </button>
               ) : null}
               {saveChange ? (
-                <button
-                  onClick={EditProfile}
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-dismiss="modal"
-                >
+                <button onClick={EditProfile} className="btn btn-primary">
                   Save changes
                 </button>
               ) : null}
+              {loading ? (
+                <p>Please wait till your Profile Picture gets uploaded</p>
+              ) : null}
+              {saving ? <img height={20} src={loader} /> : null}
             </div>
           </div>
         </div>

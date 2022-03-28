@@ -17,7 +17,7 @@ const PostModal = () => {
   const [desc, setdesc] = useState("");
   const [tags, settags] = useState("");
   const [image, setimage] = useState("");
-  const [uploaded, setuploaded] = useState(true)
+  const [uploaded, setuploaded] = useState(true);
   console.log(title, desc, tags);
 
   const uploadImage = (file) => {
@@ -32,7 +32,7 @@ const PostModal = () => {
     ).then((response) => {
       console.log(response.data.url);
       setimage(response.data.url.toString());
-      setuploaded(true)
+      setuploaded(true);
     });
   };
 
@@ -101,9 +101,9 @@ const PostModal = () => {
                     Add an image if you want to:
                   </label>
                   <input
-                  onClick={() => {
-                    setuploaded(false)
-                  }}
+                    onClick={() => {
+                      setuploaded(false);
+                    }}
                     onChange={(e) => {
                       uploadImage(e.target.files[0]);
                     }}
@@ -113,7 +113,7 @@ const PostModal = () => {
                   />
                 </div>
                 <div>
-                  <img height={90} src={image}/>
+                  <img height={90} src={image} />
                 </div>
                 <div className={classes.Rule}>
                   <div
@@ -132,31 +132,47 @@ const PostModal = () => {
                 </div>
               </form>
             </div>
-            <div style={{ border: "0" }} class="modal-footer">
-              <button
-                style={{
-                  borderRadius: "8px",
-                }}
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              { uploaded ? <button
-                onClick={() => {
-                  PostQuestion(title, desc, tags , image);
-                }}
-                style={{
-                  backgroundColor: "#ff922b",
-                  color: "white",
-                  borderRadius: "8px",
-                }}
-                type="submit"
-                class="btn"
-              >
-                Post Question
-              </button> : <p>Please wait for Image Upload</p>}
+            <div
+              style={{ border: "0" }}
+              class="modal-footer d-flex justify-content-between"
+            >
+              {!uploaded ? (
+                <div>
+                  <p style={{ fontSize: "10px" }}>Click if you are stuck</p>
+                  <button onClick={()=> setuploaded(true) } className="btn btn-danger">Retry</button>
+                </div>
+              ) : null}
+              <div className="d-flex gap-2">
+                <button
+                  style={{
+                    borderRadius: "8px",
+                  }}
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+
+                {uploaded ? (
+                  <button
+                    onClick={() => {
+                      PostQuestion(title, desc, tags, image);
+                    }}
+                    style={{
+                      backgroundColor: "#ff922b",
+                      color: "white",
+                      borderRadius: "8px",
+                    }}
+                    type="submit"
+                    class="btn"
+                  >
+                    Post Question
+                  </button>
+                ) : (
+                  <p>Please wait for Image Upload</p>
+                )}
+              </div>
             </div>
           </div>
         </div>

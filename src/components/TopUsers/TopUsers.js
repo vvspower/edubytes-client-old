@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./TopUser.module.css";
 import user from "../../Images/user.png";
 import dataContext from "../Context.js/dataContext";
+import loader from '../../Images/default-loading.gif'
 import { useNavigate } from "react-router-dom";
 
 const TopUsers = () => {
@@ -20,7 +21,7 @@ const TopUsers = () => {
       <div>
         <h6 className={classes.Header}>Top Registered Users</h6>
       </div>
-      {users.map((item, i) => {
+      {users.length === 0 ? <img src={loader} height={20}/> : users.map((item, i) => {
         return (
           <div onClick={() => {
             navigate(`/u/user?id=${item._id}`)

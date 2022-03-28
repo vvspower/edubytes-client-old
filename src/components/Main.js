@@ -91,7 +91,12 @@ const Main = () => {
           <div className={classes.Post}>
             <div className={classes.Popular}>
               {/* returns the top 2 most voted posts made on the website */}
-              {blogs.slice(0, 2).map((item, i) => {
+              {blogs.slice().sort(function (a, b) {
+              
+                  return b.likes.length - a.likes.length;
+                }).slice(0, 2).map((item, i) => {
+                  
+                  console.log("🚀 ~ file: Main.js ~ line 99 ~ blogs", blogs)
                 return (
                   <PopularPost
                     title={item.title}

@@ -48,23 +48,29 @@
 
 .Button {
   display: flex;
-  background-color: #ebf5ff;
+  background-color: #fff5f5;
   padding: 4px 45px;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+
+  
 }
 
 .Button:hover {
-  background-color: #dbedff;
+  background-color: #ffe3e3
 }
 
 .Subject {
   font-size: 12px;
+
 }
 
 .Button p {
   margin: 0;
+  color: #fa5252;
+
 }
 
 .Ad {

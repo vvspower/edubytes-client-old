@@ -6,7 +6,7 @@ import dataContext from "../../Context.js/dataContext";
 const Form = () => {
   const context = useContext(dataContext);
   const fetchAllAds = context.fetchAllAds;
-  const Ads = context.Ads
+  const Ads = context.Ads;
   const JoinTeacher = context.JoinTeacher;
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -18,7 +18,6 @@ const Form = () => {
   const [uploaded, setuploaded] = useState(false);
   const [image, setImage] = useState(true);
   const [success, setsuccess] = useState(false);
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -60,6 +59,15 @@ const Form = () => {
       setuploaded(true);
     });
   };
+
+  console.log(
+    (firstname.length > 2 &&
+      lastname.length > 2 &&
+      subject.length > 4 &&
+      contact.length > 10 &&
+      uploaded == true &&
+      (institution.length > 4 || fees.length > 2)) == false
+  );
 
   return (
     <div className={classes.Container}>
@@ -146,7 +154,7 @@ const Form = () => {
               type="text"
               class="form-control"
               id="validationDefault01"
-              placeholder="Contact (Your website or facebook Preffered)"
+              placeholder="Contact (Your website or facebook Link Preffered)"
               required
               value={contact}
               onChange={(e) => {
@@ -167,19 +175,33 @@ const Form = () => {
           />
           <div class="invalid-feedback">Upload your image</div>
         </div>
-        {uploaded ? (
-          <button
-            onClick={(e) => {
-              handleClick(e);
-            }}
-            type="submit"
-            class="btn btn-primary"
-          >
-            Submit
-          </button>
-        ) : (
-          <span>Please fill this form</span>
-        )}
+        {/* {uploaded ? ( */}
+        <button
+          disabled={
+            (firstname.length > 2 &&
+            lastname.length > 2 &&
+            subject.length > 4 &&
+            contact.length > 10 &&
+            uploaded &&
+            (institution.length > 4 || fees.length > 2)) === true ? false : true
+          }
+          // disabled={false}
+          onClick={(e) => {
+            handleClick(e);
+          }}
+          type="submit"
+          class="btn btn-primary"
+        >
+          Submit
+        </button>
+      
+          { (firstname.length > 2 &&
+            lastname.length > 2 &&
+            subject.length > 4 &&
+            contact.length > 10 &&
+            uploaded &&
+            (institution.length > 4 || fees.length > 2)) === true ? null : <h6>Complete the form </h6>}
+        
       </form>
       {success ? (
         <div class="alert alert-success" role="alert">

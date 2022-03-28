@@ -54,9 +54,9 @@ const UserInfoHover = (props) => {
             <div className={classes.UserStats}>
               <div className={classes.UserStatsChild}>
                 <p>Liked</p>
-                <h6>41</h6>
+                <h6>{user.likes}</h6>
               </div>
-              <div className={classes.UserStatsChild}>
+              <div style={{opacity: "0"}} className={classes.UserStatsChild}>
                 <p>Followers</p>
                 <h6>69</h6>
               </div>

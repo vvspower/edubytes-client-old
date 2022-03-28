@@ -10,6 +10,7 @@ import user from "../../Images/user.png";
 import DeleteUserPostModal from "./DeleteUserPostModal";
 import EditUserPostModal from "./EditUserPostModal";
 import { Link } from "react-router-dom";
+import loader from '../../Images/default-loading-gray.gif'
 
 const UserPost = () => {
   let dp;
@@ -40,6 +41,7 @@ const UserPost = () => {
   const [pfp, setpfp] = useState("");
   const [blogid, setblogid] = useState(null);
   const [replypfp, setreplypfp] = useState("");
+  
   const date = new Date(BlogById.date);
 
   const address = "http://localhost:5000";
@@ -534,7 +536,7 @@ const UserPost = () => {
                 left: "50%",
                 margin: "-100px 0 0 -100px",
               }}
-              src={infinity}
+              src={loader}
             />
           )}
         </div>

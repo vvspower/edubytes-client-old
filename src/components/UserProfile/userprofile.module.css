@@ -179,6 +179,8 @@ background-color: #ff922b;
   /* width: 20px; */
 }
 
+
+
 .UserDetail div div {
   text-align: center;
 }
@@ -246,10 +248,14 @@ background-color: #ff922b;
   
   }
 
-  .SideBar {
+  .InnerSideBar {
     display: flex;
     gap: 20px;
   
+  }
+  .EditProfile {
+    width: 100%;
+
   }
 
   .Contributions {
