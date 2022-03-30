@@ -9,6 +9,9 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import adpic from "../../Images/mountain.jpg";
 import nust from '../../Images/nust.jpg'
+import fast from '../../Images/fast.jpg'
+import iba from '../../Images/iba.jpg'
+
 import classes from "./university.module.css";
 
 const UniversityCarousel = () => {
@@ -43,15 +46,15 @@ const UniversityCarousel = () => {
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src={nust} class="d-block w-100" alt="..." />
+            <img src={nust} class="d-block w-100" style={{maxHeight: "135px"}} alt="..." />
             
           </div>
           <div class="carousel-item">
-            <img src={nust} class="d-block w-100" alt="..." />
+            <img src={fast} class="d-block w-100" style={{maxHeight: "135px"}} height={135} alt="..." />
             
           </div>
           <div class="carousel-item">
-            <img src={nust} class="d-block w-100" alt="..." />
+            <img src={iba} class="d-block w-100" style={{maxHeight: "135px"}} height={135} alt="..." />
             
           </div>
         </div>

@@ -7,7 +7,7 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import adpic from "../../Images/mountain.jpg";
+import adpic from "../../Images/techstack.png";
 import classes from "./ad.module.css";
 
 const AdCarousel = () => {

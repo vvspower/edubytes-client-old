@@ -77,7 +77,7 @@ const Form = () => {
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="Firstname"
               placeholder="First name"
               required
               value={firstname}
@@ -93,7 +93,7 @@ const Form = () => {
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="Lastname"
               placeholder="Last name"
               required
               value={lastname}
@@ -108,7 +108,7 @@ const Form = () => {
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="Institution"
               placeholder="Institution ( Not required if  solo )"
               required
               value={institution}
@@ -123,7 +123,7 @@ const Form = () => {
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="Subject"
               placeholder="Subject (Please include the the Board eg. IGCSE or A Level)"
               required
               value={subject}
@@ -138,7 +138,7 @@ const Form = () => {
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="Fee"
               placeholder="Fees ( Not required if part of a institution )"
               required
               value={fees}
@@ -153,7 +153,7 @@ const Form = () => {
             <input
               type="text"
               class="form-control"
-              id="validationDefault01"
+              id="Contact"
               placeholder="Contact (Your website or facebook Link Preffered)"
               required
               value={contact}

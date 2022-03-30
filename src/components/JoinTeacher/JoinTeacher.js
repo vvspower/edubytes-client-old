@@ -46,7 +46,7 @@ const JoinTeacher = () => {
           <h1>
             <span>Teach</span> <br /> for Pakistan
           </h1>
-          <button>Join Now</button>
+          {/* <button>Join Now</button> */}
         </div>
         <div>
           <img src={teachingimg} />

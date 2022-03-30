@@ -74,7 +74,7 @@ const LoginModal = () => {
                   <input
                     type="email"
                     class="form-control"
-                    id="exampleInputEmail1"
+                    id="email"
                     aria-describedby="emailHelp"
                     placeholder="Email"
                     onChange={(e) => {
@@ -88,7 +88,7 @@ const LoginModal = () => {
                   <input
                     type="password"
                     class="form-control"
-                    id="exampleInputPassword1"
+                    id="password"
                     placeholder="Enter password"
                     onChange={(e) => {
                       setpassword(e.target.value);

@@ -82,6 +82,11 @@ const NavBar = () => {
                     <p style={{ fontWeight: "600" }}>Contribute</p>
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link " to="/contact">
+                    <p style={{ fontWeight: "600" }}>Contact</p>
+                  </Link>
+                </li>
               </ul>
               <div className={classes.AuthSection}>
                 {localStorage.getItem("auth-token") === null ? (

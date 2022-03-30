@@ -22,6 +22,7 @@ const DataState = (props) => {
   const [userAds, setUserAds] = useState([]);
   const [currentAdId, setCurrentAdId] = useState("");
   const [moreBlogs, setMoreBlogs] = useState(true);
+  const [signuperror, setSignupError] = useState("");
 
   const address = "http://localhost:5000";
 
@@ -40,6 +41,16 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
+    console.log(json);
+    if (json?.errors.length !== 0) {
+      if (typeof json.errors === "object") {
+        setSignupError(json.errors[0].msg);
+      }
+      if (typeof json.errors === "string") {
+        setSignupError(json.errors);
+      }
+      console.log(typeof json.errors === "string");
+    }
     if (json.success) {
       localStorage.setItem("auth-token", json.authToken);
       success = true;
@@ -429,12 +440,11 @@ const DataState = (props) => {
       "🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json",
       json
     );
-    if(json === {}) {
-      setUserAds([])
+    if (json === {}) {
+      setUserAds([]);
     } else {
-      setUserAds(json)
+      setUserAds(json);
     }
-    
   };
 
   const JoinTeacher = async (
@@ -516,6 +526,8 @@ const DataState = (props) => {
         currentAdId,
         setCurrentAdId,
         DeleteAd,
+        signuperror,
+        setSignupError,
       }}
     >
       {props.children}

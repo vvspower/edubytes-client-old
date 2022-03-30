@@ -117,7 +117,12 @@ const Sidebar = () => {
               </button>
             </div>
             <div>
-              <button>Contact </button>
+              <button
+               data-bs-dismiss="offcanvas"
+               aria-label="Close"
+               onClick={() => {
+                 navigate("/contact");
+               }}>Contact </button>
             </div>
             {localStorage.getItem("auth-token") ? (
               <aside style={{}} className={classes.UserModal}>
