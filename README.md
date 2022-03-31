@@ -30,3 +30,9 @@ npm start
 
 _Make sure to run it in conjunction with the backend server_
 
+# Demo
+
+### Images
+
+
+
