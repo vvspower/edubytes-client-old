@@ -37,4 +37,8 @@ _Make sure to run it in conjunction with the backend server_
 Images can be found [here](/Demo)
 
 
+### Motivation
+
+I wanted to get a deep understanding of how react works. This project was a way for me to understand how i can connect the front-end to the back-end effectively and watching the website turn dynamic. Im not interested much in UI/UX but this project was an good experience for me to deep dive into CSS. I didnt use any third party coded components just so i can understand react myself.
+
 
