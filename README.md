@@ -2,6 +2,9 @@
 
 The front-end side of the edubytes project. This app is to be run jointly with the backend found in this [repo](https://github.com/MustafaAP/edubytes-server).
 
+Website : https://edubytes-project.netlify.app/
+Backend : https://edubytes-server.herokuapp.com/
+
 
 ### Technologies Used
 This project was made in the MERN stack
