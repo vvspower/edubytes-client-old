@@ -25,7 +25,7 @@ const EditUserPostModal = (props) => {
 
   useEffect(() => {
     const formData = new FormData();
-    console.log(imageSelected);
+    
     formData.append("file", imageSelected);
     formData.append("upload_preset", "mb3hrwz7");
 
@@ -33,14 +33,14 @@ const EditUserPostModal = (props) => {
       "https://api.cloudinary.com/v1_1/disle0uxb/image/upload",
       formData
     ).then((response) => {
-      console.log(response.data.url);
+      
       setimage(response.data.url.toString());
       setuploaded(true);
     });
     
   }, [imageSelected]);
   
-  console.log(props.title, props.description, props.tag);
+  
 
   const uploadImage  =  (file) => {
      setImageSelected(file);

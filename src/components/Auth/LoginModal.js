@@ -16,7 +16,7 @@ const LoginModal = () => {
   const LoginUser = context.LoginUser;
   const [display, setdisplay] = useState("inlineBlock");
 
-  console.log(autherrors?.error);
+  
 
   const showError = () => {
     setTimeout(() => {
@@ -36,7 +36,7 @@ const LoginModal = () => {
 
   const login = () => {};
 
-  console.log(email, password);
+  
 
   return (
     <div className={classes.AuthModal}>

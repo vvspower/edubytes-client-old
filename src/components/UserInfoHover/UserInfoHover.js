@@ -17,7 +17,7 @@ const UserInfoHover = (props) => {
     let success = fetchUserInfo(props.user);
   }, []);
 
-  console.log(user)
+  
   return (
     <>
       <div onClick={() => {

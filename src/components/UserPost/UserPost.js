@@ -11,6 +11,7 @@ import DeleteUserPostModal from "./DeleteUserPostModal";
 import EditUserPostModal from "./EditUserPostModal";
 import { Link } from "react-router-dom";
 import loader from '../../Images/default-loading-gray.gif'
+import LoadingBar from "react-top-loading-bar";
 
 const UserPost = () => {
   let dp;
@@ -41,22 +42,23 @@ const UserPost = () => {
   const [pfp, setpfp] = useState("");
   const [blogid, setblogid] = useState(null);
   const [replypfp, setreplypfp] = useState("");
+  const [progress , setProgress] = useState(30)
   
   const date = new Date(BlogById.date);
 
-  const address = "http://localhost:5000";
+  const address = process.env.REACT_APP_HEROKU_API;
 
-  console.log("///////////////");
-  console.log(replies);
-  console.log("///////////////");
+  
+  
+  
 
-  console.log(userid);
+  
 
   const getPfp = async () => {
-    console.log(id);
+    
 
     const response = await fetch(
-      `${address}/api/auth/getusernoauth/${userid}`,
+      `${address}/api/auth/user/${userid}`,
       {
         method: "GET",
         headers: {
@@ -65,15 +67,15 @@ const UserPost = () => {
       }
     );
     const json = await response.json();
-    console.log(json);
+    
 
     setpfp(json.pfp);
-    console.log(json.pfp);
+    
     return json.pfp;
   };
 
   const getPfpreply = async (user) => {
-    console.log(user);
+    
     const response = await fetch(`${address}/api/auth/getusernoauth/${user}`, {
       method: "GET",
       headers: {
@@ -81,28 +83,29 @@ const UserPost = () => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    
 
     setreplypfp(json.pfp);
     return json.pfp;
   };
 
   useEffect(async () => {
-    console.log("gegeg");
-    console.log(id);
+    
+    
     fetchReplies(id);
-    console.log(BlogById);
+    
     const success = await fetchBlogById(id);
     setSuccess(success);
     if (localStorage.getItem("auth-token") !== null) {
       checkifliked(id);
     }
+    setProgress(100)
     setblogid(BlogById);
     getPfp(userid);
   }, []);
 
-  console.log(BlogById.user);
-  console.log(blogid);
+  
+  
 
   const likepostapi = async (id) => {
     const response = await fetch(`${address}/api/app/likepost/${id}`, {
@@ -113,7 +116,7 @@ const UserPost = () => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    
   };
 
   const unlikepostapi = async (id) => {
@@ -125,7 +128,7 @@ const UserPost = () => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    
   };
 
   const likepost = () => {
@@ -141,25 +144,31 @@ const UserPost = () => {
 
     setisliked(!isliked);
   };
-  console.log(reply);
+  
 
   const replyToPost = () => {
     PostReply(BlogById._id, reply);
   };
 
-  console.log(BlogById._id);
+  
 
-  console.log(tags);
+  
 
-  console.log(BlogById);
-  console.log(success);
-  console.log(tags);
+  
+  
+  
   if (BlogById === {}) {
     return false;
   }
 
   return (
     <div className={classes.Universal} style={{ marginTop: "20px" }}>
+      <LoadingBar
+        height={3}
+        color="#8ce99a"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <DeleteUserPostModal id={BlogById._id} />
       <EditUserPostModal
         id={BlogById?._id}

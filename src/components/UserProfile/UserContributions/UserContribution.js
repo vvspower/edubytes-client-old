@@ -15,7 +15,7 @@ const UserContribution = (props) => {
     setNotes(notes);
   }, []);
 
-  console.log(props);
+  
 
   return (
     <div>
@@ -45,7 +45,7 @@ const UserContribution = (props) => {
         );
       }) : <p style={{marginTop: "30px" , paddingBottom: "10px"}}>No Contributions</p>}
       <div>
-       {console.log(Notes === [])}
+       
 
       </div>
     </div>

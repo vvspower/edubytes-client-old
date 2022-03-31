@@ -9,7 +9,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import logo from "../../Images/edubytes.png";
 
 const NavBar = () => {
-  console.log(localStorage.getItem("auth-token") === null);
+  
   const [clickuser, setclickuser] = useState(false);
   const navigate = useNavigate();
   return (

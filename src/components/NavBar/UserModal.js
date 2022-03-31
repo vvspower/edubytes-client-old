@@ -17,7 +17,7 @@ const UserModal = () => {
     navigate("/");
     window.location.reload();
   };
-  console.log(loggedUser);
+  
 
   return (
     <div>

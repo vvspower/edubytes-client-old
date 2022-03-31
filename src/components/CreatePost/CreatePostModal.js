@@ -32,10 +32,10 @@ const CreatePostModal = () => {
   useEffect(() => {
     fetchBlog();
 
-    console.log("hello");
+    
     setProgress(100);
   }, []);
-  console.log(blogs);
+  
 
   return (
     <div
@@ -45,8 +45,8 @@ const CreatePostModal = () => {
       className="container"
     >
       <LoadingBar
-        height={2}
-        color="#ffd43b"
+        height={3}
+        color="#8ce99a"
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />

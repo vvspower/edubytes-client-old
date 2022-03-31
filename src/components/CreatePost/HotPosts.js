@@ -16,13 +16,13 @@ const HotPosts = (props) => {
   const context = useContext(dataContext)
   const fetchReplies = context.fetchReplies
 
-  const address = "http://localhost:5000"
+  const address = process.env.REACT_APP_HEROKU_API
   
-  console.log(props);
+  
 
   const getPfp = async (id) => {
     const response = await fetch(
-      `${address}/api/auth/getusernoauth/${id}`,
+      `${address}/api/auth/user/${id}`,
       {
         method: "GET",
         headers: {
@@ -33,7 +33,7 @@ const HotPosts = (props) => {
     const json = await response.json();
     setpfp(json.pfp);
   };
-  console.log(replies)
+  
 
   useEffect( async () => {
   getPfp(props.user)
@@ -43,7 +43,7 @@ const HotPosts = (props) => {
   }, [])
   
 
-  console.log(props);
+  
 
   return (
     <div

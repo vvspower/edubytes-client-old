@@ -36,12 +36,14 @@ const Main = () => {
   const SortByLikes = context.SortByLikes;
   const Ads = context.Ads;
 
+  
+
   const [progress, setProgress] = useState(30);
-  console.log(blogs);
-  console.log(Ads);
+  
+  
 
   useEffect(() => {
-    console.log(context.example);
+    
     // fetches the global blogs from the backend at the start of the load
     fetchAllAds();
     fetchBlog();
@@ -77,8 +79,8 @@ const Main = () => {
       }}
     >
       <LoadingBar
-        height={2}
-        color="#ffd43b"
+        height={3}
+        color="#8ce99a"
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
@@ -96,7 +98,7 @@ const Main = () => {
                   return b.likes.length - a.likes.length;
                 }).slice(0, 2).map((item, i) => {
                   
-                  console.log("🚀 ~ file: Main.js ~ line 99 ~ blogs", blogs)
+                  
                 return (
                   <PopularPost
                     title={item.title}
@@ -166,7 +168,7 @@ const Main = () => {
                 <img className={classes.Loading} height={50} src={loader} />
               ) : (
                 blogs.map((item, i) => {
-                  console.log(item.image);
+                  
                   return (
                     <LatestNotes
                       title={item.title}

@@ -54,20 +54,14 @@ const Form = () => {
       "https://api.cloudinary.com/v1_1/disle0uxb/image/upload",
       formData
     ).then((response) => {
-      console.log(response.data.url);
+      
       setImage(response.data.url.toString());
       setuploaded(true);
     });
   };
 
-  console.log(
-    (firstname.length > 2 &&
-      lastname.length > 2 &&
-      subject.length > 4 &&
-      contact.length > 10 &&
-      uploaded == true &&
-      (institution.length > 4 || fees.length > 2)) == false
-  );
+  
+  
 
   return (
     <div className={classes.Container}>

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const PopularPost = (props) => {
   const navigate = useNavigate();
-  console.log(props);
-  console.log(props.id);
+  
+  
 
   return (
     <div

@@ -30,8 +30,8 @@ const UploadNote = () => {
 
   const Contribute = context.Contribute;
 
-  console.log(title, desc, subject, type);
-  console.log(Contribute);
+  
+  
 
   const handleChange = (e) => {
     setloading(true);
@@ -52,7 +52,7 @@ const UploadNote = () => {
       ) //send to Api
         .then((res) => res.json())
         .then((a) => {
-          console.log(a); //See response
+      
           setloading(false);
 
           setdriveLink(a.url);
@@ -97,7 +97,7 @@ const UploadNote = () => {
     <div>
       <LoadingBar
         height={3}
-        color="#f11946"
+        color="#8ce99a"
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />

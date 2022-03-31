@@ -2,21 +2,30 @@ import React, { useContext, useEffect, useState } from "react";
 import NoteCard from "./NoteCard/NoteCard";
 import classes from "./ViewNotes.module.css";
 import dataContext from "../Context.js/dataContext";
+import LoadingBar from "react-top-loading-bar";
 
 const ViewNotes = () => {
   const context = useContext(dataContext);
   const Notes = context.Notes;
   const fetchResources = context.fetchResources;
   const [searchTerm, setSearchTerm] = useState("");
+  const [progress, setProgress] = useState(30)
 
-  console.log(Notes);
+  
 
   useEffect(() => {
+    setProgress(100)
     fetchResources();
   }, []);
 
   return (
     <div className="container">
+      <LoadingBar
+        height={3}
+        color="#8ce99a"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <div className={classes.ViewNotes}>
         <div className={classes.Search}>
           <svg

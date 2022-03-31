@@ -14,6 +14,7 @@ import Carousel from "react-multi-carousel";
 import Ad from "./AdComponent/Ad";
 import DeleteConfirmationModal from "./AdComponent/DeleteConfirmationModal";
 import loader from "../../Images/default-loading.gif";
+import LoadingBar from "react-top-loading-bar";
 
 const UserProfile = () => {
   const context = useContext(dataContext);
@@ -31,11 +32,12 @@ const UserProfile = () => {
   const [pfp, setpfp] = useState("");
   const [loading, setloading] = useState(false);
   const [saving, setsaving] = useState(false);
+  const [progress, setProgress] = useState(30)
 
   const address = "https://project1400authapi.herokuapp.com";
 
-  console.log(id);
-  console.log(bio);
+  
+  
 
   const responsive = {
     superLargeDesktop: {
@@ -62,22 +64,17 @@ const UserProfile = () => {
   useEffect(async () => {
     const userid = await fetchUserInfo(id);
     const { success, userblog } = await fetchUserSpecificBlog(id);
-    console.log(userblog);
+    
     setuserblog(userblog);
     setUser(userid);
-    console.log("🚀 ~ file: UserProfile.js ~ line 68 ~ useEffect ~ userid", userid)
+    setProgress(100)
+    
     fetchUserAds(id);
     
   }, []);
   
-  console.log(user)
+  
 
-  console.log(
-    "🚀 ~ file: UserProfile.js ~ line 43 ~ UserProfile ~ userblog",
-    userblog
-  );
-
-  console.log(bio);
 
   const EditProfile = async () => {
     setsaving(true);
@@ -100,7 +97,7 @@ const UserProfile = () => {
       window.location.reload();
       setsaving(true);
     }
-    console.log(json);
+    
   };
 
   const uploadImage = (file) => {
@@ -115,7 +112,7 @@ const UserProfile = () => {
       formData
     ).then((response) => {
       setSaveChange(true);
-      console.log(response.data.url);
+      
       setpfp(response.data.url.toString());
       setloading(false);
     });
@@ -124,6 +121,12 @@ const UserProfile = () => {
   return (
     <>
       <div className="container">
+      <LoadingBar
+        height={3}
+        color="#8ce99a"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
         <DeleteConfirmationModal />
         <div className={classes.Container}>
           <div className={classes.SideBar}>

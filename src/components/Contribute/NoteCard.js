@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 const NoteCard = (props) => {
   const [userinfo , setuserinfo] = useState({})
 
-  const address = "http://localhost:5000"
+  const address = process.env.REACT_APP_HEROKU_API
  
 
 
   const fetchUserInfo = async () => {
 
     const response = await fetch(
-      `${address}/api/auth/getusernoauth/${props.user}`,
+      `${address}/api/auth/user/${props.user}`,
       {
         method: "GET",
         headers: {
@@ -23,7 +23,7 @@ const NoteCard = (props) => {
     const json = await response.json();
     setuserinfo(json)
   };
-  console.log(userinfo)
+  
   useEffect(() => {
   fetchUserInfo()
   }, [])

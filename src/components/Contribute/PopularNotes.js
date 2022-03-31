@@ -14,11 +14,11 @@ const PopularNotes = () => {
 
   useEffect(() => {
     fetchResources();
-    console.log(Notes)
+    
   }, []);
 
 
-  console.log(Notes)
+  
   return (
     <div style={{ paddingTop: "10px" }} className={classes.PopularNotes}>
       <div
@@ -40,7 +40,7 @@ const PopularNotes = () => {
         </Link>
       </div>
       <div>
-        {Notes.length < 1 ? <img className={classes.Loading} src={loader} height={50}/> : Notes.map((item, i) => {
+        {Notes.length < 1 ? <img className={classes.Loading} src={loader} height={50}/> : Notes.slice(0,8).map((item, i) => {
           return <NoteCard title={item.name} user={item.user} link={item.link}/>
         }) }
       </div>

@@ -14,13 +14,13 @@ const LatestNotes = (props) => {
   // var str = props.username;
   // var matches = str.match(/\b(\w)/g); // ['J','S','O','N']
   // var acronym = matches.join("").toUpperCase(); // JSON
-  console.log(props);
+  
 
-  const address = "http://localhost:5000"
+  const address = process.env.REACT_APP_HEROKU_API
 
   const getPfp = async (id) => {
     const response = await fetch(
-      `${address}/api/auth/getusernoauth/${id}`,
+      `${address}/api/auth/user/${id}`,
       {
         method: "GET",
         headers: {
@@ -36,7 +36,7 @@ const LatestNotes = (props) => {
     getPfp(props.user);
   }, []);
 
-  console.log(props);
+  
 
   return (
     <div

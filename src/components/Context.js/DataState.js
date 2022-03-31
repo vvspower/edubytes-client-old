@@ -24,12 +24,12 @@ const DataState = (props) => {
   const [moreBlogs, setMoreBlogs] = useState(true);
   const [signuperror, setSignupError] = useState("");
 
-  const address = "http://localhost:5000";
+  const address = process.env.REACT_APP_HEROKU_API
 
   // Signup API
   const Signup = async (name, email, password) => {
     let success = false;
-    const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+    const response = await fetch(`${address}/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
-    console.log(json);
+    
     if (json?.errors.length !== 0) {
       if (typeof json.errors === "object") {
         setSignupError(json.errors[0].msg);
@@ -49,7 +49,7 @@ const DataState = (props) => {
       if (typeof json.errors === "string") {
         setSignupError(json.errors);
       }
-      console.log(typeof json.errors === "string");
+      
     }
     if (json.success) {
       localStorage.setItem("auth-token", json.authToken);
@@ -84,7 +84,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    
     setLoadedPosts(json.length);
     setBlogs(json);
   };
@@ -100,7 +100,7 @@ const DataState = (props) => {
       }
     );
     const json = await response.json();
-    console.log(json);
+    
     setLoadedPosts(json.blogposts.length);
     setMoreBlogs(json.morePosts);
 
@@ -108,7 +108,7 @@ const DataState = (props) => {
   };
 
   const Contribute = async (title, link, type, subject) => {
-    console.log(title, link, type, subject);
+    
     const response = await fetch(`${address}/api/app/resource`, {
       method: "POST",
       headers: {
@@ -126,7 +126,7 @@ const DataState = (props) => {
     if (json.success) {
       setUploadNoteSucess(true);
     }
-    console.log(json);
+    
   };
 
   // Fetch a Specific blog using its ID
@@ -139,7 +139,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    
     success = true;
     // stores the post data for it to be used in UserPost Component
     setBlogById(json);
@@ -155,10 +155,10 @@ const DataState = (props) => {
       },
     });
     const userblog = await response.json();
-    console.log(userblog);
+    
     success = true;
     return { success, userblog };
-    // console.log(blogById);
+    // 
   };
 
   // fetches user info API when cursor hovered over a profile picture
@@ -171,7 +171,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json.name);
+    
     sethoversuccess(true);
     setUser(json);
     return json;
@@ -185,11 +185,8 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(
-      "🚀 ~ file: DataState.js ~ line 173 ~ fetchUserInfoBasic ~  json",
-      json
-    );
-    console.log(json);
+    
+    
     return json.pfp;
   };
 
@@ -207,7 +204,7 @@ const DataState = (props) => {
       }),
     });
     const token = await response.json();
-    console.log(token.authToken);
+    
     const getid = await fetch(`${address}/api/auth/getUserId`, {
       method: "GET",
       headers: {
@@ -216,10 +213,10 @@ const DataState = (props) => {
       },
     });
     const id = await getid.json();
-    console.log(id);
+    
     // getUserId
     setautherrors(token);
-    console.log(token);
+    
     if (token?.success) {
       // if(token.error)
       localStorage.setItem("auth-token", token.authToken);
@@ -246,13 +243,13 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
-    console.log(json.savedblogpost._id);
+    
 
     if (json.success) {
       window.location.href = `/discuss/post/p?id=${json.savedblogpost._id}&user=${json.savedblogpost.user}`;
     }
     // `/discuss/post/p?id=${props.id}&user=${props.user}`
-    console.log(json);
+    
   };
 
   const EditQuestion = async (title, desc, tags, image, id) => {
@@ -276,7 +273,7 @@ const DataState = (props) => {
       window.location.reload();
     }
     // `/discuss/post/p?id=${props.id}&user=${props.user}`
-    console.log(json);
+    
   };
 
   // Reply API
@@ -296,10 +293,10 @@ const DataState = (props) => {
     const json = await response.json();
     const data = [...replies];
     data.push(json.savedreplies);
-    console.log(data);
+    
 
     setreplies(data);
-    console.log(json);
+    
   };
 
   // Fetch Reply API called at the starting of the UserPost component being mounted
@@ -316,7 +313,7 @@ const DataState = (props) => {
     success = true;
     setReplySuccess(success);
     setreplies(json);
-    console.log(json);
+    
     return json;
   };
 
@@ -359,7 +356,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
+    
     setLoggedUser(json);
   };
 
@@ -378,7 +375,7 @@ const DataState = (props) => {
   };
 
   const fetchResources = async (id) => {
-    const response = await fetch(`${address}/api/app/fetchallresources`, {
+    const response = await fetch(`${address}/api/app/resource`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -390,7 +387,7 @@ const DataState = (props) => {
 
   const fetchUserResources = async (id) => {
     const response = await fetch(
-      `${address}/api/app/fetchuserresources/${id}`,
+      `${address}/api/app/resource/${id}`,
       {
         method: "GET",
         headers: {
@@ -403,7 +400,7 @@ const DataState = (props) => {
   };
 
   const fetchAllUsers = async () => {
-    const response = await fetch(`${address}/api/auth/allusers`, {
+    const response = await fetch(`${address}/api/auth/user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -412,7 +409,7 @@ const DataState = (props) => {
     const json = await response.json();
     return json;
   };
-
+ 
   const fetchAllAds = async () => {
     const response = await fetch(`${address}/api/app/allads`, {
       method: "GET",
@@ -421,10 +418,8 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(
-      "🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json",
-      json
-    );
+    
+    
     setAds(json);
   };
 
@@ -436,10 +431,8 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(
-      "🚀 ~ file: DataState.js ~ line 353 ~ fetchAllAds ~ json",
-      json
-    );
+    
+    
     if (json === {}) {
       setUserAds([]);
     } else {
@@ -471,7 +464,7 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
-    console.log(json);
+    
     return json.success;
   };
 

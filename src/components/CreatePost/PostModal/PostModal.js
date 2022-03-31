@@ -18,7 +18,7 @@ const PostModal = () => {
   const [tags, settags] = useState("");
   const [image, setimage] = useState("");
   const [uploaded, setuploaded] = useState(true);
-  console.log(title, desc, tags);
+  
 
   const uploadImage = (file) => {
     setImageSelected(file);
@@ -30,7 +30,7 @@ const PostModal = () => {
       "https://api.cloudinary.com/v1_1/disle0uxb/image/upload",
       formData
     ).then((response) => {
-      console.log(response.data.url);
+      
       setimage(response.data.url.toString());
       setuploaded(true);
     });

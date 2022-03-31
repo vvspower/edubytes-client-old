@@ -9,7 +9,7 @@ const DeleteUserPostModal = (props) => {
   const DeleteBlog = context.DeleteBlog;
   const [deleteSuccess, setdeleteSuccess] = useState(false);
   const [loading, setloading] = useState(false);
-  console.log(props.id);
+  
 
   const DeleteHandler = () => {
     setloading(true);
