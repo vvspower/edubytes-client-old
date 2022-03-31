@@ -10,6 +10,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.0",
+    "dotenv": "^16.0.0",
     "mdb-react-ui-kit": "^2.3.0",
     "parcel": "^2.3.2",
     "pure-react-carousel": "^1.28.1",

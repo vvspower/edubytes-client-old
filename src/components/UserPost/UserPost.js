@@ -462,12 +462,9 @@ const UserPost = () => {
                             <span>{datecomment.toLocaleString()}</span>
                           </div>
                           <div
-                            style={{
-                              borderBottom: "1px solid #eee",
-                              paddingBottom: "15px",
-                            }}
+                            
                           >
-                            <p>{item.reply}</p>
+                            <p className={classes.description}>{item.reply}</p>
                           </div>
                           <aside>
                             <div

@@ -77,7 +77,7 @@ const DataState = (props) => {
 
   // Fetch all blogs on the website
   const fetchBlog = async (id) => {
-    const response = await fetch(`${address}/api/app/fetchallblogposts`, {
+    const response = await fetch(`${address}/api/app/blog`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const DataState = (props) => {
 
   const LoadMoreBlogs = async (id) => {
     const response = await fetch(
-      `${address}/api/app/loadmoreblogposts/${loadedPosts}`,
+      `${address}/api/app/loadblog/${loadedPosts}`,
       {
         method: "GET",
         headers: {
@@ -148,7 +148,7 @@ const DataState = (props) => {
 
   const fetchUserSpecificBlog = async (id) => {
     let success = false;
-    const response = await fetch(`${address}/api/app/fetchuserblogs/${id}`, {
+    const response = await fetch(`${address}/api/app/blog/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -164,7 +164,7 @@ const DataState = (props) => {
   // fetches user info API when cursor hovered over a profile picture
   const fetchUserInfo = async (id) => {
     sethoversuccess(false);
-    const response = await fetch(`${address}/api/auth/getusernoauth/${id}`, {
+    const response = await fetch(`${address}/api/auth/user/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -178,7 +178,7 @@ const DataState = (props) => {
   };
 
   const fetchUserInfoBasic = async (id) => {
-    const response = await fetch(`${address}/api/auth/getusernoauth/${id}`, {
+    const response = await fetch(`${address}/api/auth/user/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -232,7 +232,7 @@ const DataState = (props) => {
 
   const PostQuestion = async (title, desc, tags, image) => {
     setPostedBlog(false);
-    const response = await fetch(`${address}/api/app/post`, {
+    const response = await fetch(`${address}/api/app/blog`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -257,7 +257,7 @@ const DataState = (props) => {
 
   const EditQuestion = async (title, desc, tags, image, id) => {
     setPostedBlog(false);
-    const response = await fetch(`${address}/api/app/updateblog/${id}`, {
+    const response = await fetch(`${address}/api/app/blog/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -306,7 +306,7 @@ const DataState = (props) => {
 
   const fetchReplies = async (id) => {
     let success = false;
-    const response = await fetch(`${address}/api/app/fetchreplies/${id}`, {
+    const response = await fetch(`${address}/api/app/replies/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -324,7 +324,7 @@ const DataState = (props) => {
 
   const DeleteBlog = async (id) => {
     let success = false;
-    const response = await fetch(`${address}/api/app/deleteBlog/${id}`, {
+    const response = await fetch(`${address}/api/app/blog/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -338,7 +338,7 @@ const DataState = (props) => {
 
   const DeleteAd = async (id) => {
     let success = false;
-    const response = await fetch(`${address}/api/app/deleteAd/${id}`, {
+    const response = await fetch(`${address}/api/app/ads/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -403,7 +403,7 @@ const DataState = (props) => {
   };
 
   const fetchAllUsers = async () => {
-    const response = await fetch(`${address}/api/auth/fetchallusers`, {
+    const response = await fetch(`${address}/api/auth/allusers`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -414,7 +414,7 @@ const DataState = (props) => {
   };
 
   const fetchAllAds = async () => {
-    const response = await fetch(`${address}/api/app/fetchallads`, {
+    const response = await fetch(`${address}/api/app/allads`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -429,7 +429,7 @@ const DataState = (props) => {
   };
 
   const fetchUserAds = async (id) => {
-    const response = await fetch(`${address}/api/app/fetchuserads/${id}`, {
+    const response = await fetch(`${address}/api/app/ads/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -455,7 +455,7 @@ const DataState = (props) => {
     price,
     image
   ) => {
-    const response = await fetch(`${address}/api/app/postAd`, {
+    const response = await fetch(`${address}/api/app/ads`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
