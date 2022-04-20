@@ -14,6 +14,8 @@ import TopTags from "./TopTags/TopTags";
 import LoadingBar from "react-top-loading-bar";
 import feedback from "../../Images/feedback.png";
 import PostModal from "./PostModal/PostModal";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // This is the Discuss Page on the Web App.
 // From this page user can post Questions
@@ -28,6 +30,7 @@ const CreatePostModal = () => {
   const [progress, setProgress] = useState(30);
   const [searchTerm, setSearchTerm] = useState("");
   const [loadstate, setloadstate] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchBlog();
@@ -84,8 +87,10 @@ const CreatePostModal = () => {
                 <div className={classes.Post}>
                   <button
                     type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
+                    onClick={() => {
+                      navigate("/contact")
+                    }}
+                  
                   >
                     <h6>Feedback</h6>
                     <img
@@ -155,13 +160,13 @@ const CreatePostModal = () => {
                 <h6>Sorted By Likes</h6>
               </div>
               <div>
-                <button
+                { localStorage.getItem("auth-token")  ? <button
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                   className={classes.MobileButton}
                 >
                   Post Question
-                </button>
+                </button> : <p>Log in to post</p>}
               </div>
               <div className={classes.Search}>
                 <input

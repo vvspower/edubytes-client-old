@@ -42,20 +42,20 @@ const DataState = (props) => {
     });
     const json = await response.json();
     
-    if (json?.errors.length !== 0) {
+    if (json?.errors?.length !== 0) {
+      // this is checking if the error came as a string inside an array or directly as a string
+      // error message is set accordingly
       if (typeof json.errors === "object") {
         setSignupError(json.errors[0].msg);
       }
       if (typeof json.errors === "string") {
         setSignupError(json.errors);
       }
-      
     }
     if (json.success) {
       localStorage.setItem("auth-token", json.authToken);
       success = true;
     }
-
     return success;
   };
 
@@ -86,11 +86,14 @@ const DataState = (props) => {
     const json = await response.json();
     
     setLoadedPosts(json.length);
+    // this set the amount of already loaded posts so when more are loaded a reference is sent of how many already are loaded
     setBlogs(json);
   };
 
+  // Load more blogs on the website
   const LoadMoreBlogs = async (id) => {
     const response = await fetch(
+      // reference of amount of posts loaded sent from loadedposts
       `${address}/api/app/loadblog/${loadedPosts}`,
       {
         method: "GET",
@@ -100,15 +103,13 @@ const DataState = (props) => {
       }
     );
     const json = await response.json();
-    
+    // this sets the amount of loadedposts.
     setLoadedPosts(json.blogposts.length);
     setMoreBlogs(json.morePosts);
-
     setBlogs(json.blogposts);
   };
 
   const Contribute = async (title, link, type, subject) => {
-    
     const response = await fetch(`${address}/api/app/resource`, {
       method: "POST",
       headers: {
@@ -126,7 +127,6 @@ const DataState = (props) => {
     if (json.success) {
       setUploadNoteSucess(true);
     }
-    
   };
 
   // Fetch a Specific blog using its ID
@@ -139,7 +139,6 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
     success = true;
     // stores the post data for it to be used in UserPost Component
     setBlogById(json);
@@ -155,10 +154,9 @@ const DataState = (props) => {
       },
     });
     const userblog = await response.json();
-    
     success = true;
     return { success, userblog };
-    // 
+
   };
 
   // fetches user info API when cursor hovered over a profile picture
@@ -171,7 +169,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
+    // hover success refers to whether the data for the user has been loaded or not
     sethoversuccess(true);
     setUser(json);
     return json;
@@ -185,8 +183,6 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
-    
     return json.pfp;
   };
 
@@ -204,7 +200,8 @@ const DataState = (props) => {
       }),
     });
     const token = await response.json();
-    
+
+    //  gets the _id of the user which has logged in.
     const getid = await fetch(`${address}/api/auth/getUserId`, {
       method: "GET",
       headers: {
@@ -214,11 +211,9 @@ const DataState = (props) => {
     });
     const id = await getid.json();
     
-    // getUserId
+    // sets any errors ( such as wrong email or password )
     setautherrors(token);
-    
     if (token?.success) {
-      // if(token.error)
       localStorage.setItem("auth-token", token.authToken);
       localStorage.setItem("user", id);
       window.location.reload();
@@ -244,12 +239,11 @@ const DataState = (props) => {
     });
     const json = await response.json();
     
-
     if (json.success) {
+      // redirect to the post if success
       window.location.href = `/discuss/post/p?id=${json.savedblogpost._id}&user=${json.savedblogpost.user}`;
     }
     // `/discuss/post/p?id=${props.id}&user=${props.user}`
-    
   };
 
   const EditQuestion = async (title, desc, tags, image, id) => {
@@ -272,12 +266,10 @@ const DataState = (props) => {
     if (json.success) {
       window.location.reload();
     }
-    // `/discuss/post/p?id=${props.id}&user=${props.user}`
-    
   };
 
+  
   // Reply API
-
   const PostReply = async (postid, reply) => {
     const response = await fetch(`${address}/api/app/reply`, {
       method: "POST",
@@ -293,10 +285,7 @@ const DataState = (props) => {
     const json = await response.json();
     const data = [...replies];
     data.push(json.savedreplies);
-    
-
     setreplies(data);
-    
   };
 
   // Fetch Reply API called at the starting of the UserPost component being mounted
@@ -313,11 +302,10 @@ const DataState = (props) => {
     success = true;
     setReplySuccess(success);
     setreplies(json);
-    
     return json;
   };
 
-  // /deleteBlog/:id
+  // API to Delete Blog
 
   const DeleteBlog = async (id) => {
     let success = false;
@@ -333,6 +321,8 @@ const DataState = (props) => {
     return success;
   };
 
+  // API to Delete Ad
+
   const DeleteAd = async (id) => {
     let success = false;
     const response = await fetch(`${address}/api/app/ads/${id}`, {
@@ -347,6 +337,9 @@ const DataState = (props) => {
     return success;
   };
 
+  // API to fetch user using their auth-token
+
+
   const fetchUserWithAuth = async (token) => {
     const response = await fetch(`${address}/api/auth/getuser`, {
       method: "POST",
@@ -356,12 +349,11 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
     setLoggedUser(json);
   };
 
-  // LIKING POST API
 
+  // LIKING POST API
   const checkifliked = async (id) => {
     const response = await fetch(`${address}/api/app/fetchliked/${id}`, {
       method: "GET",
@@ -374,6 +366,8 @@ const DataState = (props) => {
     setisliked(json.liked);
   };
 
+  // fetching  all Resources API
+
   const fetchResources = async (id) => {
     const response = await fetch(`${address}/api/app/resource`, {
       method: "GET",
@@ -384,6 +378,8 @@ const DataState = (props) => {
     const json = await response.json();
     setNotes(json);
   };
+
+  // fetching  user specific  Resources API
 
   const fetchUserResources = async (id) => {
     const response = await fetch(
@@ -399,6 +395,8 @@ const DataState = (props) => {
     return json;
   };
 
+  // fetching all users ( in backend the limit is 10 )
+
   const fetchAllUsers = async () => {
     const response = await fetch(`${address}/api/auth/user`, {
       method: "GET",
@@ -409,7 +407,9 @@ const DataState = (props) => {
     const json = await response.json();
     return json;
   };
- 
+
+  
+  
   const fetchAllAds = async () => {
     const response = await fetch(`${address}/api/app/allads`, {
       method: "GET",
@@ -422,6 +422,8 @@ const DataState = (props) => {
     
     setAds(json);
   };
+  // fetching user specific Ads API
+
 
   const fetchUserAds = async (id) => {
     const response = await fetch(`${address}/api/app/ads/${id}`, {

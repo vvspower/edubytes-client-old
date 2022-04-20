@@ -41,6 +41,7 @@ const JoinTeacher = () => {
   return (
     <div className={classes.Container}>
       {/* <div className="container"> */}
+      
       <div className={classes.Header}>
         <div>
           <h1>

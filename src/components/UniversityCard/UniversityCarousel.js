@@ -46,16 +46,13 @@ const UniversityCarousel = () => {
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src={nust} class="d-block w-100" style={{maxHeight: "135px"}} alt="..." />
-            
+            <img className={classes.Images} src={nust}   alt="..." />
           </div>
           <div class="carousel-item">
-            <img src={fast} class="d-block w-100" style={{maxHeight: "135px"}} height={135} alt="..." />
-            
+            <img className={classes.Images} src={fast}   alt="..." />
           </div>
           <div class="carousel-item">
-            <img src={iba} class="d-block w-100" style={{maxHeight: "135px"}} height={135} alt="..." />
-            
+            <img className={classes.Images} src={iba}    alt="..." />
           </div>
         </div>
         <button

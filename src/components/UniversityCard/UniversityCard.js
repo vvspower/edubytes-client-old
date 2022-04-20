@@ -11,7 +11,7 @@ const UniversityCard = () => {
       <div>
       <UniversityCarousel/>
       </div>
-      <div className={classes.Text} >
+      <div onClick={()=> alert("Coming soon!")} className={classes.Text} >
         <div style={{display: "flex" , alignItems: "center" , gap: "5px"}}>
         <img className={classes.sparkle} src={sparkle}/>
         <h5>Join the University Connections</h5>

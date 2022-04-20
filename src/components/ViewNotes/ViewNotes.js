@@ -64,6 +64,7 @@ const ViewNotes = () => {
               return val;
             }
           }).map((item, i) => {
+            console.log(Notes)
             return (
               <NoteCard
                 title={item.name}
@@ -72,6 +73,7 @@ const ViewNotes = () => {
                 link={item.link}
                 user={item.user}
                 date={item.date}
+               
               />
             );
           })}
