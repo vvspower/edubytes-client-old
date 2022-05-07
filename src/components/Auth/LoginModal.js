@@ -107,7 +107,7 @@ const LoginModal = () => {
                   class="btn btn-secondary"
                   onClick={() => {
                     LoginUser(email, password);
-                    login();
+                 
                   }}
                 >
                   Log in

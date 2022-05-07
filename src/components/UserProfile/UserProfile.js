@@ -34,8 +34,7 @@ const UserProfile = () => {
   const [saving, setsaving] = useState(false);
   const [progress, setProgress] = useState(30)
 
-  const address = "https://project1400authapi.herokuapp.com";
-
+  const address = process.env.REACT_APP_HEROKU_API
   
   
 
@@ -68,18 +67,16 @@ const UserProfile = () => {
     setuserblog(userblog);
     setUser(userid);
     setProgress(100)
-    
     fetchUserAds(id);
     
   }, []);
   
   
-
-
   const EditProfile = async () => {
     setsaving(true);
     let success = false;
-    const response = await fetch(`${address}/api/auth/edituser`, {
+    // const response = await fetch(`${address}/api/auth/edituser`, {
+      const response = await fetch(`${address}/api/auth/edituser`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,7 +109,6 @@ const UserProfile = () => {
       formData
     ).then((response) => {
       setSaveChange(true);
-      
       setpfp(response.data.url.toString());
       setloading(false);
     });
