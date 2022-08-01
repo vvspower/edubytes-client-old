@@ -9,17 +9,15 @@ const ViewNotes = () => {
   const Notes = context.Notes;
   const fetchResources = context.fetchResources;
   const [searchTerm, setSearchTerm] = useState("");
-  const [progress, setProgress] = useState(30)
-
-  
+  const [progress, setProgress] = useState(30);
 
   useEffect(() => {
-    setProgress(100)
+    setProgress(100);
     fetchResources();
   }, []);
 
   return (
-    <div className="container">
+    <div className="container" style={{ maxWidth: 1200 }}>
       <LoadingBar
         height={3}
         color="#8ce99a"
@@ -53,6 +51,7 @@ const ViewNotes = () => {
             }}
           />
         </div>
+
         <div className={classes.NoteRender}>
           {Notes.filter((val) => {
             if (searchTerm == "") {
@@ -64,7 +63,7 @@ const ViewNotes = () => {
               return val;
             }
           }).map((item, i) => {
-            console.log(Notes)
+            console.log(Notes);
             return (
               <NoteCard
                 title={item.name}
@@ -73,7 +72,6 @@ const ViewNotes = () => {
                 link={item.link}
                 user={item.user}
                 date={item.date}
-               
               />
             );
           })}

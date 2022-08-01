@@ -1,33 +1,50 @@
 .ViewNotes {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .Search {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 16px;
-    border: 1px solid #ced4da;
-    margin-bottom: 40px;
-   
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 16px;
+  border: 1px solid #ced4da;
+  margin-bottom: 40px;
 }
 .ViewNotes input {
-    border-radius: 16px;
-    border: 0;
-    box-shadow: none
-   
+  border-radius: 16px;
+  border: 0;
+  box-shadow: none;
 }
 
 .NoteRender {
-    display: flex;
-    gap: 10px;
+  display: grid;
+  /* flex-basis: 100%; */
+  grid-template-columns: 250px 250px 250px 250px;
+  margin-left: 50px;
+
+  gap: 10px;
+}
+
+@media only screen and (max-width: 1140px) {
+  .NoteRender {
+    margin-left: 30px;
+  }
 }
 
 @media only screen and (max-width: 850px) {
-    .NoteRender {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 25px;
-    }
+  .NoteRender {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .NoteRender {
+    /* margin-left: 30px; */
+    margin-left: 0px;
+    grid-template-columns: 250px 250px;
+  }
 }

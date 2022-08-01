@@ -24,7 +24,7 @@ const DataState = (props) => {
   const [moreBlogs, setMoreBlogs] = useState(true);
   const [signuperror, setSignupError] = useState("");
 
-  const address = process.env.REACT_APP_HEROKU_API
+  const address = process.env.REACT_APP_HEROKU_API;
 
   // Signup API
   const Signup = async (name, email, password) => {
@@ -41,7 +41,7 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
-    
+
     if (json?.errors?.length !== 0) {
       // this is checking if the error came as a string inside an array or directly as a string
       // error message is set accordingly
@@ -84,7 +84,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
+
     setLoadedPosts(json.length);
     // this set the amount of already loaded posts so when more are loaded a reference is sent of how many already are loaded
     setBlogs(json);
@@ -156,7 +156,6 @@ const DataState = (props) => {
     const userblog = await response.json();
     success = true;
     return { success, userblog };
-
   };
 
   // fetches user info API when cursor hovered over a profile picture
@@ -210,7 +209,7 @@ const DataState = (props) => {
       },
     });
     const id = await getid.json();
-    
+
     // sets any errors ( such as wrong email or password )
     setautherrors(token);
     if (token?.success) {
@@ -238,7 +237,7 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
-    
+
     if (json.success) {
       // redirect to the post if success
       window.location.href = `/discuss/post/p?id=${json.savedblogpost._id}&user=${json.savedblogpost.user}`;
@@ -268,7 +267,6 @@ const DataState = (props) => {
     }
   };
 
-  
   // Reply API
   const PostReply = async (postid, reply) => {
     const response = await fetch(`${address}/api/app/reply`, {
@@ -339,7 +337,6 @@ const DataState = (props) => {
 
   // API to fetch user using their auth-token
 
-
   const fetchUserWithAuth = async (token) => {
     const response = await fetch(`${address}/api/auth/getuser`, {
       method: "POST",
@@ -351,7 +348,6 @@ const DataState = (props) => {
     const json = await response.json();
     setLoggedUser(json);
   };
-
 
   // LIKING POST API
   const checkifliked = async (id) => {
@@ -382,15 +378,12 @@ const DataState = (props) => {
   // fetching  user specific  Resources API
 
   const fetchUserResources = async (id) => {
-    const response = await fetch(
-      `${address}/api/app/resource/${id}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${address}/api/app/resource/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = await response.json();
     return json;
   };
@@ -408,8 +401,6 @@ const DataState = (props) => {
     return json;
   };
 
-  
-  
   const fetchAllAds = async () => {
     const response = await fetch(`${address}/api/app/allads`, {
       method: "GET",
@@ -418,12 +409,10 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
-    
+
     setAds(json);
   };
   // fetching user specific Ads API
-
 
   const fetchUserAds = async (id) => {
     const response = await fetch(`${address}/api/app/ads/${id}`, {
@@ -433,8 +422,7 @@ const DataState = (props) => {
       },
     });
     const json = await response.json();
-    
-    
+
     if (json === {}) {
       setUserAds([]);
     } else {
@@ -466,7 +454,7 @@ const DataState = (props) => {
       }),
     });
     const json = await response.json();
-    
+
     return json.success;
   };
 
