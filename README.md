@@ -1,5 +1,8 @@
 # EduBytes front-end
 
+## Please do not claim this project as yours. I have not added a license which means
+- you have no permission from the creators of this software to  modify and share the software. Although a code host such as GitHub may allow you to view and fork the code, this does not imply that you are permitted to modify and share the software for any purpose
+
 The front-end side of the edubytes project. This app is to be run jointly with the backend found in this [repo](https://github.com/MustafaAP/edubytes-server).
 
 - Website : https://edubytes-project.netlify.app/
